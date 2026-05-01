@@ -1363,24 +1363,84 @@
 // ============================================================
 var store = (function() {
   var mem = {};
-  var ls = null;
+
+  function testStorage(s) {
+    try { s.setItem('__cf_t','1'); s.removeItem('__cf_t'); return true; } catch(e) { return false; }
+  }
+
+  function cookieSet(k, v) {
+    try {
+      var encoded = encodeURIComponent(JSON.stringify(v));
+      if (encoded.length < 3800) {
+        var safe_k = k.replace(/[^a-zA-Z0-9_]/g, '_');
+        document.cookie = safe_k + '=' + encoded + '; path=/; max-age=31536000; SameSite=Lax';
+        return true;
+      }
+    } catch(e) {}
+    return false;
+  }
+
+  function cookieGet(k) {
+    try {
+      var safe_k = k.replace(/[^a-zA-Z0-9_]/g, '_');
+      var rx = new RegExp('(?:^|; )' + safe_k + '=([^;]*)');
+      var match = document.cookie.match(rx);
+      if (match) return JSON.parse(decodeURIComponent(match[1]));
+    } catch(e) {}
+    return null;
+  }
+
+  var ls = testStorage(window.localStorage) ? window.localStorage : null;
+  var ss = testStorage(window.sessionStorage) ? window.sessionStorage : null;
+
+  // IndexedDB for large data
+  var idb = null;
+  var idb_pending = {};
   try {
-    window.localStorage.setItem('__cf_test', '1');
-    window.localStorage.removeItem('__cf_test');
-    ls = window.localStorage;
-  } catch(e) { ls = null; }
+    var req = indexedDB.open('cf_store_v1', 1);
+    req.onupgradeneeded = function(e) { e.target.result.createObjectStore('kv'); };
+    req.onsuccess = function(e) {
+      idb = e.target.result;
+      // Flush pending writes
+      for (var pk in idb_pending) { idbSetNow(pk, idb_pending[pk]); }
+      idb_pending = {};
+    };
+  } catch(e) {}
+
+  function idbSetNow(k, v) {
+    if (!idb) return;
+    try { idb.transaction('kv','readwrite').objectStore('kv').put(v, k); } catch(e) {}
+  }
+
+  function idbSet(k, v) {
+    if (idb) { idbSetNow(k, v); } else { idb_pending[k] = v; }
+  }
+
+  console.log('CF Store: ls=' + !!ls + ' ss=' + !!ss);
+
   return {
     get: function(k) {
-      try {
-        var v = ls ? ls.getItem(k) : (mem[k] || null);
-        return v ? JSON.parse(v) : null;
-      } catch(e) { return null; }
+      try { if (ls) { var v = ls.getItem(k); if (v !== null) return JSON.parse(v); } } catch(e) {}
+      try { if (ss) { var v2 = ss.getItem(k); if (v2 !== null) return JSON.parse(v2); } } catch(e) {}
+      var cv = cookieGet(k); if (cv !== null) return cv;
+      if (mem[k] !== undefined) { try { return JSON.parse(mem[k]); } catch(e) {} }
+      return null;
     },
     set: function(k, v) {
-      try {
-        var s = JSON.stringify(v);
-        if (ls) { ls.setItem(k, s); } else { mem[k] = s; }
-      } catch(e) {}
+      var s = '';
+      try { s = JSON.stringify(v); } catch(e) { return; }
+      try { if (ls) ls.setItem(k, s); } catch(e) {
+        try { if (ls) { ls.clear(); ls.setItem(k, s); } } catch(e2) {}
+      }
+      try { if (ss) ss.setItem(k, s); } catch(e) {}
+      cookieSet(k, v);
+      idbSet(k, v);
+      mem[k] = s;
+    },
+    keys: function() {
+      var result = [];
+      try { if (ls) { for (var i = 0; i < ls.length; i++) { var key = ls.key(i); if (key) result.push(key); } } } catch(e) {}
+      return result;
     }
   };
 }());
@@ -2544,17 +2604,9 @@ function buildExportText() {
   lines.push('');
 
   // Collect all keys from storage
-  var allKeys = [];
-  try {
-    if (window.localStorage) {
-      for (var i = 0; i < localStorage.length; i++) {
-        var k = localStorage.key(i);
-        if (k && k.indexOf('cf_log_') === 0) allKeys.push(k);
-      }
-    }
-  } catch(e) {}
+  // Use store.keys() which checks all storage layers
+  var allKeys = store.keys().filter(function(k){ return k && k.indexOf('cf_log_') === 0; });
 
-  // Also check in-memory store
   if (allKeys.length === 0) {
     // Try getting known keys from the plan
     var knownKeys = [
