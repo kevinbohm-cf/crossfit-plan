@@ -668,17 +668,25 @@
         <div class="day-card" id="day-di-w2">
           <div class="day-header" onclick="toggleDay('day-di-w2')">
             <div class="day-indicator" style="background:var(--purple)"></div>
-            <div class="day-header-text"><h3>Dienstag · 28. April</h3><div class="day-time">🏢 Gym 05-06h ✅ · 🏋️ Box 15-17h</div></div>
-            <span class="day-badge badge-both">2× Optional</span>
+            <div class="day-header-text"><h3>Dienstag · 28. April</h3><div class="day-time">🏢 Gym 05-06h ✅ · 🏋️ Box 15-17h ✅</div></div>
+            <span class="day-badge badge-both">Komplett ✅</span>
             <span class="chevron">›</span>
           </div>
           <div class="day-body">
-            <div class="note-box green">✅ Gym AM Di 28.4.: Machine Press / Lat PD / Face Pull / Lat Raise – RPE 7–9</div>
+            <div class="note-box green">✅ Feedback: &quot;Hat Spaß gemacht. Knapp 1h in der Box. Am Morgen im Gym zeitlich gut.&quot; – 💪 RPE 7</div>
             <div class="block">
-              <div class="block-label">Box PM · Olympic Lifting</div>
-              <div class="ex-row"><div class="ex-info"><div class="ex-name">Squat Snatch + OHS Komplex</div><div class="ex-load">85 kg bestätigt ✅</div><div class="ex-note">90 kg: Vorlage im Catch → Fokus Thorax oben</div></div><button class="log-btn logged" onclick="openLog('snatch_w2','Snatch W2')">✓</button></div>
-              <div class="ex-row"><div class="ex-info"><div class="ex-name">Power Snatch</div><div class="ex-load">5×2 @ 68–72 kg · Technik</div></div><button class="log-btn" onclick="openLog('psnatch_w2','Power Snatch W2')">📊</button></div>
-              <div class="ex-row"><div class="ex-info"><div class="ex-name">Hang Power Clean</div><div class="ex-load">5×3 @ 80–85 kg</div></div><button class="log-btn" onclick="openLog('hpc_w2','HPC W2')">📊</button></div>
+              <div class="block-label">Gym AM · 05:00–06:00 ✅</div>
+              <div class="ex-row"><div class="ex-info"><div class="ex-name">Machine Shoulder Press</div><div class="ex-load">4×10 ✅ · S1: 20kg RPE5 · S2-4: 30kg RPE 7–9</div></div><button class="log-btn logged" onclick="openLog('msp_tue_w2','Machine Shoulder Press Di W2','strength')">&#x2713;</button></div>
+              <div class="ex-row"><div class="ex-info"><div class="ex-name">Lat Pulldown</div><div class="ex-load">4×12 ✅ · S1: 59kg RPE7 · S2-4: ~59kg RPE 8–9</div></div><button class="log-btn logged" onclick="openLog('lpd_tue_w2','Lat Pulldown Di W2','strength')">&#x2713;</button></div>
+              <div class="ex-row"><div class="ex-info"><div class="ex-name">Cable Face Pull</div><div class="ex-load">3×20 ✅ · @14kg/18kg/20kg</div></div><button class="log-btn logged" onclick="openLog('cfp_tue_w2','Face Pull Di W2','reps')">&#x2713;</button></div>
+              <div class="ex-row"><div class="ex-info"><div class="ex-name">Lateral Raise</div><div class="ex-load">3×15 @ 5kg ✅</div></div><button class="log-btn logged" onclick="openLog('dlr_tue_w2','Lateral Raise Di W2','strength')">&#x2713;</button></div>
+              <div class="ex-row"><div class="ex-info"><div class="ex-name">Arnold Press</div><div class="ex-load">3×12 ✅ · 15kg/17,5kg/17,5kg RPE 6–8</div></div><button class="log-btn logged" onclick="openLog('arnold_w2','Arnold Press Di W2','strength')">&#x2713;</button></div>
+            </div>
+            <div class="block">
+              <div class="block-label">Box PM · Olympic Lifting ✅</div>
+              <div class="ex-row"><div class="ex-info"><div class="ex-name">Squat Snatch + OHS Komplex</div><div class="ex-load">85 kg bestätigt ✅</div><div class="ex-note">90 kg: Vorlage im Catch → Cue: &quot;Stange hinter den Ohren&quot; → W3 Fokus</div></div><button class="log-btn logged" onclick="openLog('snatch_w2','Snatch W2','strength')">&#x2713;</button></div>
+              <div class="ex-row"><div class="ex-info"><div class="ex-name">Hang Power Clean</div><div class="ex-load">5×3 @ 77 kg ✅</div><div class="ex-note">RPE 6–7 · sauber · W3: 82–85 kg anpeilen</div></div><button class="log-btn logged" onclick="openLog('hpc_tue_w2','HPC Di W2','strength')">&#x2713;</button></div>
+              <div class="ex-row"><div class="ex-info"><div class="ex-name">Clean Complex</div><div class="ex-load">✅ Ca. 30s/Movement · genügend Pause · Technik gut</div></div><button class="log-btn logged" onclick="openLog('wod_tue_w2','Clean Complex Di W2','wod')">&#x2713;</button></div>
             </div>
           </div>
         </div>
@@ -1552,7 +1560,8 @@ function wod(label, name, body, tip, logKey, logLabel, logType) {
 // Full day content per week+dow
 function buildTodayContent(week, dow) {
   // Always shown
-  var heelDrop = '<div class="day-card" style="margin:0 0 12px;border-color:rgba(255,204,0,0.25)"><div style="padding:12px 14px"><div class="block-label" style="margin-bottom:8px">🦵 Tägliche Reminder</div>' + exRow('Heel Drops','2–3×15 je Seite','Auch an Ruhetagen!','heeldrop_td','Heel Drops') + '</div></div>';
+  var todayCardId = 'day-today-w' + week + '-d' + dow;
+  var heelDrop = '<div class="day-card" id="' + todayCardId + '" style="margin:0 0 12px;border-color:rgba(255,204,0,0.25)"><div class="day-header" style="display:none"><h3>Heute</h3></div><div class="day-body" style="display:block;padding:12px 14px"><div class="block-label" style="margin-bottom:8px">&#x1F9B5; Reminders</div>' + exRow('Heel Drops','2-3x15 je Seite','Auch an Ruhetagen!','heeldrop_td','Heel Drops') + '</div></div>';
 
   var key = 'w' + week;
 
@@ -1908,8 +1917,8 @@ function setupTodayView(date) {
   var content = document.getElementById('today-content');
   if (!content) return;
   content.innerHTML = buildTodayContent(week, dow);
-  // Inject info buttons into dynamically generated content
   injectInfoButtons();
+  injectFeedbackButtons();
   refreshAllLogButtons();
 }
 
@@ -2246,12 +2255,16 @@ function renderHistory() {
   var html = '';
   for (var i = all.length - 1; i >= 0; i--) {
     var e = all[i];
-    html += '<div class="history-entry"><div class="history-date">' + (e.dateLabel||'') + '</div>';
+    html += '<div class="history-entry">';
+    html += '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:5px">';
+    html += '<div class="history-date">' + (e.dateLabel||'') + '</div>';
+    html += '<button onclick="deleteLogEntry(' + i + ')" style="background:rgba(255,59,48,0.12);border:1px solid rgba(255,59,48,0.3);border-radius:6px;color:var(--red);font-size:0.72rem;padding:2px 9px;cursor:pointer">Loeschen</button>';
+    html += '</div>';
     if (e.sets && e.sets.length > 0) {
       html += '<div class="history-sets">';
       for (var j = 0; j < e.sets.length; j++) {
         var s = e.sets[j];
-        html += 'S'+(j+1)+': '+(s.kg||'?')+' kg x '+(s.reps||'?')+' Wdh'+(s.rpe?' @ RPE '+s.rpe:'')+'\n';
+        html += 'S'+(j+1)+': '+(s.kg||'?')+' kg x '+(s.reps||'?')+' Wdh'+(s.rpe?' @ RPE '+s.rpe:'')+'<br>';
       }
       html += '</div>';
     } else if (e.result) {
@@ -2261,6 +2274,25 @@ function renderHistory() {
     html += '</div>';
   }
   container.innerHTML = html;
+}
+
+function deleteLogEntry(idx) {
+  if (!currentLogKey) return;
+  var all = getAllLogs(currentLogKey);
+  if (!all || idx < 0 || idx >= all.length) return;
+  all.splice(idx, 1);
+  store.set('cf_log_' + currentLogKey, all);
+  renderHistory();
+  if (all.length === 0) {
+    var btns = document.querySelectorAll('.log-btn[onclick]');
+    for (var bi = 0; bi < btns.length; bi++) {
+      var attr = btns[bi].getAttribute('onclick') || '';
+      if (attr.indexOf("'" + currentLogKey + "'") !== -1) {
+        btns[bi].classList.remove('logged');
+        btns[bi].textContent = 'LOG';
+      }
+    }
+  }
 }
 
 function closeLog() {
