@@ -1,0 +1,14 @@
+=== KEVIN CF TRAINING LOG ===
+Export: 3. Mai 2026 um 15:34
+
+--- COMP_O1 ---
+[3. Mai 2026, 15:34]
+  S1: 80 kg x 1 Wdh
+  S2: 85 kg x 1 Wdh
+  S3: 90 kg x 0 Wdh
+  Notiz: Openet 80kg failed. Dann noch mal 80kg. Dann auf 85kg und 90kg versucht aber failed
+
+--- TTB_FR_W2 ---
+[1. Mai 2026, 14:08]
+  S1: 5 kg x 5 Wdh
+[1. Mai 2026, 14:10]
