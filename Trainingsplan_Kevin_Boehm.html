@@ -1333,11 +1333,22 @@ Was bringt der nächste Zyklus? 💪</div>
 
     <div style="margin-bottom:16px">
       <div style="font-size:0.7rem;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px">Option A – Lokal speichern</div>
-      <button onclick="exportAsFile()" style="width:100%;padding:13px;border-radius:13px;border:none;background:var(--blue);color:#fff;font-size:0.95rem;font-weight:700;cursor:pointer;margin-bottom:6px">📥 Datei herunterladen</button>
+      <button onclick="exportAsFile()" style="width:100%;padding:13px;border-radius:13px;border:none;background:var(--blue);color:#fff;font-size:0.95rem;font-weight:700;cursor:pointer;margin-bottom:6px">📥 Text-Datei für Claude</button>
       <button onclick="exportLogs()" style="width:100%;padding:11px;border-radius:13px;border:1px solid var(--border);background:var(--bg3);color:var(--text2);font-size:0.85rem;font-weight:600;cursor:pointer;margin-bottom:6px">📋 In Zwischenablage kopieren</button>
       <button onclick="showExportPreview()" style="width:100%;padding:10px;border-radius:13px;border:1px solid var(--border);background:transparent;color:var(--text3);font-size:0.82rem;cursor:pointer">👁 Vorschau anzeigen</button>
       <div id="export-feedback" style="display:none;margin-top:8px;padding:9px 12px;border-radius:10px;font-size:0.8rem;text-align:center"></div>
       <div id="export-preview" style="display:none;margin-top:8px;background:var(--bg3);border-radius:12px;padding:12px;font-size:0.72rem;color:var(--text2);line-height:1.6;max-height:180px;overflow-y:auto;border:1px solid var(--border)"></div>
+    </div>
+
+    <div style="border-top:1px solid var(--border);padding-top:14px;margin-bottom:16px">
+      <div style="font-size:0.7rem;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px">Option B – JSON Backup &amp; Restore</div>
+      <p style="font-size:0.78rem;color:var(--text2);margin-bottom:10px;line-height:1.5">Kompletter Backup deiner Logs als JSON. Lädst du sie zurück, werden Logs &amp; Feedback wiederhergestellt.</p>
+      <button onclick="exportJSON()" style="width:100%;padding:12px;border-radius:13px;border:none;background:var(--purple);color:#fff;font-size:0.92rem;font-weight:700;cursor:pointer;margin-bottom:6px">💾 JSON Backup speichern</button>
+      <label style="display:block;width:100%;padding:12px;border-radius:13px;border:1px solid var(--purple);background:rgba(94,82,255,0.1);color:var(--purple);font-size:0.92rem;font-weight:700;cursor:pointer;text-align:center;box-sizing:border-box">
+        📂 JSON Backup laden
+        <input type="file" id="json-import-input" accept=".json,application/json" style="display:none" onchange="importJSON(event)">
+      </label>
+      <div id="import-feedback" style="display:none;margin-top:8px;padding:9px 12px;border-radius:10px;font-size:0.8rem;text-align:center"></div>
     </div>
 
     <div style="border-top:1px solid var(--border);padding-top:14px">
@@ -1547,6 +1558,7 @@ window.addEventListener('load',function(){
   document.getElementById('info-modal').addEventListener('click',function(e){if(e.target===this)closeInfo();});
   document.getElementById('fb-modal').addEventListener('click',function(e){if(e.target===this)closeFeedback();});
 
+  seedW3LogsIfMissing();
   var autoWeek=detectCurrentWeek(new Date());
   showWeek(autoWeek);
   setupTodayView(new Date());
@@ -1754,9 +1766,12 @@ function refreshAllLogButtons(){
     var match=attr.match(/'([^']+)'/);
     if(match){
       var last=getLastLog(match[1]);
-      if(last&&((last.sets&&last.sets.length>0)||last.result)){
+      if(last&&((last.sets&&last.sets.length>0)||last.result||last.notes)){
         btns[i].classList.add('logged');
         if(btns[i].textContent==='📊')btns[i].textContent='OK';
+      } else {
+        btns[i].classList.remove('logged');
+        if(btns[i].textContent==='OK')btns[i].textContent='📊';
       }
     }
   }
@@ -1827,6 +1842,8 @@ function saveFeedback(){
   var shortKey=currentFbKey.replace('fb_','');
   document.querySelectorAll('[data-fb="'+shortKey+'"]').forEach(function(b){b.classList.add('has-feedback');b.textContent='✅ Feedback gespeichert';});
   closeFeedback();
+  // Refresh today view to show new feedback
+  if(currentView==='today'){setupTodayView(new Date());}
 }
 
 function injectFeedbackButtons(){
@@ -1859,6 +1876,42 @@ var daySchedule={
   0:{name:'Sonntag',type:'😴 Ruhetag / Aktive Erholung',color:'var(--text3)'}
 };
 
+var FB_EMOJI_MAP={'1':{e:'😴',l:'Müde'},'2':{e:'😐',l:'Ok'},'3':{e:'🙂',l:'Gut'},'4':{e:'💪',l:'Stark'},'5':{e:'🔥',l:'Top'}};
+
+function renderFeedbackDisplay(fb){
+  if(!fb)return null;
+  var hasContent=fb.emoji||fb.stars||fb.notes;
+  if(!hasContent)return null;
+  var box=document.createElement('div');
+  box.style.cssText='margin-top:10px;padding:14px;border-radius:14px;background:rgba(48,209,88,0.07);border:1px solid rgba(48,209,88,0.2);';
+
+  var header=document.createElement('div');
+  header.style.cssText='font-size:0.7rem;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:10px;display:flex;align-items:center;gap:6px;';
+  header.innerHTML='✅ <span>Dein Feedback</span>';
+  box.appendChild(header);
+
+  if(fb.emoji&&FB_EMOJI_MAP[fb.emoji]){
+    var emo=document.createElement('div');
+    emo.style.cssText='font-size:0.85rem;color:var(--text);margin-bottom:6px;';
+    emo.innerHTML='<strong>Gefühl:</strong> '+FB_EMOJI_MAP[fb.emoji].e+' '+FB_EMOJI_MAP[fb.emoji].l;
+    box.appendChild(emo);
+  }
+  if(fb.stars){
+    var st=document.createElement('div');
+    st.style.cssText='font-size:0.85rem;color:var(--text);margin-bottom:6px;';
+    var stars='';for(var i=0;i<5;i++)stars+=(i<fb.stars?'★':'☆');
+    st.innerHTML='<strong>Workout:</strong> <span style="color:var(--yellow);letter-spacing:2px">'+stars+'</span> ('+fb.stars+'/5)';
+    box.appendChild(st);
+  }
+  if(fb.notes){
+    var n=document.createElement('div');
+    n.style.cssText='font-size:0.82rem;color:var(--text2);line-height:1.6;margin-top:8px;padding-top:8px;border-top:1px solid rgba(48,209,88,0.15);white-space:pre-wrap;';
+    n.textContent=fb.notes;
+    box.appendChild(n);
+  }
+  return box;
+}
+
 function setupTodayView(date){
   var dow=date.getDay();
   var info=daySchedule[dow];
@@ -1878,19 +1931,40 @@ function setupTodayView(date){
   var dayNames=['so','mo','di','mi','do','fr','sa'];
   var prefix=dayNames[dow];
   var card=document.querySelector('[id^="day-'+prefix+'-w'+week+'"]');
+  var origDayId=null;
   if(card){
+    origDayId=card.getAttribute('id');
     var clone=card.cloneNode(true);
-    // Make it always open
     clone.classList.add('open');
     clone.id='today-clone-'+card.id;
-    // Remove the header chevron/toggle
     var hdr=clone.querySelector('.day-header');
     if(hdr)hdr.style.cursor='default';
+    // Clone behält Original-IDs in onclick-Buttons – aber Feedback-Button im Clone
+    // verweist auf today-clone-... ID. Daher entfernen und neu setzen.
+    var oldFb=clone.querySelector('.feedback-btn');
+    if(oldFb)oldFb.remove();
     content.innerHTML='';
     content.appendChild(clone);
-    // Re-inject feedback
-    injectFeedbackButtons();
     refreshAllLogButtons();
+
+    // Eigenen Feedback-Button mit ORIGINAL-ID einsetzen
+    var body=clone.querySelector('.day-body');
+    if(body&&origDayId){
+      var existing=store.get('fb_'+origDayId);
+      var btn=document.createElement('button');
+      btn.className='feedback-btn'+(existing?' has-feedback':'');
+      btn.textContent=existing?'✏️ Feedback bearbeiten':'Wie war die Einheit?';
+      var h3=clone.querySelector('h3');
+      var label=h3?h3.textContent.trim():origDayId;
+      btn.setAttribute('onclick',"openFeedback('"+origDayId+"','"+label.replace(/'/g,'')+"')");
+      body.appendChild(btn);
+
+      // Wenn Feedback existiert: Anzeige direkt drunter
+      if(existing){
+        var fbDisplay=renderFeedbackDisplay(existing);
+        if(fbDisplay)body.appendChild(fbDisplay);
+      }
+    }
   } else {
     content.innerHTML='<div style="text-align:center;color:var(--text3);padding:32px;font-size:0.88rem">Für diesen Tag kein spezifischer Plan.<br>Auf den Körper hören!</div>';
   }
@@ -2126,6 +2200,152 @@ function exportToGitHub(){
     if(fb){fb.style.background='rgba(255,59,48,0.1)';fb.style.color='var(--red)';fb.textContent='Fehler: '+err.message;}
     if(btn)btn.textContent='⬆️ Logs zu GitHub hochladen';
   });
+}
+
+// ============================================================
+// JSON EXPORT / IMPORT
+// ============================================================
+function exportJSON(){
+  var data={version:1,exportDate:new Date().toISOString(),logs:{},feedback:{},meta:{}};
+  var keys=store.keys();
+  for(var i=0;i<keys.length;i++){
+    var k=keys[i];
+    if(!k)continue;
+    if(k.indexOf('cf_log_')===0){
+      data.logs[k.replace('cf_log_','')]=store.get(k);
+    } else if(k.indexOf('fb_')===0){
+      data.feedback[k.replace('fb_','')]=store.get(k);
+    } else if(k==='gh_token'){
+      // Token NICHT exportieren (Sicherheit)
+    } else {
+      data.meta[k]=store.get(k);
+    }
+  }
+  var json=JSON.stringify(data,null,2);
+  var date=new Date().toISOString().split('T')[0];
+  var filename='cf_backup_'+date+'.json';
+  var blob=new Blob([json],{type:'application/json'});
+  var url=URL.createObjectURL(blob);
+  var a=document.createElement('a');
+  a.href=url;a.download=filename;
+  document.body.appendChild(a);a.click();
+  document.body.removeChild(a);URL.revokeObjectURL(url);
+  var fb=document.getElementById('import-feedback');
+  if(fb){fb.style.display='block';fb.style.background='rgba(94,82,255,0.1)';fb.style.color='var(--purple)';fb.textContent='💾 Backup '+filename+' gespeichert!';}
+}
+
+function importJSON(event){
+  var file=event.target.files[0];
+  var fb=document.getElementById('import-feedback');
+  if(!file){return;}
+  var reader=new FileReader();
+  reader.onload=function(e){
+    try{
+      var data=JSON.parse(e.target.result);
+      if(!data.logs&&!data.feedback){throw new Error('Ungültiges Backup-Format');}
+      var logCount=0,fbCount=0;
+      if(data.logs){
+        for(var k in data.logs){if(data.logs.hasOwnProperty(k)){store.set('cf_log_'+k,data.logs[k]);logCount++;}}
+      }
+      if(data.feedback){
+        for(var fk in data.feedback){if(data.feedback.hasOwnProperty(fk)){store.set('fb_'+fk,data.feedback[fk]);fbCount++;}}
+      }
+      if(data.meta){
+        for(var mk in data.meta){if(data.meta.hasOwnProperty(mk)&&mk!=='gh_token'){store.set(mk,data.meta[mk]);}}
+      }
+      if(fb){fb.style.display='block';fb.style.background='rgba(48,209,88,0.1)';fb.style.color='var(--green)';fb.textContent='✅ '+logCount+' Logs + '+fbCount+' Feedback geladen!';}
+      setTimeout(function(){
+        refreshAllLogButtons();
+        injectFeedbackButtons();
+        injectInfoButtons();
+        setupTodayView(new Date());
+      },200);
+    }catch(err){
+      if(fb){fb.style.display='block';fb.style.background='rgba(255,59,48,0.1)';fb.style.color='var(--red)';fb.textContent='❌ Fehler: '+err.message;}
+    }
+  };
+  reader.readAsText(file);
+  event.target.value='';
+}
+
+// ============================================================
+// SEED W3 LOGS – stellt sicher dass eingetragene Ergebnisse beim Frischladen sichtbar sind
+// ============================================================
+var W3_SEED_LOGS={
+  'sp_w3':[{date:'2026-05-04T15:13:00.000Z',dateLabel:'4. Mai 2026, 15:13',sets:[
+    {kg:62,reps:3,rpe:8},{kg:62,reps:3,rpe:8},{kg:62,reps:3,rpe:9},{kg:62,reps:3,rpe:9},{kg:62,reps:3,rpe:9}
+  ],notes:'Nach dem 1. Satz Gürtel angezogen\nEcht hart. Die 3. Rep wird unsauber'}],
+  'dbp_w3':[{date:'2026-05-04T15:27:00.000Z',dateLabel:'4. Mai 2026, 15:27',sets:[
+    {kg:20,reps:10,rpe:6},{kg:20,reps:10,rpe:7},{kg:20,reps:10,rpe:7},{kg:20,reps:10,rpe:8}
+  ],notes:'Merk dass ich wenn es schwer wird anfange ins Hohlkreuz zu gehen'}],
+  'bsq_w3':[{date:'2026-05-04T15:41:00.000Z',dateLabel:'4. Mai 2026, 15:41',sets:[
+    {kg:115,reps:4,rpe:7},{kg:115,reps:4,rpe:8},{kg:115,reps:4,rpe:8},{kg:115,reps:4,rpe:8},{kg:115,reps:4,rpe:8}
+  ],notes:'Knie OK\nVersucht max. ROM\nLimitierung gefühlt ehr der Core als die Beine. Immer so ein wenig Good Morning'}],
+  'wod_mo_w3':[{date:'2026-05-04T16:09:00.000Z',dateLabel:'4. Mai 2026, 16:09',result:'11:38',notes:'21er Runde: 5-5-4-4-3 Thruster und C2B\n15er Runde: 4-4-43 Thruster und 5-5-5 C2B\n9er Runde: 3-3-3 Thruster und 4-3-2 C2B\n\nThruster gingen besser als gedacht. Keine schmerzen im Knie. Schultern waren fertig von der Vorbelastung\n\nC2B als Butterfly'}],
+  'hd_w3':[{date:'2026-05-04T16:19:00.000Z',dateLabel:'4. Mai 2026, 16:19',result:'3x15'}],
+  'msp_w3':[{date:'2026-05-05T06:18:00.000Z',dateLabel:'5. Mai 2026, 06:18',sets:[
+    {kg:30,reps:8,rpe:7},{kg:30,reps:8,rpe:7},{kg:35,reps:6,rpe:9},{kg:30,reps:8,rpe:7}
+  ]}],
+  'wpu_w3':[{date:'2026-05-05T06:30:00.000Z',dateLabel:'5. Mai 2026, 06:30',sets:[
+    {kg:10,reps:5,rpe:8},{kg:10,reps:5,rpe:8},{kg:10,reps:5,rpe:8},{kg:10,reps:4,rpe:8}
+  ]}],
+  'sn_w3':[{date:'2026-05-05T15:49:00.000Z',dateLabel:'5. Mai 2026, 15:49',sets:[
+    {kg:77,reps:1,rpe:8},{kg:79,reps:1,rpe:8},{kg:81,reps:1,rpe:9},{kg:82,reps:1,rpe:9}
+  ],notes:'Im ersten Zug verliere ich glaube ich den Oberkörper und dann fehlt mir die Explosivität im zweiten zug.\n\nHabe es als E3MOM gemacht'}],
+  'psn_w3':[{date:'2026-05-05T16:01:00.000Z',dateLabel:'5. Mai 2026, 16:01',sets:[
+    {kg:68,reps:2,rpe:7},{kg:68,reps:2,rpe:6},{kg:68,reps:2,rpe:7},{kg:68,reps:2,rpe:7},{kg:68,reps:2,rpe:7}
+  ]}],
+  'khspu_w3':[{date:'2026-05-06T14:30:00.000Z',dateLabel:'6. Mai 2026, 14:30',result:'6, 6, 6, 3, 4',notes:'Vorbelastung der Schulter\nEtwas Rückenprobleme seit Montag. Core nicht so fest\nFalle immer etwas von der Wand weg mit den Füßen'}],
+  'rd_w3':[{date:'2026-05-06T14:38:00.000Z',dateLabel:'6. Mai 2026, 14:38',result:'8,8,8, 5'}],
+  'dl_w3':[{date:'2026-05-06T14:44:00.000Z',dateLabel:'6. Mai 2026, 14:44',notes:'Rücken hat das heute nicht mitgemacht. Habe es daher nicht gemacht'}],
+  'run_do_w3':[{date:'2026-05-07T12:18:00.000Z',dateLabel:'7. Mai 2026, 12:18',result:'7km @5:49min/km @136bpm'}],
+  'pu_do_w3':[{date:'2026-05-07T14:43:00.000Z',dateLabel:'7. Mai 2026, 14:43',result:'12, 9, 6'}],
+  'pushup_do_w3':[{date:'2026-05-07T14:45:00.000Z',dateLabel:'7. Mai 2026, 14:45',result:'20, 20, 18'}],
+  'pike_do_w3':[{date:'2026-05-07T14:47:00.000Z',dateLabel:'7. Mai 2026, 14:47',result:'10, 10, 8'}],
+  'hr_do_w3':[{date:'2026-05-07T14:47:00.000Z',dateLabel:'7. Mai 2026, 14:47',result:'15, 15, 15'}],
+  'dips_do_w3':[{date:'2026-05-07T14:51:00.000Z',dateLabel:'7. Mai 2026, 14:51',result:'13, 12, 12',notes:'Am Dip-Barren'}],
+  'press_h1':[{date:'2026-05-09T18:01:00.000Z',dateLabel:'9. Mai 2026, 18:01',sets:[
+    {kg:45,reps:8,rpe:8},{kg:45,reps:7,rpe:9},{kg:40,reps:8,rpe:9}
+  ]}],
+  'lpd_h1':[{date:'2026-05-09T18:14:00.000Z',dateLabel:'9. Mai 2026, 18:14',sets:[
+    {kg:70,reps:10,rpe:7},{kg:77,reps:7,rpe:8},{kg:70,reps:8,rpe:8}
+  ]}],
+  'pu_h1':[{date:'2026-05-09T18:38:00.000Z',dateLabel:'9. Mai 2026, 18:38',notes:'An der Brustpresse\n7@90kg\n8@84kg\n10@77kg'}]
+};
+
+var W3_SEED_FB={
+  'day-mo-w3':{stars:4,emoji:'4',notes:'Strict Press echt hart, RPE 9 ab Satz 3 - Gürtel ab Satz 2. Box Squat 5×4 statt 5×5 - Core limitiert, nicht die Beine. DB Press: Hohlkreuz wenn es schwer wird. WOD FRAN-Style 11:38 - Thrusters gingen besser als gedacht, Knie schmerzfrei! Schultern waren fertig von Vorbelastung.'},
+  'day-di-w3':{stars:5,emoji:'4',notes:'Snatch-Tag mit Reset! E3MOM 77→79→81→82 kg gehalten, RPE 8-9. Im 1. Zug verliere ich den Oberkörper - dadurch fehlt Explosivität im 2. Zug. Aber 82 kg gestanden = Selbstvertrauen zurück nach Bundesliga-WK! Gym AM solide.'},
+  'day-mi-w3':{stars:2,emoji:'2',notes:'Rückenprobleme seit Montag schlagen voll durch. HSPU 6,6,6,3,4 mit Schulter-Vorbelastung - Core nicht fest, falle von der Wand weg. Ring Dips OK. DEADLIFT WEGGELASSEN - Rücken hat nicht mitgemacht. War die richtige Entscheidung.'},
+  'day-do-w3':{stars:4,emoji:'4',notes:'Bei Freundin in Romanshorn. Lauf 7 km @ 5:49/km, HF 136 bpm - perfekt in Zone 2! Achilles hat gehalten. Calisthenics Park Sequenz korrekt: Pull-Ups 12/9/6, Push-Ups 20/20/18, Pike 10/10/8, Dips zuletzt 13/12/12, Hollow 15/15/15. Saubere absteigende Pyramide.'},
+  'day-sa-w3':{stars:4,emoji:'3',notes:'Workout hab heute weggelassen aus Zeitmangel'},
+  'day-so-w3':{notes:'Heute Rest Day gemacht'}
+};
+
+function seedW3LogsIfMissing(){
+  var seeded=store.get('cf_w3_seeded_v3');
+  if(seeded)return;
+  var added=0;
+  for(var k in W3_SEED_LOGS){
+    if(!W3_SEED_LOGS.hasOwnProperty(k))continue;
+    var existing=store.get('cf_log_'+k);
+    if(!existing||(Array.isArray(existing)&&existing.length===0)){
+      store.set('cf_log_'+k,W3_SEED_LOGS[k]);
+      added++;
+    }
+  }
+  for(var fk in W3_SEED_FB){
+    if(!W3_SEED_FB.hasOwnProperty(fk))continue;
+    var existingFb=store.get('fb_'+fk);
+    if(!existingFb){store.set('fb_'+fk,W3_SEED_FB[fk]);}
+  }
+  // Migrate falsche W4-IDs (alte v1 Bug) zu W3
+  var oldSa=store.get('fb_day-sa-w4');
+  if(oldSa&&!store.get('fb_day-sa-w3')){store.set('fb_day-sa-w3',oldSa);}
+  var oldSo=store.get('fb_day-so-w4');
+  if(oldSo&&!store.get('fb_day-so-w3')){store.set('fb_day-so-w3',oldSo);}
+  store.set('cf_w3_seeded_v3',true);
+  if(added>0&&typeof console!=='undefined')console.log('Seeded '+added+' W3 logs');
 }
 
 // ============================================================
