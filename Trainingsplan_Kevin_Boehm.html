@@ -196,8 +196,9 @@
 </div>
 
 <div class="injury-strip">
+  <div class="injury-pill red">🚨 LWS links – Bein-Ziehen · ARZT!</div>
   <div class="injury-pill yellow">🦵 Patella – Box Squat</div>
-  <div class="injury-pill red">⚠️ Achilles rechts beobachten</div>
+  <div class="injury-pill yellow">⚠️ Achilles rechts</div>
   <div class="injury-pill yellow">💡 Heel Drops täglich!</div>
 </div>
 
@@ -741,82 +742,90 @@
   </div>
 
   <!-- MO 11. MAI -->
-  <div class="day-card" id="day-mo-w4" style="border-color:rgba(48,209,88,0.25)">
+  <div class="day-card" id="day-mo-w4" style="border-color:rgba(255,149,0,0.3)">
     <div class="day-header" onclick="toggleDay('day-mo-w4')">
-      <div class="day-indicator" style="background:var(--green)"></div>
+      <div class="day-indicator" style="background:var(--orange)"></div>
       <div class="day-header-text"><h3>Montag · 11. Mai</h3><div class="day-time">🏨 Hotel-Gym · 06:00–07:00 Uhr</div></div>
-      <span class="day-badge badge-hotel">Hotel · Overhead</span><span class="chevron">›</span>
+      <span class="day-badge badge-hotel">Hotel · Rücken-schonend</span><span class="chevron">›</span>
     </div>
     <div class="day-body">
-      <div class="note-box green">🏨 35 min · RPE 3/10 – super locker!</div>
+      <div class="note-box red">🚨 RÜCKEN-PRIORITÄT: KEINE axiale Belastung! Stütz-Übungen + Maschinen + einseitig.<br>Bei Symptom-Verschlechterung (Kribbeln, Taubheit, Kraftverlust Bein) → ARZT!</div>
       <div class="block">
-        <div class="block-label">A · Strict Press – sehr leicht</div>
-        <div class="ex-row"><div class="ex-info"><div class="ex-name">Geführte Langhantel Press</div><div class="ex-load">3×5 @ 40 kg (~50% 1RM)</div><div class="ex-note">Locker bewegen, kein Anstrengung!</div></div><button class="log-btn" onclick="openLog('press_h3','Hotel Press Mo','strength')">📊</button></div>
-        <div class="ex-row"><div class="ex-info"><div class="ex-name">Kurzhanteln: Seated DB Press</div><div class="ex-load">3×8 @ leichte KH</div></div><button class="log-btn" onclick="openLog('dbp_h3','Hotel DB Press Mo','strength')">📊</button></div>
+        <div class="block-label">A · Core-Reha · 5 min ZUERST</div>
+        <div class="ex-row"><div class="ex-info"><div class="ex-name">Dead Bug</div><div class="ex-load">3×8 je Seite · sehr langsam</div><div class="ex-note">Lower Back PRESST gegen den Boden – die ganze Zeit!</div></div><button class="log-btn" onclick="openLog('db_h3','Dead Bug Mo H','reps')">📊</button></div>
+        <div class="ex-row"><div class="ex-info"><div class="ex-name">Bird Dog</div><div class="ex-load">3×8 je Seite · 2 Sek halten</div></div><button class="log-btn" onclick="openLog('bd_h3','Bird Dog Mo H','reps')">📊</button></div>
+        <div class="ex-row"><div class="ex-info"><div class="ex-name">Side Plank</div><div class="ex-load">3×20–30 Sek je Seite</div><div class="ex-note">Anti-Lateral-Flexion – wichtig für deine LWS!</div></div><button class="log-btn" onclick="openLog('sp2_h3','Side Plank Mo H','time')">📊</button></div>
       </div>
-      <div class="wod-box">
-        <div class="wod-label">EMOM 12 min · 3er Rotation · RPE 3/10</div>
-        <div class="wod-name">Pull-Ups (oder Lat PD) / Push-Ups / Sit-Ups</div>
-        <div class="wod-body">Min 1: 4 Pull-Ups (oder 6 Lat PD @ 30–40 kg)<br>Min 2: 6 Push-Ups<br>Min 3: 8 Sit-Ups<br>→ 4 Runden · viel Rest!</div>
-        <button class="log-btn" style="margin-top:8px;width:100%;border-radius:10px;" onclick="openLog('emom_h3','Hotel EMOM Mo','wod')">📊 Eintragen</button>
+      <div class="block">
+        <div class="block-label">B · Oberkörper · gestützt + einseitig</div>
+        <div class="ex-row"><div class="ex-info"><div class="ex-name">Seated DB Press einarmig</div><div class="ex-load">3×8 je Seite @ leichte KH</div><div class="ex-note">Gegen Rückenlehne · einseitig = Anti-Rotation Core-Training</div></div><button class="log-btn" onclick="openLog('dbp_h3','DB Press Mo H','strength')">📊</button></div>
+        <div class="ex-row"><div class="ex-info"><div class="ex-name">Lat Pulldown (Kabelzug)</div><div class="ex-load">4×10 @ moderat</div><div class="ex-note">Aufrecht sitzen, Brust raus, kein Hohlkreuz</div></div><button class="log-btn" onclick="openLog('lpd_h3','Lat PD Mo H','strength')">📊</button></div>
+        <div class="ex-row"><div class="ex-info"><div class="ex-name">Cable Face Pull</div><div class="ex-load">3×15</div></div><button class="log-btn" onclick="openLog('fp_h3','Face Pull Mo H','reps')">📊</button></div>
       </div>
-      <div class="note-box green">🦵 Heel Drops 2×15 je Seite nach Training!</div>
+      <div class="block">
+        <div class="block-label">C · Ausdauer locker · 15 min</div>
+        <div class="ex-row"><div class="ex-info"><div class="ex-name">Fahrrad-Ergometer</div><div class="ex-load">15 min Zone 2</div><div class="ex-note">Aufrecht sitzen, Sattel hoch genug. ABBRECHEN bei Schmerz!</div></div><button class="log-btn" onclick="openLog('bike_h3','Bike Mo H','time')">📊</button></div>
+      </div>
+      <div class="note-box green">🦵 Heel Drops 2×15 · 🚶 30 min Spaziergang nach dem Frühstück</div>
     </div>
   </div>
 
-  <!-- DI 12. MAI – CARB START -->
-  <div class="day-card" id="day-di-w4" style="border-color:rgba(48,209,88,0.25)">
+  <!-- DI 12. MAI -->
+  <div class="day-card" id="day-di-w4" style="border-color:rgba(255,149,0,0.3)">
     <div class="day-header" onclick="toggleDay('day-di-w4')">
-      <div class="day-indicator" style="background:var(--green)"></div>
+      <div class="day-indicator" style="background:var(--orange)"></div>
       <div class="day-header-text"><h3>Dienstag · 12. Mai</h3><div class="day-time">🏨 Hotel-Gym · 06:00–07:00 Uhr</div></div>
-      <span class="day-badge badge-hotel">Hotel · Kraft Light</span><span class="chevron">›</span>
+      <span class="day-badge badge-hotel">Hotel · Cardio + Mobility</span><span class="chevron">›</span>
     </div>
     <div class="day-body">
-      <div class="note-box green">🏨 40 min · RPE 3/10 · 🍝 CARB-LOADING STARTEN!</div>
+      <div class="note-box red">🚨 KEIN Deadlift, KEIN Squat unter Last! Tag für Bewegung + Mobilität.</div>
       <div class="block">
-        <div class="block-label">A · Deadlift – Technik, kein Max!</div>
-        <div class="ex-row"><div class="ex-info"><div class="ex-name">Geführte Langhantel Deadlift</div><div class="ex-load">3×5 @ 80–100 kg</div><div class="ex-note">Nur Technik! Langsam absenken (3 Sek eccentric)</div></div><button class="log-btn" onclick="openLog('dl_h4','Hotel DL Di','strength')">📊</button></div>
-        <div class="ex-row"><div class="ex-info"><div class="ex-name">Romanian DL (RDL)</div><div class="ex-load">2×8 @ 60 kg</div></div><button class="log-btn" onclick="openLog('rdl_h4','Hotel RDL Di','strength')">📊</button></div>
-        <div class="ex-row"><div class="ex-info"><div class="ex-name">Kabelzug: Curls + Face Pulls</div><div class="ex-load">3×12 Curls + 3×15 Face Pulls</div></div><button class="log-btn" onclick="openLog('cable_h4','Hotel Cable Di','reps')">📊</button></div>
+        <div class="block-label">A · Mobility-Routine · 10 min</div>
+        <div class="ex-row"><div class="ex-info"><div class="ex-name">Cat-Cow</div><div class="ex-load">2×10 langsam</div></div></div>
+        <div class="ex-row"><div class="ex-info"><div class="ex-name">Child's Pose</div><div class="ex-load">2×60 Sek</div></div></div>
+        <div class="ex-row"><div class="ex-info"><div class="ex-name">90/90 Hip Stretch</div><div class="ex-load">2×45 Sek je Seite</div></div></div>
+        <div class="ex-row"><div class="ex-info"><div class="ex-name">McKenzie Press-Up</div><div class="ex-load">10× · Bauchlage, auf Ellbogen, sanft strecken</div><div class="ex-note">NUR wenn es das Bein-Ziehen NICHT verstärkt!</div></div></div>
       </div>
       <div class="block">
-        <div class="block-label">B · Ausdauer Steady · 15 min</div>
-        <div class="ex-row"><div class="ex-info"><div class="ex-name">Fahrrad-Ergometer Zone 2</div><div class="ex-load">3 min Warm-Up · 12 min Steady · Cool-Down</div></div><button class="log-btn" onclick="openLog('bike_h4','Hotel Bike Di','time')">📊</button></div>
+        <div class="block-label">B · Cardio Steady · 30 min</div>
+        <div class="ex-row"><div class="ex-info"><div class="ex-name">Fahrrad-Ergometer Zone 2</div><div class="ex-load">5 min Warm-Up · 20 min Steady · 5 min Cool-Down</div><div class="ex-note">HF ~135–140 · aufrecht sitzen!</div></div><button class="log-btn" onclick="openLog('bike_h4','Bike Di H','time')">📊</button></div>
       </div>
-      <div class="note-box green">🍝 CARB-LOADING STARTEN:<br>
-Frühstück: Porridge + Obst + Honig<br>
-Mittag: Pasta + Hähnchen<br>
-Abend: Normale Portion (nicht überfüllen!)<br>
-💧 Trinken: 3L+ täglich!</div>
+      <div class="block">
+        <div class="block-label">C · Oberkörper-Pump (gestützt)</div>
+        <div class="ex-row"><div class="ex-info"><div class="ex-name">Machine Chest Press</div><div class="ex-load">3×10 @ moderat</div></div><button class="log-btn" onclick="openLog('mcp_h4','Chest Press Di H','strength')">📊</button></div>
+        <div class="ex-row"><div class="ex-info"><div class="ex-name">Cable Curls + Tricep Pushdown</div><div class="ex-load">3×12 Superset</div></div><button class="log-btn" onclick="openLog('arm_h4','Arms Di H','reps')">📊</button></div>
+        <div class="ex-row"><div class="ex-info"><div class="ex-name">Pallof Press am Kabelzug</div><div class="ex-load">3×12 je Seite · 2 Sek halten</div><div class="ex-note">Anti-Rotation Core – bestes Tool für deine LWS!</div></div><button class="log-btn" onclick="openLog('pp2_h4','Pallof Press Di H','reps')">📊</button></div>
+      </div>
+      <div class="note-box green">🦵 Heel Drops 2×15 · 🚶 30–45 min lockerer Spaziergang abends</div>
     </div>
   </div>
 
-  <!-- MI 13. MAI – CARB PEAK -->
-  <div class="day-card" id="day-mi-w4" style="border-color:rgba(48,209,88,0.25)">
+  <!-- MI 13. MAI -->
+  <div class="day-card" id="day-mi-w4" style="border-color:rgba(255,149,0,0.3)">
     <div class="day-header" onclick="toggleDay('day-mi-w4')">
-      <div class="day-indicator" style="background:var(--green)"></div>
+      <div class="day-indicator" style="background:var(--orange)"></div>
       <div class="day-header-text"><h3>Mittwoch · 13. Mai</h3><div class="day-time">🏨 Hotel-Gym · 06:00–07:00 Uhr</div></div>
-      <span class="day-badge badge-hotel">Hotel · Beine</span><span class="chevron">›</span>
+      <span class="day-badge badge-hotel">Hotel · Beine sanft</span><span class="chevron">›</span>
     </div>
     <div class="day-body">
-      <div class="note-box green">🏨 40 min · RPE 3/10 · 🍝 CARB-PEAK HEUTE!</div>
+      <div class="note-box red">🚨 Beine OHNE axiale Last! Maschinen oder einseitig.</div>
       <div class="block">
-        <div class="block-label">A · Squat – gerade bewegen!</div>
-        <div class="ex-row"><div class="ex-info"><div class="ex-name">Geführte Langhantel Squat</div><div class="ex-load">3×5 @ 60–70 kg</div><div class="ex-note">Box wenn Patella besorgt, sonst volle Tiefe locker</div></div><button class="log-btn" onclick="openLog('sq_h5','Hotel Squat Mi','strength')">📊</button></div>
-        <div class="ex-row"><div class="ex-info"><div class="ex-name">Lat Pulldown (Kabelzug)</div><div class="ex-load">3×8 @ locker</div></div><button class="log-btn" onclick="openLog('lpd_h5','Hotel Lat PD Mi','strength')">📊</button></div>
-        <div class="ex-row"><div class="ex-info"><div class="ex-name">Machine Press</div><div class="ex-load">2×10 @ 40 kg</div></div><button class="log-btn" onclick="openLog('mp_h5','Hotel Machine Press Mi','strength')">📊</button></div>
+        <div class="block-label">A · Core-Reha · 5 min</div>
+        <div class="ex-row"><div class="ex-info"><div class="ex-name">Dead Bug</div><div class="ex-load">3×8 je Seite · langsam</div></div><button class="log-btn" onclick="openLog('db_h5','Dead Bug Mi H','reps')">📊</button></div>
+        <div class="ex-row"><div class="ex-info"><div class="ex-name">Side Plank</div><div class="ex-load">3×30 Sek je Seite</div></div><button class="log-btn" onclick="openLog('sp2_h5','Side Plank Mi H','time')">📊</button></div>
       </div>
-      <div class="wod-box">
-        <div class="wod-label">EMOM 15 min · 3er Rotation · easy pace</div>
-        <div class="wod-name">Fahrrad / Air Squats / Push-Ups</div>
-        <div class="wod-body">Min 1: 5 Cal Ergometer<br>Min 2: 8 Air Squats<br>Min 3: 6 Push-Ups<br>→ 5 Runden · super relaxed!</div>
-        <button class="log-btn" style="margin-top:8px;width:100%;border-radius:10px;" onclick="openLog('emom_h5','Hotel EMOM Mi','wod')">📊 Eintragen</button>
+      <div class="block">
+        <div class="block-label">B · Beine sanft</div>
+        <div class="ex-row"><div class="ex-info"><div class="ex-name">Leg Press (gestützt!)</div><div class="ex-load">3×10 @ moderat</div><div class="ex-note">Rückenlehne komplett benutzen. Rücken DRUCKT gegen die Lehne. Kein Hohlraum!</div></div><button class="log-btn" onclick="openLog('lp_h5','Leg Press Mi H','strength')">📊</button></div>
+        <div class="ex-row"><div class="ex-info"><div class="ex-name">Goblet Squat (1 leichte KH)</div><div class="ex-load">3×8 @ 12–16 kg</div><div class="ex-note">Kerze aufrecht, Core dicht. NUR wenn schmerzfrei!</div></div><button class="log-btn" onclick="openLog('gs_h5','Goblet Mi H','strength')">📊</button></div>
+        <div class="ex-row"><div class="ex-info"><div class="ex-name">Step-Up einseitig</div><div class="ex-load">3×8 je Seite · ohne Gewicht</div></div><button class="log-btn" onclick="openLog('su_h5','Step-Up Mi H','reps')">📊</button></div>
+        <div class="ex-row"><div class="ex-info"><div class="ex-name">Cable Pull-Through (alt: RDL ohne Gewicht)</div><div class="ex-load">3×12 leicht</div><div class="ex-note">NUR wenn Symptome NICHT zunehmen</div></div><button class="log-btn" onclick="openLog('pt_h5','Pull Through Mi H','reps')">📊</button></div>
       </div>
-      <div class="note-box green">🍝 CARB-PEAK:<br>
-Frühstück: Porridge + Banane + Honig<br>
-Mittag: Pasta + Hähnchen<br>
-Abend: Reis + Fisch + Süßkartoffel<br>
-💧 Trinken: 2,5–3L</div>
+      <div class="block">
+        <div class="block-label">C · Cardio</div>
+        <div class="ex-row"><div class="ex-info"><div class="ex-name">Fahrrad-Ergometer</div><div class="ex-load">15 min Zone 2</div></div><button class="log-btn" onclick="openLog('bike_h5','Bike Mi H','time')">📊</button></div>
+      </div>
+      <div class="note-box green">🦵 Heel Drops 2×15 · 🚶 Spaziergang täglich · 🔥 Wärme abends auf LWS</div>
     </div>
   </div>
 
@@ -875,22 +884,23 @@ Abend: Reis + Fisch + Süßkartoffel<br>
       <span class="day-badge badge-race">🏁 RENNTAG!</span><span class="chevron">›</span>
     </div>
     <div class="day-body">
+      <div class="note-box red">🚨 RÜCKEN-CHECK: Wenn das Bein-Ziehen seit Mi schlimmer geworden ist → Rennen ABSAGEN oder als reine Spaßfahrt fahren. KEIN Sprint, KEIN All-Out wenn LWS instabil.</div>
       <div class="block">
         <div class="block-label">Rennen-Morgen (2h vor Start)</div>
         <div class="ex-row"><div class="ex-info"><div class="ex-name">Frühstück</div><div class="ex-load">Porridge + Banane + Honig</div><div class="ex-note">2–3 Stunden vor dem Start · nicht zu viel!</div></div></div>
         <div class="ex-row"><div class="ex-info"><div class="ex-name">Hydration</div><div class="ex-load">500ml trinken vor Start</div></div></div>
-        <div class="ex-row"><div class="ex-info"><div class="ex-name">Warm-Up</div><div class="ex-load">15 min locker drehen auf dem Rad · Puls hoch</div></div></div>
+        <div class="ex-row"><div class="ex-info"><div class="ex-name">Warm-Up</div><div class="ex-load">15 min locker drehen · Rücken testen!</div><div class="ex-note">Ehrlich fühlen: Wird's stabiler oder zieht's mehr?</div></div></div>
       </div>
       <div class="block">
         <div class="block-label">🏁 Fahrradrennen</div>
-        <div class="ex-row"><div class="ex-info"><div class="ex-name">Fahrradrennen</div><div class="ex-load">Zeig was du kannst! 💪</div><div class="ex-note">Du hast 6 Wochen trainiert – vertrau dem Training!</div></div><button class="log-btn" onclick="openLog('rennen_w4','Fahrradrennen','wod')">🏁</button></div>
+        <div class="ex-row"><div class="ex-info"><div class="ex-name">Fahrradrennen</div><div class="ex-load">Pace fahren – nicht Hero-Modus!</div><div class="ex-note">Aufrechter sitzen, nicht zu tief im Lenker. Bei Schmerz/Bein-Ziehen: ABBRECHEN.</div></div><button class="log-btn" onclick="openLog('rennen_w4','Fahrradrennen','wod')">🏁</button></div>
       </div>
       <div class="block">
         <div class="block-label">Nach dem Rennen</div>
         <div class="ex-row"><div class="ex-info"><div class="ex-name">Cool-Down</div><div class="ex-load">20 min Zone 1 locker drehen</div></div></div>
         <div class="ex-row"><div class="ex-info"><div class="ex-name">Recovery</div><div class="ex-load">Viel trinken + Protein + Carbs innerhalb 30 min</div></div></div>
       </div>
-      <div class="note-box green">⚡ Mental: Pace halten. Kein Sprint am Anfang! Steady State finden und durchziehen. Du bist fit!</div>
+      <div class="note-box green">⚡ Mental: Diesmal kein All-Out! Gesunder Rücken &gt; Rennen-Ergebnis. 💪</div>
     </div>
   </div>
 
@@ -914,35 +924,37 @@ Abend: Reis + Fisch + Süßkartoffel<br>
 <!-- ===== WEEK 5 ===== -->
 <div class="week-view" id="wv5">
   <div class="week-banner">
-    <div class="phase">Phase 3 – Build</div>
+    <div class="phase">Phase 3 – Re-Build (rückenadaptiert)</div>
     <h2>Woche 5 · 18.–24. Mai</h2>
-    <p>Direkt weiter nach dem Rennen. Intensität 77–82%. Deadlift und Overhead steigern. HSPU Kipping ausbauen.</p>
+    <p>Vorsichtiger Wiedereinstieg. KEIN Heavy Back Squat, KEIN Deadlift bis Symptome weg sind. Press &amp; Snatch konservativ. Core-Reha eingebaut.</p>
   </div>
 
   <div class="day-card" id="day-mo-w5">
     <div class="day-header" onclick="toggleDay('day-mo-w5')">
       <div class="day-indicator" style="background:var(--blue)"></div>
       <div class="day-header-text"><h3>Montag · 18. Mai</h3><div class="day-time">🏢 Gym 05-06h (opt.) · 🏋️ Box 15-17h</div></div>
-      <span class="day-badge badge-box">Kraft + WOD</span><span class="chevron">›</span>
+      <span class="day-badge badge-box">Press + WOD</span><span class="chevron">›</span>
     </div>
     <div class="day-body">
-      <div class="wu-box"><strong>🔥 Warm-Up · 8 min</strong>500m Row easy · 10 World's Greatest Stretch · 5 Inchworms · 10 Scap Pull-Ups · 5 OHS @ PVC</div>
+      <div class="note-box red">🚨 RÜCKEN-CHECK morgens: Wie ist das Bein-Ziehen? Bei Verschlechterung → Heavy streichen, nur WOD light + Cardio.</div>
+      <div class="wu-box"><strong>🔥 Warm-Up · 10 min</strong>500m Row easy · 5 min Mobility (Cat-Cow, 90/90, World's Greatest) · Dead Bug 2×8 · Side Plank 2×20 Sek</div>
       <div class="block">
-        <div class="block-label">A · Strict Press</div>
-        <div class="ex-row"><div class="ex-info"><div class="ex-name">Strict Press</div><div class="ex-load">5×3 @ 65 kg (81%)</div><div class="ex-note">Tempo 2-1-2 · RPE max 8</div></div><button class="log-btn" onclick="openLog('sp_w5','Strict Press W5','strength')">📊</button></div>
-        <div class="ex-row"><div class="ex-info"><div class="ex-name">Seated DB Press</div><div class="ex-load">4×10 @ 22 kg</div></div><button class="log-btn" onclick="openLog('dbp_w5','DB Press W5','strength')">📊</button></div>
+        <div class="block-label">A · Strict Press (vorsichtig)</div>
+        <div class="ex-row"><div class="ex-info"><div class="ex-name">Strict Press</div><div class="ex-load">5×3 @ 60 kg (75%)</div><div class="ex-note">Bracing 360°! Wenn RPE über 8 → STOP, kein Maxing</div></div><button class="log-btn" onclick="openLog('sp_w5','Strict Press W5','strength')">📊</button></div>
+        <div class="ex-row"><div class="ex-info"><div class="ex-name">Seated DB Press einarmig</div><div class="ex-load">3×8 je Seite @ 18 kg</div><div class="ex-note">Anti-Rotation = Core-Training</div></div><button class="log-btn" onclick="openLog('dbp_w5','DB Press W5','strength')">📊</button></div>
       </div>
       <div class="block">
-        <div class="block-label">B · Back Squat</div>
-        <div class="ex-row"><div class="ex-info"><div class="ex-name">Back Squat</div><div class="ex-load">5×3 @ 120 kg (75%)</div><div class="ex-note">Volle Tiefe · Knie nach außen</div></div><button class="log-btn" onclick="openLog('bsq_w5','Back Squat W5','strength')">📊</button></div>
-        <div class="ex-row"><div class="ex-info"><div class="ex-name">Weighted Step-Up</div><div class="ex-load">3×8 je Seite @ 24 kg</div></div><button class="log-btn" onclick="openLog('su_w5','Step-Up W5','strength')">📊</button></div>
+        <div class="block-label">B · Beine OHNE axiale Last</div>
+        <div class="ex-row"><div class="ex-info"><div class="ex-name">Goblet Squat</div><div class="ex-load">4×8 @ 24 kg KH</div><div class="ex-note">Aufrecht, Brust raus, Core dicht. Bei Schmerz: Leg Press stattdessen!</div></div><button class="log-btn" onclick="openLog('bsq_w5','Goblet Squat W5','strength')">📊</button></div>
+        <div class="ex-row"><div class="ex-info"><div class="ex-name">Bulgarian Split Squat</div><div class="ex-load">3×8 je Seite · KH 16 kg</div></div><button class="log-btn" onclick="openLog('su_w5','Bulgarian SS W5','strength')">📊</button></div>
+        <div class="ex-row"><div class="ex-info"><div class="ex-name">Pallof Press</div><div class="ex-load">3×12 je Seite · 2 Sek halten</div></div><button class="log-btn" onclick="openLog('pal_w5','Pallof W5','reps')">📊</button></div>
         <div class="ex-row"><div class="ex-info"><div class="ex-name">Heel Drops 🦵</div><div class="ex-load">3×15 je Seite</div></div><button class="log-btn" onclick="openLog('hd_w5','Heel Drops W5','reps')">📊</button></div>
       </div>
       <div class="wod-box">
         <div class="wod-label">WOD · For Time · 4 Rounds · 20 min Cap</div>
-        <div class="wod-name">Thrusters / C2B Pull-Ups / TTB</div>
-        <div class="wod-body">8 Thrusters @ 52 kg · 6 C2B Pull-Ups · 8 Toes-to-Bar</div>
-        <div class="wod-tip">Thrusters aus der Front-Rack-Position – Core aktiv im Hüftimpuls!</div>
+        <div class="wod-name">DB Thrusters / C2B / Row</div>
+        <div class="wod-body">8 DB Thrusters @ 2×15 kg · 8 C2B Pull-Ups · 12 Cal Row</div>
+        <div class="wod-tip">DB statt Langhantel = weniger Bracing-Stress. Core dicht im Hüftimpuls!</div>
         <button class="log-btn" style="margin-top:8px;width:100%;border-radius:10px;" onclick="openLog('wod_mo_w5','WOD Mo W5','wod')">📊 Eintragen</button>
       </div>
     </div>
@@ -965,9 +977,9 @@ Abend: Reis + Fisch + Süßkartoffel<br>
       </div>
       <div class="block">
         <div class="block-label">Box PM · Snatch + Clean</div>
-        <div class="ex-row"><div class="ex-info"><div class="ex-name">Squat Snatch + OHS Komplex</div><div class="ex-load">4×1+2 @ 80–85 kg</div><div class="ex-note">Fokus Catch aktiv · „Stange hinter den Ohren" · Thorax oben!</div></div><button class="log-btn" onclick="openLog('sn_w5','Snatch W5','strength')">📊</button></div>
-        <div class="ex-row"><div class="ex-info"><div class="ex-name">Power Snatch</div><div class="ex-load">5×2 @ 70 kg</div></div><button class="log-btn" onclick="openLog('psn_w5','Power Snatch W5','strength')">📊</button></div>
-        <div class="ex-row"><div class="ex-info"><div class="ex-name">Hang Power Clean</div><div class="ex-load">5×3 @ 82 kg</div><div class="ex-note">RPE 7 · sauber · schnelle Ellbogen!</div></div><button class="log-btn" onclick="openLog('hpc_w5','HPC W5','strength')">📊</button></div>
+        <div class="ex-row"><div class="ex-info"><div class="ex-name">Squat Snatch + OHS Komplex</div><div class="ex-load">4×1+2 @ 70–75 kg (vorsichtig!)</div><div class="ex-note">🚨 Bei Bein-Ziehen STOP! Catch-Position belastet die LWS – Power Snatch dann!</div></div><button class="log-btn" onclick="openLog('sn_w5','Snatch W5','strength')">📊</button></div>
+        <div class="ex-row"><div class="ex-info"><div class="ex-name">Power Snatch</div><div class="ex-load">5×2 @ 65 kg</div><div class="ex-note">Brace 360° vor jedem Pull!</div></div><button class="log-btn" onclick="openLog('psn_w5','Power Snatch W5','strength')">📊</button></div>
+        <div class="ex-row"><div class="ex-info"><div class="ex-name">Hang Power Clean</div><div class="ex-load">5×3 @ 75 kg</div><div class="ex-note">Aus Hang weniger LWS-Belastung als vom Boden</div></div><button class="log-btn" onclick="openLog('hpc_w5','HPC W5','strength')">📊</button></div>
       </div>
     </div>
   </div>
@@ -976,26 +988,29 @@ Abend: Reis + Fisch + Süßkartoffel<br>
     <div class="day-header" onclick="toggleDay('day-mi-w5')">
       <div class="day-indicator" style="background:var(--blue)"></div>
       <div class="day-header-text"><h3>Mittwoch · 20. Mai</h3><div class="day-time">🏢 Gym 05-06h (opt.) · 🏋️ Box 15-17h</div></div>
-      <span class="day-badge badge-box">HSPU + Deadlift</span><span class="chevron">›</span>
+      <span class="day-badge badge-box">HSPU + Hinge light</span><span class="chevron">›</span>
     </div>
     <div class="day-body">
-      <div class="wu-box"><strong>🔥 Warm-Up · 7 min</strong>500m Row easy · 5 Inchworms · 10 Shoulder Taps · Wall HS Hold 3×15 Sek · 5 Pike Push-Ups · 3×5 Scap Pull-Ups</div>
+      <div class="note-box red">🚨 Heavy Deadlift gestrichen! Stattdessen rückenschonende Hinge-Bewegung. Nur wenn LWS symptomfrei → Trap Bar erwägen.</div>
+      <div class="wu-box"><strong>🔥 Warm-Up · 10 min</strong>500m Row easy · 5 min Mobility · Dead Bug 2×8 · Side Plank 2×20 Sek · 5 Inchworms · Wall HS Hold 3×15 Sek · 5 Pike Push-Ups</div>
       <div class="block">
         <div class="block-label">A · HSPU Peak</div>
         <div class="note-box">⚡ HSPU immer ZUERST – wenn noch frisch!</div>
-        <div class="ex-row"><div class="ex-info"><div class="ex-name">Kipping HSPU</div><div class="ex-load">5×max unter 8 Reps</div><div class="ex-note">Vor Failure stoppen! Technik vor Volumen.</div></div><button class="log-btn" onclick="openLog('khspu_w5','Kipping HSPU W5','reps')">📊</button></div>
+        <div class="ex-row"><div class="ex-info"><div class="ex-name">Kipping HSPU</div><div class="ex-load">5×max unter 8 Reps</div><div class="ex-note">Vor Failure stoppen! Core dicht – nicht von der Wand kippen.</div></div><button class="log-btn" onclick="openLog('khspu_w5','Kipping HSPU W5','reps')">📊</button></div>
         <div class="ex-row"><div class="ex-info"><div class="ex-name">Strict HSPU</div><div class="ex-load">4×3–5 · Qualität</div></div><button class="log-btn" onclick="openLog('shspu_w5','Strict HSPU W5','reps')">📊</button></div>
         <div class="ex-row"><div class="ex-info"><div class="ex-name">Ring Dips</div><div class="ex-load">4×8</div></div><button class="log-btn" onclick="openLog('rd_w5','Ring Dips W5','reps')">📊</button></div>
       </div>
       <div class="block">
-        <div class="block-label">B · Deadlift</div>
-        <div class="ex-row"><div class="ex-info"><div class="ex-name">Deadlift</div><div class="ex-load">4×3 @ 176 kg (80%)</div><div class="ex-note">Mit Straps</div></div><button class="log-btn" onclick="openLog('dl_w5','Deadlift W5','strength')">📊</button></div>
-        <div class="ex-row"><div class="ex-info"><div class="ex-name">Romanian DL</div><div class="ex-load">3×8 @ 110 kg</div></div><button class="log-btn" onclick="openLog('rdl_w5','RDL W5','strength')">📊</button></div>
+        <div class="block-label">B · Hinge OHNE Heavy Deadlift</div>
+        <div class="ex-row"><div class="ex-info"><div class="ex-name">Trap Bar Deadlift (wenn schmerzfrei)</div><div class="ex-load">4×5 @ 120 kg</div><div class="ex-note">Trap Bar = aufrechtere Position, weniger LWS-Stress. Bei Schmerz → KB DL light!</div></div><button class="log-btn" onclick="openLog('dl_w5','Trap Bar DL W5','strength')">📊</button></div>
+        <div class="ex-row"><div class="ex-info"><div class="ex-name">Single-Leg RDL (mit KH)</div><div class="ex-load">3×8 je Seite @ 12 kg</div><div class="ex-note">Einseitig = Anti-Rotation, weniger axiale Last</div></div><button class="log-btn" onclick="openLog('rdl_w5','SL RDL W5','reps')">📊</button></div>
+        <div class="ex-row"><div class="ex-info"><div class="ex-name">Pallof Press + Side Plank</div><div class="ex-load">3×12 + 3×30 Sek je Seite</div></div><button class="log-btn" onclick="openLog('core_w5','Core W5','reps')">📊</button></div>
       </div>
       <div class="wod-box">
-        <div class="wod-label">WOD · AMRAP 20 min</div>
+        <div class="wod-label">WOD · AMRAP 18 min · konservativ</div>
         <div class="wod-name">Row / HSPU / KB Swing / C2B</div>
-        <div class="wod-body">300m Row · 6 HSPU · 10 KB Swings @ 32 kg · 8 C2B Pull-Ups</div>
+        <div class="wod-body">300m Row · 6 HSPU · 10 KB Swings @ 24 kg (statt 32!) · 8 C2B Pull-Ups</div>
+        <div class="wod-tip">KB Swing leichter wegen Rücken. Hüftimpuls mit Brace, kein Hohlkreuz oben!</div>
         <button class="log-btn" style="margin-top:8px;width:100%;border-radius:10px;" onclick="openLog('wod_mi_w5','WOD Mi W5','wod')">📊 Eintragen</button>
       </div>
     </div>
@@ -1014,8 +1029,8 @@ Abend: Reis + Fisch + Süßkartoffel<br>
         <div class="ex-row"><div class="ex-info"><div class="ex-name">Machine Chest Press</div><div class="ex-load">4×10 @ moderat</div></div><button class="log-btn" onclick="openLog('mcp_w5','Machine CP W5','strength')">📊</button></div>
         <div class="ex-row"><div class="ex-info"><div class="ex-name">Strict Pull-Up</div><div class="ex-load">4×max Reps</div></div><button class="log-btn" onclick="openLog('spu_w5','Strict PU W5','reps')">📊</button></div>
         <div class="ex-row"><div class="ex-info"><div class="ex-name">Seated Cable Row</div><div class="ex-load">4×12</div></div><button class="log-btn" onclick="openLog('scr_w5','Cable Row W5','strength')">📊</button></div>
-        <div class="ex-row"><div class="ex-info"><div class="ex-name">Push Press</div><div class="ex-load">5×4 @ 80 kg</div><div class="ex-note">Core beim Hüftimpuls aktiv!</div></div><button class="log-btn" onclick="openLog('pp_w5','Push Press W5','strength')">📊</button></div>
-        <div class="ex-row"><div class="ex-info"><div class="ex-name">Push Jerk</div><div class="ex-load">3×3 @ 75 kg</div></div><button class="log-btn" onclick="openLog('pj_w5','Push Jerk W5','strength')">📊</button></div>
+        <div class="ex-row"><div class="ex-info"><div class="ex-name">Push Press</div><div class="ex-load">5×4 @ 75 kg (vorsichtig!)</div><div class="ex-note">🚨 Hier ist Bracing kritisch! Bei Bein-Ziehen → Strict Press stattdessen.</div></div><button class="log-btn" onclick="openLog('pp_w5','Push Press W5','strength')">📊</button></div>
+        <div class="ex-row"><div class="ex-info"><div class="ex-name">Push Jerk</div><div class="ex-load">3×3 @ 70 kg</div><div class="ex-note">Saubere Catch-Position, Core fest</div></div><button class="log-btn" onclick="openLog('pj_w5','Push Jerk W5','strength')">📊</button></div>
       </div>
       <div style="background:rgba(0,180,216,0.07);border:1px solid rgba(0,180,216,0.2);border-radius:12px;padding:12px;margin-top:12px">
         <div style="font-size:0.7rem;font-weight:700;color:#00b4d8;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:8px">🏊 Schwimmen W5 – Intervalle</div>
@@ -1077,9 +1092,9 @@ Abend: Reis + Fisch + Süßkartoffel<br>
 <!-- ===== WEEK 6 ===== -->
 <div class="week-view" id="wv6">
   <div class="week-banner" style="background:linear-gradient(135deg,rgba(255,184,0,0.15),rgba(255,59,48,0.1));border-color:rgba(255,184,0,0.3)">
-    <div class="phase" style="color:var(--yellow)">Phase 4 – CrossFit PEAK 🔥 VOLLGAS!</div>
+    <div class="phase" style="color:var(--yellow)">Phase 4 – CrossFit PEAK · BEDINGT! 🔥</div>
     <h2>Woche 6 · 25.–31. Mai</h2>
-    <p>Maximale Performance. PR-Tests Mo (Strict Press + FRAN), Di (C&J), Mi (HSPU Max). Volle Woche!</p>
+    <p>🚨 PR-Tests NUR bei symptomfreiem Rücken! Bei Bein-Ziehen: Press &amp; HSPU PR OK, C&amp;J + Heavy DL Peak verschieben. Strict Press &amp; HSPU sind sicher (kein axialer Druck).</p>
   </div>
 
   <!-- MO 25. MAI – STRICT PRESS PR + FRAN -->
@@ -1090,26 +1105,27 @@ Abend: Reis + Fisch + Süßkartoffel<br>
       <span class="day-badge badge-comp">Strict Press PR + FRAN!</span><span class="chevron">›</span>
     </div>
     <div class="day-body">
-      <div class="wu-box"><strong>🔥 Warm-Up · 8 min</strong>500m Row easy · 10 World's Greatest Stretch · 5 Inchworms · 10 Scap Pull-Ups · 5 OHS @ PVC</div>
+      <div class="note-box red">🚨 PR-CHECK: Strict Press PR ist sicher (kein axialer Druck) → GO! Back Squat NUR wenn Rücken symptomfrei. Sonst Goblet Squat 4×6.</div>
+      <div class="wu-box"><strong>🔥 Warm-Up · 10 min</strong>500m Row easy · 10 World's Greatest Stretch · 5 Inchworms · Dead Bug 2×8 · Side Plank 2×30 Sek · 10 Scap Pull-Ups · 5 OHS @ PVC</div>
       <div class="block">
-        <div class="block-label">Gym AM · Push Press Peak</div>
-        <div class="ex-row"><div class="ex-info"><div class="ex-name">Push Press</div><div class="ex-load">5×3 @ 90–95 kg</div><div class="ex-note">Core beim Hüftimpuls! Eingrooven für PR-Woche.</div></div><button class="log-btn" onclick="openLog('pp_w6','Push Press W6','strength')">📊</button></div>
+        <div class="block-label">Gym AM · Push Press Build</div>
+        <div class="ex-row"><div class="ex-info"><div class="ex-name">Push Press</div><div class="ex-load">5×3 @ 85 kg (vorsichtig!)</div><div class="ex-note">Bei Bein-Ziehen: 75 kg max. Core 360° Brace!</div></div><button class="log-btn" onclick="openLog('pp_w6','Push Press W6','strength')">📊</button></div>
         <div class="ex-row"><div class="ex-info"><div class="ex-name">Strict Pull-Up (weighted)</div><div class="ex-load">4×5 @ +15 kg</div></div><button class="log-btn" onclick="openLog('wpu_w6','Weighted PU W6','strength')">📊</button></div>
       </div>
       <div class="block">
-        <div class="block-label">A · 🏆 Strict Press – NEUER PR!</div>
+        <div class="block-label">A · 🏆 Strict Press – NEUER PR! (sicher)</div>
         <div class="ex-row"><div class="ex-info"><div class="ex-name">Aufwärm-Leiter</div><div class="ex-load">5×40 · 3×55 · 2×65 · 1×72 · 1×78 kg</div></div></div>
-        <div class="ex-row"><div class="ex-info"><div class="ex-name">🏆 Strict Press MAX ATTEMPT!</div><div class="ex-load">1×1 @ 85–88 kg (PR: 80 kg)</div><div class="ex-note">Einmaliger Versuch – alles rein!</div></div><button class="log-btn" onclick="openLog('sp_pr_w6','Strict Press PR W6','strength')">🏆</button></div>
+        <div class="ex-row"><div class="ex-info"><div class="ex-name">🏆 Strict Press MAX ATTEMPT!</div><div class="ex-load">1×1 @ 83–85 kg (PR: 80 kg)</div><div class="ex-note">Bracing-Cue: Ribs down, Bauch dicht, DANN drücken</div></div><button class="log-btn" onclick="openLog('sp_pr_w6','Strict Press PR W6','strength')">🏆</button></div>
       </div>
       <div class="block">
-        <div class="block-label">B · Back Squat</div>
-        <div class="ex-row"><div class="ex-info"><div class="ex-name">Back Squat</div><div class="ex-load">4×3 @ 125 kg (78%)</div></div><button class="log-btn" onclick="openLog('bs_w6','Back Squat W6','strength')">📊</button></div>
+        <div class="block-label">B · Beine (rückenadaptiert)</div>
+        <div class="ex-row"><div class="ex-info"><div class="ex-name">Back Squat (NUR wenn symptomfrei!)</div><div class="ex-load">4×3 @ 115 kg</div><div class="ex-note">Bei Schmerz/Ziehen: Goblet Squat 4×6 @ 28 kg stattdessen!</div></div><button class="log-btn" onclick="openLog('bs_w6','Squat W6','strength')">📊</button></div>
       </div>
       <div class="wod-box">
         <div class="wod-label">WOD – BENCHMARK FRAN · For Time</div>
         <div class="wod-name">21–15–9: Thrusters + Pull-Ups</div>
         <div class="wod-body">Thrusters @ 43 kg · Pull-Ups</div>
-        <div class="wod-tip">📌 Zeit notieren und mit W3 Benchmark vergleichen!</div>
+        <div class="wod-tip">📌 Zeit notieren! Bei Bein-Ziehen: DB Thruster @ 2×17,5 kg statt Langhantel.</div>
         <button class="log-btn" style="margin-top:8px;width:100%;border-radius:10px;" onclick="openLog('fran_w6','FRAN W6','wod')">🏆 FRAN Zeit eintragen</button>
       </div>
     </div>
@@ -1123,22 +1139,24 @@ Abend: Reis + Fisch + Süßkartoffel<br>
       <span class="day-badge badge-comp">C&J PR!</span><span class="chevron">›</span>
     </div>
     <div class="day-body">
-      <div class="wu-box"><strong>🔥 Warm-Up · 7 min</strong>5 min Bike locker · 10 Hip Circles · Wrist Mobility · Clean-Leiter: PVC → 40 → 55 → 70 kg</div>
+      <div class="note-box red">🚨 C&J PR ist BEDINGT: Catch im tiefen Squat = LWS-Stress. Nur wenn Mo schmerzfrei lief! Sonst: Hang Power Clean PR + Push Jerk separat.</div>
+      <div class="wu-box"><strong>🔥 Warm-Up · 10 min</strong>5 min Bike locker · 5 min Mobility (Hip Circles, 90/90, Cat-Cow) · Dead Bug 2×8 · Wrist Mobility · Clean-Leiter: PVC → 40 → 55 → 70 kg</div>
       <div class="block">
         <div class="block-label">Gym AM</div>
         <div class="ex-row"><div class="ex-info"><div class="ex-name">Machine Shoulder Press</div><div class="ex-load">4×8 @ Peak-Gewicht</div></div><button class="log-btn" onclick="openLog('msp_w6','Machine SP W6','strength')">📊</button></div>
         <div class="ex-row"><div class="ex-info"><div class="ex-name">Lat Pulldown</div><div class="ex-load">4×10 @ Peak-Gewicht</div></div><button class="log-btn" onclick="openLog('lpd_w6','Lat PD W6','strength')">📊</button></div>
         <div class="ex-row"><div class="ex-info"><div class="ex-name">Cable Face Pull</div><div class="ex-load">3×20</div></div><button class="log-btn" onclick="openLog('cfp_w6','Face Pull W6','reps')">📊</button></div>
+        <div class="ex-row"><div class="ex-info"><div class="ex-name">Pallof Press</div><div class="ex-load">3×12 je Seite</div></div><button class="log-btn" onclick="openLog('pal_w6','Pallof W6','reps')">📊</button></div>
       </div>
       <div class="block">
-        <div class="block-label">Box PM · 🏆 Clean & Jerk MAX!</div>
-        <div class="ex-row"><div class="ex-info"><div class="ex-name">Snatch Warm-Up</div><div class="ex-load">3×2 @ 72 kg · Technik + Aufwärmen</div></div><button class="log-btn" onclick="openLog('sn_w6','Snatch W6','strength')">📊</button></div>
-        <div class="ex-row"><div class="ex-info"><div class="ex-name">🏆 Clean & Jerk MAX ATTEMPT!</div><div class="ex-load">aufbauen: 80 → 90 → 97 → 103 → 108 → 112+ kg</div><div class="ex-note">PR: 110 kg · Neuer PR anvisieren!</div></div><button class="log-btn" onclick="openLog('cj_pr_w6','C&J PR W6','strength')">🏆</button></div>
+        <div class="block-label">Box PM · 🏆 Clean & Jerk PR (BEDINGT!)</div>
+        <div class="ex-row"><div class="ex-info"><div class="ex-name">Snatch Warm-Up</div><div class="ex-load">3×2 @ 65 kg · Technik</div></div><button class="log-btn" onclick="openLog('sn_w6','Snatch W6','strength')">📊</button></div>
+        <div class="ex-row"><div class="ex-info"><div class="ex-name">🏆 Clean & Jerk PR (NUR wenn schmerzfrei!)</div><div class="ex-load">aufbauen: 70 → 85 → 95 → 100 → 105 → 110+ kg</div><div class="ex-note">Bei Bein-Ziehen: STOP bei 95 kg! Hang Power Clean Variante als Backup.</div></div><button class="log-btn" onclick="openLog('cj_pr_w6','C&J PR W6','strength')">🏆</button></div>
       </div>
       <div class="wod-box">
         <div class="wod-label">MetCon · EMOM 12 min · 3er Rotation</div>
         <div class="wod-name">C&J / C2B / Row</div>
-        <div class="wod-body">Min 1: 2 C&J @ 85 kg · Min 2: 5 C2B Pull-Ups · Min 3: 10 Cal Row Sprint</div>
+        <div class="wod-body">Min 1: 2 C&J @ 75 kg (statt 85!) · Min 2: 5 C2B Pull-Ups · Min 3: 10 Cal Row Sprint</div>
         <button class="log-btn" style="margin-top:8px;width:100%;border-radius:10px;" onclick="openLog('emom_w6','EMOM W6','wod')">📊 Eintragen</button>
       </div>
     </div>
@@ -1152,18 +1170,19 @@ Abend: Reis + Fisch + Süßkartoffel<br>
       <span class="day-badge badge-comp">HSPU Peak!</span><span class="chevron">›</span>
     </div>
     <div class="day-body">
-      <div class="wu-box"><strong>🔥 Warm-Up · 8 min</strong>500m Row easy · 5 Inchworms · 10 Shoulder Taps · Wall HS Hold 3×15 Sek · 5 Pike Push-Ups · 3×5 Scap Pull-Ups</div>
+      <div class="note-box red">🚨 HSPU MAX-Test ist sicher (kein axialer Druck) → GO! Deadlift Peak NUR wenn Rücken voll symptomfrei. Sonst: Trap Bar @ 130 kg oder ganz streichen.</div>
+      <div class="wu-box"><strong>🔥 Warm-Up · 10 min</strong>500m Row easy · Dead Bug 2×8 · Side Plank 2×30 Sek · 5 Inchworms · 10 Shoulder Taps · Wall HS Hold 3×15 Sek · 5 Pike Push-Ups · 3×5 Scap Pull-Ups</div>
       <div class="block">
-        <div class="block-label">A · 🏆 HSPU – MAX REPS TEST!</div>
+        <div class="block-label">A · 🏆 HSPU – MAX REPS TEST! (sicher)</div>
         <div class="note-box">⚡ ZUERST wenn noch frisch!</div>
         <div class="ex-row"><div class="ex-info"><div class="ex-name">🏆 Strict HSPU – MAX REPS unbroken!</div><div class="ex-load">1 Versuch · PR NOTIEREN!</div></div><button class="log-btn" onclick="openLog('hspu_pr_w6','HSPU Max PR W6','reps')">🏆</button></div>
         <div class="ex-row"><div class="ex-info"><div class="ex-name">Kipping HSPU</div><div class="ex-load">3×15+ Reps</div></div><button class="log-btn" onclick="openLog('khspu_w6','Kipping HSPU W6','reps')">📊</button></div>
         <div class="ex-row"><div class="ex-info"><div class="ex-name">Ring Muscle-Up</div><div class="ex-load">3×5</div></div><button class="log-btn" onclick="openLog('rmu_w6','Ring MU W6','reps')">📊</button></div>
       </div>
       <div class="block">
-        <div class="block-label">B · Deadlift Peak</div>
-        <div class="ex-row"><div class="ex-info"><div class="ex-name">Deadlift</div><div class="ex-load">3×3 @ 187 kg (85%)</div><div class="ex-note">Mit Straps · Technik auf Top-Niveau!</div></div><button class="log-btn" onclick="openLog('dl_w6','Deadlift W6','strength')">📊</button></div>
-        <div class="ex-row"><div class="ex-info"><div class="ex-name">Farmers Carry</div><div class="ex-load">3×30m @ 2×65 kg</div></div><button class="log-btn" onclick="openLog('fc_w6','Farmers Carry W6','reps')">📊</button></div>
+        <div class="block-label">B · Hinge (BEDINGT!)</div>
+        <div class="ex-row"><div class="ex-info"><div class="ex-name">Deadlift NUR wenn schmerzfrei!</div><div class="ex-load">3×3 @ 165 kg (statt 187!)</div><div class="ex-note">Reduzierte Intensität! Bei Bein-Ziehen: Trap Bar 130 kg oder STREICHEN!</div></div><button class="log-btn" onclick="openLog('dl_w6','Deadlift W6','strength')">📊</button></div>
+        <div class="ex-row"><div class="ex-info"><div class="ex-name">Farmers Carry</div><div class="ex-load">3×30m @ 2×50 kg (leichter!)</div><div class="ex-note">Aufrecht, Core dicht. Anti-Lateral-Flexion Training!</div></div><button class="log-btn" onclick="openLog('fc_w6','Farmers Carry W6','reps')">📊</button></div>
       </div>
       <div class="wod-box">
         <div class="wod-label">WOD – Hero Style · 5 Rounds · 30 min Cap</div>
@@ -1284,9 +1303,20 @@ Was bringt der nächste Zyklus? 💪</div>
   </div>
   <div class="profile-section">
     <h3>Gesundheit & Einschränkungen</h3>
+    <div class="health-item" style="background:rgba(255,59,48,0.1);border:1px solid rgba(255,59,48,0.3);padding:10px;border-radius:10px"><div class="health-icon">🚨</div><div class="health-text"><strong style="color:var(--red)">LWS links seit 4. Mai:</strong> Druckgefühl + Instabilität + Ziehen ins linke Bein. ARZT-TERMIN! Bis dahin: KEIN Heavy Squat/DL · 360° Brace · Core-Reha täglich (Dead Bug, Bird Dog, Pallof, Side Plank).</div></div>
     <div class="health-item"><div class="health-icon">🦵</div><div class="health-text"><strong>Patella:</strong> Box Squat statt volle Kniebeuge. Jump-Overs vermeiden. Heel Drops täglich 2–3×15!</div></div>
-    <div class="health-item"><div class="health-icon">⚠️</div><div class="health-text"><strong>Achillissehne rechts:</strong> Leicht gereizt seit 26.4. – beobachten!</div></div>
-    <div class="health-item"><div class="health-icon">💪</div><div class="health-text"><strong>Rücken:</strong> Bei Push Press / DB Snatch → Core beim Hüftimpuls aktiv!</div></div>
+    <div class="health-item"><div class="health-icon">⚠️</div><div class="health-text"><strong>Achillissehne rechts:</strong> Leicht gereizt seit 26.4. – beobachten, hat W3 Lauf gehalten.</div></div>
+  </div>
+  <div class="profile-section" style="background:rgba(255,59,48,0.05);border:1px solid rgba(255,59,48,0.2);padding:14px;border-radius:14px">
+    <h3 style="color:var(--red)">🚨 Red Flag Symptome</h3>
+    <div style="font-size:0.82rem;color:var(--text2);line-height:1.7">
+      <strong>Sofort Notaufnahme bei:</strong><br>
+      • Taubheit oder Kribbeln im Bein/Fuß<br>
+      • Kraftverlust im Bein (Stolpern, Schwäche)<br>
+      • Probleme beim Wasserlassen oder Stuhlgang<br>
+      • Plötzliche, starke Schmerzen die nicht nachlassen<br><br>
+      <strong>Sonst:</strong> Sportmediziner/Orthopäde-Termin diese Woche!
+    </div>
   </div>
   <div class="profile-section">
     <h3>Arbeitsgewichte (Stand W2)</h3>
