@@ -1,0 +1,741 @@
+=== KEVIN Z2 TRAINING+FUEL LOG ===
+Export: 11. Juli 2026 um 14:36
+
+--- BOXH_W2 ---
+[aus Logs übernommen]
+  Ergebnis: 3×5
+
+--- BP_W2 ---
+[aus Logs übernommen]
+  S1: 75 kg x 6 Wdh @ RPE 6
+  S2: 80 kg x 6 Wdh @ RPE 7
+  S3: 80 kg x 6 Wdh @ RPE 7
+  S4: 80 kg x 6 Wdh @ RPE 8
+  Notiz: Lieber KH → ab W3 umgestellt
+
+--- BP_W3 ---
+[aus Logs übernommen]
+  S1: 30 kg x 8 Wdh @ RPE 5
+  S2: 30 kg x 8 Wdh @ RPE 6
+  S3: 30 kg x 8 Wdh @ RPE 5
+  S4: 30 kg x 8 Wdh @ RPE 5
+  Notiz: Erste KH-Session, Sehne ok beim Drücken
+
+--- BP_W4 ---
+[aus Logs übernommen]
+  S1: 30 kg x 8 Wdh @ RPE 6
+  S2: 35 kg x 8 Wdh @ RPE 8
+  S3: 35 kg x 8 Wdh @ RPE 8
+  S4: 35 kg x 8 Wdh @ RPE 9
+  Notiz: Rechts schwächer, drückt nach · nur 30/35 kg verfügbar, 35 fast zu schwer → ab W5 30 kg mit Tempo
+
+--- BP_W5 ---
+[9. Juli 2026, 17:12]
+  S1: 30 kg x 8 Wdh @ RPE 6
+  S2: 30 kg x 8 Wdh @ RPE 7
+  S3: 30 kg x 8 Wdh @ RPE 7
+  S4: 30 kg x 8 Wdh @ RPE 7
+
+--- BSQ_W2 ---
+[aus Logs übernommen]
+  S1: 100 kg x 5 Wdh @ RPE 5
+  S2: 100 kg x 5 Wdh @ RPE 5
+  S3: 100 kg x 5 Wdh @ RPE 5
+  S4: 100 kg x 5 Wdh @ RPE 5
+  Notiz: Schweinfurt 8.6 (Reise)
+
+--- BSQ_W3 ---
+[aus Logs übernommen]
+  S1: 110 kg x 5 Wdh @ RPE 7
+  S2: 110 kg x 5 Wdh @ RPE 7
+  S3: 110 kg x 5 Wdh @ RPE 7
+  S4: 110 kg x 5 Wdh @ RPE 7
+  Notiz: Hitze+Stress, kurzes WU. RPE 7-8
+
+--- BSQ_W4 ---
+[aus Logs übernommen]
+  S1: 115 kg x 5 Wdh @ RPE 8
+  S2: 115 kg x 5 Wdh @ RPE 8
+  S3: 115 kg x 5 Wdh @ RPE 8
+  S4: 115 kg x 5 Wdh @ RPE 8
+  S5: 115 kg x 5 Wdh @ RPE 8
+  Notiz: 5. Rep Core-Schwäche · 2min Satzpause
+
+--- BSQ_W5 ---
+[aus Logs übernommen]
+  S1: 120 kg x 4 Wdh @ RPE 8
+  S2: 120 kg x 4 Wdh @ RPE 8
+  S3: 120 kg x 4 Wdh @ RPE 8
+  S4: 120 kg x 4 Wdh @ RPE 8
+  Notiz: 3./4. Rep Core leicht eingebrochen
+
+--- CJ_W2 ---
+[aus Logs übernommen]
+  S1: 85 kg x 1 Wdh @ RPE 7
+  S2: 85 kg x 1 Wdh @ RPE 7
+  S3: 85 kg x 1 Wdh @ RPE 7
+  S4: 85 kg x 1 Wdh @ RPE 7
+  S5: 85 kg x 1 Wdh @ RPE 7
+  Notiz: Mit Gürtel. Voller Griff = besserer Jerk. Cleans schwer.
+
+--- CJ_W3 ---
+[aus Logs übernommen]
+  S1: 80 kg x 1 Wdh @ RPE 8
+  S2: 80 kg x 1 Wdh @ RPE 7
+  S3: 80 kg x 1 Wdh @ RPE 7
+  S4: 80 kg x 1 Wdh @ RPE 8
+  Notiz: Clean ok. Jerk-Drive fehlt, 1.&4. instabil. Re-rack → li. Bizepssehne gezwickt.
+
+--- CJ_W4 ---
+[aus Logs übernommen]
+  S1: 90 kg x 1 Wdh @ RPE 9
+  S2: 90 kg x 1 Wdh @ RPE 9
+  S3: 90 kg x 1 Wdh @ RPE 9
+  S4: 90 kg x 1 Wdh @ RPE 9
+  S5: 90 kg x 1 Wdh @ RPE 9
+  Notiz: Power fehlte · Squat beim Squat Clean schwerster Teil (Beine platt v. Squat-Overload)
+
+--- CJ_W5 ---
+[aus Logs übernommen]
+  S1: 90 kg x 1 Wdh @ RPE 7
+  S2: 90 kg x 1 Wdh @ RPE 8
+  S3: 90 kg x 1 Wdh @ RPE 8
+  S4: 90 kg x 1 Wdh @ RPE 7
+  Notiz: Squat Clean ok aber schwer · Split Jerk besser, aber nicht tief genug
+
+--- CLAM_DI_W4 ---
+[aus Logs übernommen]
+  Ergebnis: 3×15
+  Notiz: Ohne Band
+
+--- CLAM_DI_W5 ---
+[aus Logs übernommen]
+  Ergebnis: 3×15
+  Notiz: Ohne Band
+
+--- CORE_DI_W4 ---
+[aus Logs übernommen]
+  Ergebnis: 3 Runden
+  Notiz: Hollow Hold / Bird Dog
+
+--- CORE_DI_W5 ---
+[aus Logs übernommen]
+  Ergebnis: 3 Runden
+  Notiz: Hollow 3×0:50 + Bird Dog
+
+--- CORE_DO_W4 ---
+[aus Logs übernommen]
+  Ergebnis: 2 Runden
+  Notiz: Knee Raises / Pallof / Side Plank
+
+--- CORE_DO_W5 ---
+[10. Juli 2026, 15:25]
+  Ergebnis: 2 Runden
+  Notiz: 12
+12/12
+0:45/0:45
+
+--- CORE_FR_W4 ---
+[aus Logs übernommen]
+  Ergebnis: 2 Runden
+  Notiz: Dead Bug / Bird Dog / Plank
+
+--- CORE_FR_W5 ---
+[9. Juli 2026, 17:07]
+  Ergebnis: 2 Runden
+  Notiz: 8/8 Dead Bug
+8/8 Bird Dog
+0:45 Plank
+
+--- CORE_MO_W4 ---
+[aus Logs übernommen]
+  Ergebnis: 2 Runden
+  Notiz: Dead Bug / Side Plank / Pallof
+
+--- CORE_MO_W5 ---
+[aus Logs übernommen]
+  Ergebnis: 2 Runden
+
+--- DB_DO_W4 ---
+[aus Logs übernommen]
+  Ergebnis: 3×8
+
+--- DB_DO_W5 ---
+[10. Juli 2026, 06:11]
+  Ergebnis: 3x8
+
+--- FP_DI_W3 ---
+[aus Logs übernommen]
+  S1: 20 kg x 20 Wdh
+  S2: 20 kg x 20 Wdh
+  S3: 20 kg x 20 Wdh
+  Notiz: Supersatz mit Clamshells
+
+--- FP_DI_W4 ---
+[aus Logs übernommen]
+  S1: 20 kg x 20 Wdh @ RPE 6
+  S2: 20 kg x 20 Wdh @ RPE 7
+  S3: 20 kg x 20 Wdh @ RPE 7
+
+--- FP_DI_W5 ---
+[aus Logs übernommen]
+  S1: 20 kg x 20 Wdh
+  S2: 20 kg x 20 Wdh
+  S3: 20 kg x 20 Wdh
+  Notiz: Anderer Kabelturm, nicht vergleichbar
+
+--- FSQ_W2 ---
+[aus Logs übernommen]
+  S1: 90 kg x 5 Wdh @ RPE 6
+  S2: 90 kg x 5 Wdh @ RPE 7
+  S3: 90 kg x 5 Wdh @ RPE 7
+
+--- FSQ_W3 ---
+[aus Logs übernommen]
+  S1: 95 kg x 5 Wdh @ RPE 7
+  S2: 95 kg x 5 Wdh @ RPE 8
+  S3: 95 kg x 5 Wdh @ RPE 8
+  S4: 95 kg x 5 Wdh @ RPE 8
+
+--- FSQ_W4 ---
+[aus Logs übernommen]
+  S1: 100 kg x 4 Wdh @ RPE 7
+  S2: 100 kg x 4 Wdh @ RPE 8
+  S3: 100 kg x 4 Wdh @ RPE 7
+  S4: 100 kg x 4 Wdh @ RPE 8
+  Notiz: Besser als gedacht
+
+--- FSQ_W5 ---
+[9. Juli 2026, 16:10]
+  S1: 105 kg x 4 Wdh @ RPE 8
+  S2: 105 kg x 4 Wdh @ RPE 8
+  S3: 105 kg x 4 Wdh @ RPE 9
+  S4: 105 kg x 4 Wdh @ RPE 9
+  Notiz: Da war heute Ende
+
+Rechte Partellasehne meldet sich wieder
+
+--- HABD_DI_W3 ---
+[aus Logs übernommen]
+  S1: 66 kg x 15 Wdh
+  S2: 66 kg x 15 Wdh
+  S3: 66 kg x 15 Wdh
+
+--- HABD_DI_W4 ---
+[aus Logs übernommen]
+  S1: 66 kg x 12 Wdh @ RPE 5
+  S2: 66 kg x 12 Wdh @ RPE 5
+  S3: 66 kg x 15 Wdh @ RPE 6
+
+--- HABD_DI_W5 ---
+[aus Logs übernommen]
+  S1: 66 kg x 15 Wdh
+  S2: 66 kg x 15 Wdh
+  S3: 66 kg x 15 Wdh
+
+--- HABD_DO_W3 ---
+[aus Logs übernommen]
+  S1: 66 kg x 15 Wdh
+  S2: 66 kg x 15 Wdh
+  S3: 66 kg x 15 Wdh
+
+--- HABD_DO_W4 ---
+[aus Logs übernommen]
+  S1: 66 kg x 15 Wdh @ RPE 5
+  S2: 66 kg x 15 Wdh @ RPE 5
+  S3: 66 kg x 15 Wdh @ RPE 7
+
+--- HABD_DO_W5 ---
+[10. Juli 2026, 06:22]
+  S1: 66 kg x 15 Wdh @ RPE 6
+  S2: 66 kg x 15 Wdh @ RPE 6
+  S3: 66 kg x 15 Wdh @ RPE 6
+
+--- HSJ_W3 ---
+[aus Logs übernommen]
+  S1: 45 kg x 2 Wdh @ RPE 3
+  S2: 45 kg x 2 Wdh @ RPE 3
+  S3: 45 kg x 2 Wdh @ RPE 3
+  Notiz: Vorderer Fuß hebt Ferse
+
+--- HSJ_W5 ---
+[aus Logs übernommen]
+  S1: 55 kg x 2 Wdh @ RPE 5
+  S2: 55 kg x 2 Wdh @ RPE 5
+  S3: 55 kg x 2 Wdh @ RPE 5
+  S4: 55 kg x 2 Wdh @ RPE 5
+  Notiz: Gut! Tief gefangen, guter Druck aus dem Dip 🎯
+
+--- JBAL_W2 ---
+[aus Logs übernommen]
+  S1: 45 kg x 3 Wdh @ RPE 4
+  S2: 45 kg x 3 Wdh @ RPE 4
+  S3: 45 kg x 3 Wdh @ RPE 4
+  S4: 45 kg x 3 Wdh @ RPE 4
+
+--- JBAL_W4 ---
+[aus Logs übernommen]
+  S1: 50 kg x 3 Wdh @ RPE 6
+  S2: 50 kg x 3 Wdh @ RPE 6
+  S3: 50 kg x 3 Wdh @ RPE 8
+  S4: 50 kg x 3 Wdh @ RPE 8
+  Notiz: Keine Energie mehr, instabil
+
+--- KIP_W4 ---
+[aus Logs übernommen]
+  Ergebnis: 3×5 / 3 / 5
+  Notiz: Nach WOD, ermüdet · R3 beste Runde alle 5
+
+--- KIP_W5 ---
+[10. Juli 2026, 14:43]
+  Ergebnis: 2x5
+  Notiz: 
+Die fünfte Wiederholung war jeweils, sehr grenzwertig und schwierig
+
+--- LATR_DI_W5 ---
+[aus Logs übernommen]
+  S1: 27 kg x 15 Wdh @ RPE 6
+  S2: 29 kg x 15 Wdh @ RPE 7
+  S3: 7.5 kg x 15 Wdh @ RPE 6
+  Notiz: S3 andere Maschine, besser · kg zw. Maschinen nicht vergleichbar → RPE steuern
+
+--- LP_DO_W2 ---
+[aus Logs übernommen]
+  S1: 150 kg x 12 Wdh @ RPE 6
+  S2: 170 kg x 12 Wdh @ RPE 6
+  S3: 190 kg x 12 Wdh @ RPE 7
+
+--- LP_DO_W3 ---
+[aus Logs übernommen]
+  S1: 180 kg x 12 Wdh @ RPE 8
+  S2: 180 kg x 12 Wdh @ RPE 8
+  S3: 180 kg x 12 Wdh @ RPE 8
+
+--- LP_DO_W4 ---
+[aus Logs übernommen]
+  S1: 180 kg x 12 Wdh @ RPE 8
+  S2: 190 kg x 12 Wdh @ RPE 8
+  S3: 190 kg x 12 Wdh @ RPE 8
+  Notiz: Anstrengung gleich trotz mehr Gewicht
+
+--- LP_DO_W5 ---
+[10. Juli 2026, 06:04]
+  S1: 150 kg x 12 Wdh @ RPE 6
+  S2: 150 kg x 12 Wdh @ RPE 6
+  S3: 150 kg x 12 Wdh @ RPE 6
+  Notiz: Hab doch Beinpresse gemacht
+
+--- LPD_DI_W2 ---
+[aus Logs übernommen]
+  S1: 64 kg x 12 Wdh @ RPE 5
+  S2: 68 kg x 12 Wdh @ RPE 6
+  S3: 68 kg x 12 Wdh @ RPE 7
+  Notiz: Breiter paralleler Griff besser.
+
+--- LPD_DI_W3 ---
+[aus Logs übernommen]
+  S1: 68 kg x 12 Wdh @ RPE 6
+  S2: 68 kg x 12 Wdh @ RPE 8
+  S3: 68 kg x 12 Wdh @ RPE 8
+  Notiz: Paralleler Griff, Trizeps leicht
+
+--- LPD_DI_W4 ---
+[aus Logs übernommen]
+  S1: 68 kg x 12 Wdh @ RPE 7
+  S2: 68 kg x 12 Wdh @ RPE 8
+  S3: 68 kg x 12 Wdh @ RPE 7
+
+--- LPD_DI_W5 ---
+[aus Logs übernommen]
+  S1: 68 kg x 12 Wdh @ RPE 6
+  S2: 68 kg x 12 Wdh @ RPE 7
+  S3: 68 kg x 12 Wdh @ RPE 8
+  Notiz: Mehr in Schultern als Lat → W6 runter auf 55-60 + Technik
+
+--- MCP_DO_W2 ---
+[aus Logs übernommen]
+  S1: 55 kg x 10 Wdh @ RPE 6
+  S2: 55 kg x 10 Wdh @ RPE 6
+  S3: 55 kg x 10 Wdh @ RPE 6
+  S4: 55 kg x 10 Wdh @ RPE 7
+
+--- MCP_DO_W3 ---
+[aus Logs übernommen]
+  S1: 60 kg x 10 Wdh @ RPE 6
+  S2: 60 kg x 10 Wdh @ RPE 7
+  S3: 60 kg x 10 Wdh @ RPE 7
+  S4: 60 kg x 10 Wdh @ RPE 9
+  Notiz: 60kg oberes Limit für 4 Sätze
+
+--- MCP_DO_W4 ---
+[aus Logs übernommen]
+  S1: 60 kg x 10 Wdh @ RPE 6
+  S2: 60 kg x 10 Wdh @ RPE 7
+  S3: 60 kg x 10 Wdh @ RPE 7
+  S4: 60 kg x 10 Wdh @ RPE 9
+
+--- MCP_DO_W5 ---
+[10. Juli 2026, 05:52]
+  S1: 55 kg x 10 Wdh @ RPE 6
+  S2: 55 kg x 10 Wdh @ RPE 6
+  S3: 55 kg x 10 Wdh @ RPE 6
+  S4: 55 kg x 10 Wdh @ RPE 6
+
+--- MSP_DI_W2 ---
+[aus Logs übernommen]
+  S1: 60 kg x 12 Wdh @ RPE 6
+  S2: 65 kg x 12 Wdh @ RPE 7
+  S3: 65 kg x 12 Wdh @ RPE 9
+  S4: 60 kg x 7 Wdh @ RPE 7
+  Notiz: Re. Schulter gezwickt (letzter Satz). → ab jetzt Cap 55/RPE7
+
+--- MSP_DI_W3 ---
+[aus Logs übernommen]
+  S1: 60 kg x 12 Wdh @ RPE 7
+  S2: 60 kg x 12 Wdh @ RPE 8
+  S3: 60 kg x 12 Wdh @ RPE 8
+  S4: 60 kg x 12 Wdh @ RPE 9
+  Notiz: Re. Schulter wieder gezwickt → Cap 55/RPE7!
+
+--- MSP_DI_W4 ---
+[aus Logs übernommen]
+  S1: 60 kg x 12 Wdh @ RPE 6
+  S2: 60 kg x 12 Wdh @ RPE 7
+  S3: 60 kg x 12 Wdh @ RPE 9
+  S4: 50 kg x 12 Wdh @ RPE 8
+  Notiz: Schulter re. gezwickt → ab W5 durch Seitheben ersetzt
+
+--- NEG_W3 ---
+[aus Logs übernommen]
+  Ergebnis: 3×3 Negatives
+  Notiz: Letzte Wdh fast nicht mehr → guter Reiz
+
+--- NEG_W4 ---
+[aus Logs übernommen]
+  Ergebnis: 4×3
+  Notiz: 'Banane' = Hohlkreuz-Körperform · Rep im unteren Drittel gefallen
+
+--- NEG_W5 ---
+[10. Juli 2026, 14:38]
+  Ergebnis: 4x3
+  Notiz: Runde eins und zwei okay Runde drei letzte Wiederholung schon schwierig
+Runde vier erste Wiederholung gut zweite Wiederholung schon schwieriger dritte Wiederholung ging gerade noch so aber okay
+
+--- NGP_DI_W5 ---
+[aus Logs übernommen]
+  S1: 59 kg x 10 Wdh @ RPE 5
+  S2: 66 kg x 10 Wdh @ RPE 6
+  S3: 70 kg x 10 Wdh @ RPE 7
+  Notiz: Neutraler Druck ohne Schulter-Zwicken ✅
+
+--- PP_W2 ---
+[aus Logs übernommen]
+  S1: 70 kg x 3 Wdh @ RPE 7
+  S2: 70 kg x 3 Wdh @ RPE 7
+  S3: 70 kg x 3 Wdh @ RPE 7
+  S4: 70 kg x 3 Wdh @ RPE 7
+  Notiz: 8.6
+
+--- PP_W3 ---
+[aus Logs übernommen]
+  S1: 75 kg x 3 Wdh @ RPE 7
+  S2: 75 kg x 3 Wdh @ RPE 7
+  S3: 75 kg x 3 Wdh @ RPE 7
+  S4: 75 kg x 3 Wdh @ RPE 7
+
+--- PP_W4 ---
+[aus Logs übernommen]
+  S1: 78 kg x 3 Wdh @ RPE 8
+  S2: 78 kg x 3 Wdh @ RPE 8
+  S3: 78 kg x 3 Wdh @ RPE 8
+  S4: 78 kg x 3 Wdh @ RPE 8
+  Notiz: Rechtes Handgelenk leicht · Power fehlte (HRV-Delle)
+
+--- PP_W5 ---
+[aus Logs übernommen]
+  S1: 80 kg x 3 Wdh @ RPE 8
+  S2: 80 kg x 3 Wdh @ RPE 8
+  S3: 80 kg x 3 Wdh @ RPE 8
+  S4: 80 kg x 3 Wdh @ RPE 8
+  Notiz: Viel mehr geht nicht ohne Gürtel (Core-Limiter)
+
+--- RDL_W2 ---
+[aus Logs übernommen]
+  S1: 60 kg x 8 Wdh @ RPE 3
+  S2: 60 kg x 8 Wdh @ RPE 3
+  S3: 60 kg x 8 Wdh @ RPE 3
+  Notiz: 8.6
+
+--- RDL_W3 ---
+[aus Logs übernommen]
+  S1: 85 kg x 8 Wdh @ RPE 4
+  S2: 85 kg x 8 Wdh @ RPE 5
+  S3: 85 kg x 8 Wdh @ RPE 5
+  Notiz: Kein Problem
+
+--- RDL_W4 ---
+[aus Logs übernommen]
+  S1: 90 kg x 8 Wdh @ RPE 4
+  S2: 90 kg x 8 Wdh @ RPE 4
+  S3: 90 kg x 8 Wdh @ RPE 4
+
+--- RDL_W5 ---
+[aus Logs übernommen]
+  S1: 95 kg x 8 Wdh @ RPE 5
+  S2: 95 kg x 8 Wdh @ RPE 5
+  S3: 95 kg x 8 Wdh @ RPE 5
+  Notiz: Viel Reserve
+
+--- SN_W2 ---
+[aus Logs übernommen]
+  S1: 65 kg x 2 Wdh @ RPE 6
+  S2: 65 kg x 2 Wdh @ RPE 6
+  S3: 65 kg x 2 Wdh @ RPE 6
+  S4: 65 kg x 2 Wdh @ RPE 6
+  S5: 65 kg x 2 Wdh @ RPE 6
+
+--- SN_W3 ---
+[aus Logs übernommen]
+  S1: 65 kg x 2 Wdh @ RPE 7
+  S2: 65 kg x 2 Wdh @ RPE 7
+  S3: 65 kg x 2 Wdh @ RPE 8
+  S4: 65 kg x 2 Wdh @ RPE 8
+  Notiz: Ohne Chalk rutscht (Hitze). Lifting-Schuhe → leichte Vorlage, Fersen heben.
+
+--- SN_W4 ---
+[aus Logs übernommen]
+  S1: 70 kg x 2 Wdh @ RPE 6
+  S2: 70 kg x 2 Wdh @ RPE 6
+  S3: 70 kg x 2 Wdh @ RPE 6
+  S4: 70 kg x 2 Wdh @ RPE 6
+  S5: 70 kg x 2 Wdh @ RPE 6
+
+--- SN_W5 ---
+[aus Logs übernommen]
+  S1: 73 kg x 2 Wdh @ RPE 7
+  S2: 73 kg x 2 Wdh @ RPE 7
+  S3: 73 kg x 2 Wdh @ RPE 7
+  S4: 76 kg x 2 Wdh @ RPE 7
+  S5: 73 kg x 2 Wdh @ RPE 7
+  Notiz: Verliere Stange ab Knie · fehlt volle Streckung
+
+--- SNP_W2 ---
+[aus Logs übernommen]
+  S1: 70 kg x 3 Wdh @ RPE 6
+  S2: 70 kg x 3 Wdh @ RPE 6
+  S3: 70 kg x 3 Wdh @ RPE 6
+  S4: 70 kg x 3 Wdh @ RPE 6
+
+--- SNP_W3 ---
+[aus Logs übernommen]
+  S1: 70 kg x 3 Wdh @ RPE 6
+  S2: 70 kg x 3 Wdh @ RPE 6
+  S3: 70 kg x 3 Wdh @ RPE 6
+  S4: 70 kg x 3 Wdh @ RPE 6
+
+--- SNP_W4 ---
+[aus Logs übernommen]
+  S1: 75 kg x 3 Wdh @ RPE 6
+  S2: 75 kg x 3 Wdh @ RPE 7
+  S3: 75 kg x 3 Wdh @ RPE 7
+  S4: 75 kg x 3 Wdh @ RPE 7
+
+--- SNP_W5 ---
+[aus Logs übernommen]
+  S1: 80 kg x 3 Wdh @ RPE 8
+  S2: 80 kg x 3 Wdh @ RPE 8
+  S3: 80 kg x 3 Wdh @ RPE 8
+  Notiz: Letzte Rep schwer · am Oberschenkel bleiben
+
+--- SP_W2 ---
+[aus Logs übernommen]
+  S1: 55 kg x 5 Wdh @ RPE 6
+  S2: 55 kg x 5 Wdh @ RPE 7
+  S3: 55 kg x 5 Wdh @ RPE 7
+  S4: 55 kg x 5 Wdh @ RPE 7
+  S5: 55 kg x 5 Wdh @ RPE 7
+
+--- SP_W3 ---
+[aus Logs übernommen]
+  S1: 55 kg x 5 Wdh @ RPE 6
+  S2: 55 kg x 5 Wdh @ RPE 6
+  S3: 55 kg x 5 Wdh @ RPE 6
+  S4: 55 kg x 5 Wdh @ RPE 7
+  S5: 55 kg x 5 Wdh @ RPE 6
+  Notiz: Langhantel-Overhead schmerzfrei
+
+--- SP_W4 ---
+[aus Logs übernommen]
+  S1: 60 kg x 4 Wdh @ RPE 7
+  S2: 60 kg x 4 Wdh @ RPE 7
+  S3: 60 kg x 4 Wdh @ RPE 7
+  S4: 60 kg x 4 Wdh @ RPE 8
+  S5: 60 kg x 4 Wdh @ RPE 8
+  Notiz: Fast Krampf Oberschenkel (Beine müde) · Rep 4 Kampf
+
+--- SP_W5 ---
+[10. Juli 2026, 15:04]
+  S1: 63 kg x 3 Wdh @ RPE 9
+  S2: 60 kg x 3 Wdh @ RPE 9
+  S3: 55 kg x 4 Wdh @ RPE 8
+  S4: 55 kg x 4 Wdh @ RPE 8
+  S5: 55 kg x 4 Wdh @ RPE 8
+
+--- SROW_DI_W2 ---
+[aus Logs übernommen]
+  S1: 68 kg x 12 Wdh @ RPE 5
+  S2: 75 kg x 12 Wdh @ RPE 5
+  S3: 82 kg x 8 Wdh @ RPE 8
+  Notiz: Bauchnabel-Cue. Kein Schulter/Trizeps-Problem.
+
+--- SROW_DI_W3 ---
+[aus Logs übernommen]
+  S1: 75 kg x 12 Wdh @ RPE 5
+  S2: 77 kg x 12 Wdh @ RPE 7
+  S3: 77 kg x 12 Wdh @ RPE 8
+  Notiz: Enger Griff
+
+--- SROW_DI_W4 ---
+[aus Logs übernommen]
+  S1: 75 kg x 12 Wdh @ RPE 7
+  S2: 75 kg x 12 Wdh @ RPE 7
+  S3: 75 kg x 12 Wdh @ RPE 8
+
+--- SROW_DI_W5 ---
+[aus Logs übernommen]
+  S1: 77 kg x 12 Wdh @ RPE 6
+  S2: 77 kg x 12 Wdh @ RPE 7
+  S3: 77 kg x 12 Wdh @ RPE 7
+  Notiz: Supersatz Clamshells
+
+--- TH_W2 ---
+[aus Logs übernommen]
+  Ergebnis: 2×20 sek
+
+--- TH_W3 ---
+[aus Logs übernommen]
+  Ergebnis: 3×25 sek
+
+--- TPD_DO_W3 ---
+[aus Logs übernommen]
+  S1: 36 kg x 15 Wdh
+  S2: 36 kg x 15 Wdh
+  S3: 36 kg x 15 Wdh
+  Notiz: Supersatz mit Hip Abduktor
+
+--- TPD_DO_W4 ---
+[aus Logs übernommen]
+  S1: 36 kg x 15 Wdh @ RPE 5
+  S2: 38 kg x 15 Wdh @ RPE 6
+  S3: 41 kg x 15 Wdh @ RPE 8
+  Notiz: Supersatz mit Hip Abduktor
+
+--- TPD_DO_W5 ---
+[10. Juli 2026, 06:10]
+  S1: 36 kg x 15 Wdh @ RPE 5
+  S2: 38 kg x 15 Wdh @ RPE 7
+  S3: 38 kg x 13 Wdh @ RPE 8
+  Notiz: Supersatz mit Deadbugs
+
+--- ULP_DO_W2 ---
+[aus Logs übernommen]
+  S1: 36 kg x 10 Wdh @ RPE 5
+  S2: 41 kg x 10 Wdh @ RPE 5
+  S3: 45 kg x 10 Wdh @ RPE 5
+
+--- ULP_DO_W3 ---
+[aus Logs übernommen]
+  S1: 41 kg x 10 Wdh @ RPE 4
+  S2: 50 kg x 10 Wdh @ RPE 6
+  S3: 59 kg x 10 Wdh @ RPE 6
+
+--- ULP_DO_W4 ---
+[aus Logs übernommen]
+  S1: 59 kg x 10 Wdh @ RPE 7
+  S2: 59 kg x 10 Wdh @ RPE 6
+  S3: 59 kg x 10 Wdh @ RPE 6
+  Notiz: Supersatz mit Dead Bug
+
+--- ULP_DO_W5 ---
+[10. Juli 2026, 06:20]
+  S1: 59 kg x 10 Wdh @ RPE 6
+  S2: 59 kg x 10 Wdh @ RPE 5
+  S3: 59 kg x 10 Wdh @ RPE 6
+  Notiz: Supersatz mit Hip Abduktor
+
+--- WOD_DO_W2 ---
+[aus Logs übernommen]
+  Ergebnis: Wie beschrieben · American KBS
+
+--- WOD_DO_W3 ---
+[aus Logs übernommen]
+  Ergebnis: 5 Rd + (10cal+2WB) · R1 1:21 dann konstant 1:30
+  Notiz: Gutes Pacing! Nach schnellem Start stabilisiert.
+
+--- WOD_DO_W4 ---
+[aus Logs übernommen]
+  Ergebnis: 14 min · ~30s/Übung
+
+--- WOD_DO_W5 ---
+[10. Juli 2026, 15:14]
+  Ergebnis: 3:47
+  Notiz: Bei den DU paar mal hängen geblieben aber konnte immer gleich weiter machen. 
+
+Die Push Press in der Kombi war hart da Waden von den DU Vorbelastet und Schultern vom rest. 
+
+Ein paar mal war es ehr ein Push Jerk als Push Press
+
+--- WOD_FR_W2 ---
+[aus Logs übernommen]
+  Ergebnis: Als EMOM · 1:00 Run statt Bike
+
+--- WOD_FR_W4 ---
+[aus Logs übernommen]
+  Ergebnis: 13:01 · Burpees to Plate
+  Notiz: Viel Pause · DU in beiden Achillessehnen gemerkt
+
+--- WOD_FR_W5 ---
+[9. Juli 2026, 16:48]
+  Ergebnis: 11:50
+  Notiz: Alles Unbroken
+TTB ok
+WBS hat sich das Knie etwas komisch angefühlt
+
+--- WOD_MO_W2 ---
+[aus Logs übernommen]
+  Ergebnis: 5 Rd + 9 (Schweinfurt)
+  Notiz: AMRAP10
+
+--- WOD_MO_W3 ---
+[aus Logs übernommen]
+  Ergebnis: 4 Rd · R1 2:36/R2 2:52/R3 2:55/R4 2:53
+  Notiz: American KBS. Pacing: 1. Runde zu schnell.
+
+--- WOD_MO_W4 ---
+[aus Logs übernommen]
+  Ergebnis: 4 Rd + 12 KBS + 6 Pull-Ups
+  Notiz: Pull-Ups 3×2 gesplittet, rechter Arm ok
+
+--- WOD_MO_W5 ---
+[aus Logs übernommen]
+  Ergebnis: 6 Rd + 12 cal Row
+  Notiz: TTB unbroken · Rücken ok · Griffkraft von KBS vorbelastet
+
+--- Z2_SA_W4 ---
+[aus Logs übernommen]
+  Ergebnis: 10,5 km · HF 128 · Kadenz 157 (Max 170)
+  Notiz: Z2-Lauf, hätte länger gekonnt
+
+
+--- TAGES-FEEDBACK ---
+Donnerstag · 9. Juli:
+  Gefühl: Müde
+  Workout: ★★★ (3/5)
+  Notiz: Gym ok
+Box am Anfang noch gut. Dann von den Strict Press etwas demontiert. Im Workout wäre ich auch schneller wenn ich die DU unbroken hinbekomme
+Freitag · 10. Juli:
+  Gefühl: Müde
+  Workout: ★★★ (3/5)
+  Notiz: Am 9.7. durchgeführt. Tausch mit Donnerstag
+
+Fehlender Schlaf macht sich bemerkbar
