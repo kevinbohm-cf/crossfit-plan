@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a0c0e">
+<title>Kevin · Z3 · Deadly Dozen</title>
+<style>
+:root{
+  --bg:#0a0c0e; --card:#14181c; --card2:#1b2026; --border:#262d35;
+  --text:#f2f5f7; --text2:#a8b2bd; --text3:#6b7681;
+  --bone:#e8e2d4; --green:#30d158; --red:#ff453a; --amber:#ffb020; --ice:#64d2ff;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  font-size:16px;line-height:1.45;-webkit-font-smoothing:antialiased}
+#app{max-width:560px;margin:0 auto;padding-bottom:92px}
+button,input,select,textarea{font-family:inherit}
+
+#header{padding:16px 16px 12px;border-bottom:1px solid var(--border);
+  background:linear-gradient(180deg,#101418,#0a0c0e)}
+#header h1{margin:0;font-size:1.5rem;font-weight:800;letter-spacing:2.5px;text-transform:uppercase}
+#header h1 span{color:var(--bone)}
+.hsub{color:var(--text3);font-size:.75rem;letter-spacing:1.4px;text-transform:uppercase;margin-top:3px}
+.countdown{margin-top:11px;display:flex;align-items:baseline;gap:9px;
+  border-left:3px solid var(--bone);padding-left:11px}
+.countdown b{font-size:2rem;font-weight:800;line-height:1;letter-spacing:-1px}
+.countdown span{font-size:.72rem;color:var(--text2);text-transform:uppercase;letter-spacing:1.1px}
+
+#tabs{display:flex;gap:6px;overflow-x:auto;padding:11px 16px;border-bottom:1px solid var(--border);scrollbar-width:none}
+#tabs::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;padding:7px 13px;border-radius:20px;background:var(--card);
+  border:1px solid var(--border);color:var(--text2);font-size:.77rem;font-weight:700;white-space:nowrap;cursor:pointer}
+.tab.on{background:var(--bone);color:#0a0c0e;border-color:var(--bone)}
+
+#main{padding:14px 16px}
+.view{display:none}.view.on{display:block}
+
+.banner{border-radius:14px;padding:15px;margin-bottom:14px;background:var(--card);border:1px solid var(--border)}
+.banner .ph{font-size:.66rem;letter-spacing:1.6px;text-transform:uppercase;color:var(--bone);font-weight:800}
+.banner h2{margin:5px 0 6px;font-size:1.15rem;font-weight:800}
+.banner p{margin:0;color:var(--text2);font-size:.85rem}
+
+.day{background:var(--card);border:1px solid var(--border);border-radius:14px;margin-bottom:9px;overflow:hidden}
+.dh{display:flex;align-items:center;gap:11px;padding:13px 14px;cursor:pointer}
+.rail{width:3px;height:34px;border-radius:2px;flex:0 0 auto}
+.dh-t{flex:1;min-width:0}
+.dh-t h3{margin:0;font-size:.96rem;font-weight:700}
+.dh-t .sub{font-size:.75rem;color:var(--text3);margin-top:1px}
+.chev{color:var(--text3);font-size:1.3rem;transition:transform .18s}
+.day.open .chev{transform:rotate(90deg)}
+.db{display:none;padding:0 14px 14px}
+.day.open .db{display:block}
+
+.block{background:var(--card2);border-radius:11px;padding:11px;margin-bottom:9px}
+.bl{font-size:.66rem;letter-spacing:1.3px;text-transform:uppercase;color:var(--bone);font-weight:800;margin-bottom:8px}
+.ex{display:flex;align-items:flex-start;gap:8px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.ex:last-child{border-bottom:none;padding-bottom:0}
+.ex-i{flex:1;min-width:0}
+.ex-n{font-size:.89rem;font-weight:600}
+.ex-l{font-size:.82rem;color:var(--ice);margin-top:1px}
+.ex-c{font-size:.77rem;color:var(--text3);margin-top:3px}
+.ex-log{font-size:.75rem;color:var(--green);margin-top:3px;font-weight:600}
+.bwrap{display:flex;flex-direction:column;gap:5px;flex:0 0 auto}
+.ib,.logb{width:32px;height:30px;border-radius:8px;border:1px solid var(--border);
+  background:transparent;color:var(--text2);font-size:.82rem;cursor:pointer;padding:0}
+.logb.done{background:var(--green);border-color:var(--green);color:#000}
+
+.wu{background:rgba(100,210,255,.07);border-left:3px solid var(--ice);border-radius:0 9px 9px 0;
+  padding:10px 12px;margin-bottom:9px;font-size:.81rem;color:var(--text2)}
+.wu b{display:block;color:var(--ice);font-size:.66rem;letter-spacing:1.3px;text-transform:uppercase;margin-bottom:4px}
+.note{border-radius:9px;padding:10px 12px;margin-bottom:9px;font-size:.81rem;
+  background:rgba(255,176,32,.08);border-left:3px solid var(--amber);color:var(--text2)}
+.note.g{background:rgba(48,209,88,.08);border-left-color:var(--green)}
+.note.r{background:rgba(255,69,58,.08);border-left-color:var(--red)}
+.sim{background:linear-gradient(135deg,rgba(232,226,212,.13),rgba(232,226,212,.04));
+  border:1px solid rgba(232,226,212,.3);border-radius:11px;padding:12px;margin-bottom:9px}
+.sim .body{font-size:.84rem;color:var(--text)}
+
+.hero{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:15px;margin-bottom:12px}
+.hero .dt{font-size:.72rem;color:var(--text3);text-transform:uppercase;letter-spacing:1.3px}
+.hero .wd{font-size:1.5rem;font-weight:800;margin-top:2px}
+.hero .ty{font-size:.85rem;margin-top:2px;font-weight:600}
+.hrv{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:13px;margin-bottom:12px}
+.hrv h4{margin:0 0 8px;font-size:.72rem;letter-spacing:1.3px;text-transform:uppercase;color:var(--bone)}
+.hrvrow{display:flex;gap:8px}
+.hrvrow input{flex:1;background:var(--card2);border:1px solid var(--border);border-radius:9px;
+  padding:10px;color:var(--text);font-size:.9rem}
+.hrvrow button{padding:10px 16px;border-radius:9px;border:none;background:var(--bone);color:#000;font-weight:700;cursor:pointer}
+#hrvout{margin-top:9px;padding:10px;border-radius:9px;font-size:.83rem;display:none}
+
+.rt{width:100%;border-collapse:collapse;font-size:.79rem;margin-top:6px}
+.rt th{text-align:left;color:var(--text3);font-size:.64rem;letter-spacing:1px;text-transform:uppercase;
+  padding:6px 4px;border-bottom:1px solid var(--border);font-weight:700}
+.rt td{padding:7px 4px;border-bottom:1px solid rgba(255,255,255,.05);vertical-align:top}
+.rt td.i{color:var(--bone);font-weight:800;width:20px}
+.rt .w{color:var(--ice);white-space:nowrap}
+.rt .o{color:var(--amber);white-space:nowrap}
+h4.sec{font-size:.68rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--bone);margin:18px 0 6px;font-weight:800}
+p.body{font-size:.85rem;color:var(--text2);margin:0 0 9px}
+ul.body{font-size:.85rem;color:var(--text2);margin:0 0 9px;padding-left:18px}
+ul.body li{margin-bottom:5px}
+
+.meal{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.meal:last-child{border-bottom:none}
+.meal .t{flex:0 0 52px;color:var(--bone);font-size:.78rem;font-weight:800}
+.meal .m{flex:1}
+.meal .m .h{font-size:.86rem;font-weight:600}
+.meal .m .d{font-size:.79rem;color:var(--text2);margin-top:2px}
+.meal .m .k{font-size:.75rem;color:var(--ice);margin-top:3px}
+.tot{display:flex;gap:6px;margin-top:10px}
+.tot div{flex:1;background:var(--card2);border-radius:9px;padding:8px;text-align:center}
+.tot b{display:block;font-size:1rem;font-weight:800}
+.tot span{font-size:.63rem;color:var(--text3);text-transform:uppercase;letter-spacing:.8px}
+
+.fld{margin-bottom:10px}
+.fld label{display:block;font-size:.7rem;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;font-weight:700}
+.fld input,.fld textarea,.fld select{width:100%;background:var(--card2);border:1px solid var(--border);
+  border-radius:9px;padding:11px;color:var(--text);font-size:.92rem}
+.fld textarea{min-height:66px;resize:vertical}
+.set-row{display:flex;align-items:center;gap:6px;margin-bottom:8px}
+.set-row .set-num{flex:0 0 24px;font-size:.78rem;color:var(--text3);font-weight:700}
+.set-row input{flex:1;min-width:0;background:var(--card2);border:1px solid var(--border);border-radius:8px;
+  padding:9px 6px;color:var(--text);font-size:.88rem;text-align:center}
+.set-row .set-del{flex:0 0 30px;height:30px;border-radius:8px;border:1px solid var(--border);
+  background:transparent;color:var(--text3);font-size:1rem;cursor:pointer}
+.fb-emoji-row{display:flex;gap:6px;margin:8px 0 14px}
+.fb-emoji{flex:1;text-align:center;padding:10px 2px;border-radius:10px;border:1px solid var(--border);
+  background:var(--card2);cursor:pointer;font-size:1.3rem}
+.fb-emoji.sel{border-color:var(--bone);background:rgba(232,226,212,.12)}
+.fb-emoji .lbl{display:block;font-size:.6rem;color:var(--text3);margin-top:2px;text-transform:uppercase;letter-spacing:.5px}
+.fb-star-row{display:flex;gap:8px;margin:8px 0 14px;font-size:1.6rem}
+.fb-star{cursor:pointer;color:var(--border)}
+.fb-star.on{color:var(--amber)}
+.btn{width:100%;padding:13px;border-radius:11px;border:none;background:var(--bone);color:#000;
+  font-size:.93rem;font-weight:800;cursor:pointer;margin-top:4px}
+.btn.sec{background:transparent;border:1px solid var(--border);color:var(--text2)}
+.btn.dan{background:transparent;border:1px solid var(--red);color:var(--red)}
+
+#nav{position:fixed;bottom:0;left:0;right:0;max-width:560px;margin:0 auto;display:flex;
+  background:rgba(12,15,18,.96);backdrop-filter:blur(14px);border-top:1px solid var(--border);
+  padding:8px 0 calc(8px + env(safe-area-inset-bottom));z-index:40}
+.ni{flex:1;text-align:center;color:var(--text3);cursor:pointer;font-size:.62rem;
+  letter-spacing:.8px;text-transform:uppercase;font-weight:700}
+.ni .ic{font-size:1.1rem;display:block;margin-bottom:1px}
+.ni.on{color:var(--bone)}
+
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:60;display:none;
+  align-items:flex-end;justify-content:center}
+.modal.on{display:flex}
+.sheet{background:var(--card);width:100%;max-width:560px;max-height:88vh;overflow-y:auto;
+  border-radius:18px 18px 0 0;padding:18px 16px calc(20px + env(safe-area-inset-bottom));
+  border-top:1px solid var(--border)}
+.sheet h3{margin:0 0 3px;font-size:1.05rem;font-weight:800}
+.sheet .sh-sub{color:var(--text3);font-size:.78rem;margin-bottom:14px}
+.yt{display:block;text-align:center;padding:11px;border-radius:10px;background:var(--card2);
+  border:1px solid var(--border);color:var(--ice);text-decoration:none;font-size:.87rem;font-weight:700;margin-top:10px}
+.feed{margin-top:9px;padding:10px;border-radius:9px;font-size:.8rem;text-align:center;display:none}
+</style>
+</head>
+<body>
+<div id="app">
+
+<div id="header">
+  <h1>Kevin <span>· Z3</span></h1>
+  <div class="hsub">Deadly Dozen Race Prep · 27.7.–6.9.2026</div>
+  <div class="countdown"><b id="cd">–</b><span>Tage bis zur<br>Weltmeisterschaft</span></div>
+</div>
+
+<div id="tabs"></div>
+
+<div id="main">
+  <div class="view on" id="v-today"></div>
+  <div class="view" id="v-plan"></div>
+  <div class="view" id="v-race"></div>
+  <div class="view" id="v-fuel"></div>
+  <div class="view" id="v-profile"></div>
+</div>
+
+<div id="nav">
+  <div class="ni on" data-v="today"><span class="ic">📅</span>Heute</div>
+  <div class="ni" data-v="plan"><span class="ic">📋</span>Plan</div>
+  <div class="ni" data-v="race"><span class="ic">🏁</span>Race</div>
+  <div class="ni" data-v="fuel"><span class="ic">🍚</span>Fuel</div>
+  <div class="ni" data-v="profile"><span class="ic">👤</span>Profil</div>
+</div>
+</div>
+
+<div class="modal" id="m-log"><div class="sheet" id="s-log"></div></div>
+<div class="modal" id="m-info"><div class="sheet" id="s-info"></div></div>
+<div class="modal" id="m-fb"><div class="sheet" id="s-fb"></div></div>
+
+<script>
+/* ============ STORAGE ============ */
+var MEM={};
+function ls(k,v){
+  try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v); return v; }
+  catch(e){
+    try{ if(v===undefined) return sessionStorage.getItem(k); sessionStorage.setItem(k,v); return v; }
+    catch(e2){ if(v===undefined) return (MEM[k]===undefined?null:MEM[k]); MEM[k]=v; return v; }
+  }
+}
+function del(k){ try{localStorage.removeItem(k)}catch(e){} try{sessionStorage.removeItem(k)}catch(e){} delete MEM[k]; }
+function allLogs(){
+  var o={},i,k;
+  try{ for(i=0;i<localStorage.length;i++){k=localStorage.key(i); if(k.indexOf('z3_log_')===0) o[k]=localStorage.getItem(k);} }catch(e){}
+  for(k in MEM){ if(k.indexOf('z3_log_')===0) o[k]=MEM[k]; }
+  return o;
+}
+function todayLogs(){
+  var all=allLogs(), out={}, todayStr=new Date().toDateString();
+  for(var k in all){
+    try{
+      var arr=JSON.parse(all[k]); if(!Array.isArray(arr)) arr=[arr];
+      var todays=arr.filter(function(e){ return e&&e.date&&new Date(e.date).toDateString()===todayStr; });
+      if(todays.length) out[k]=JSON.stringify(todays);
+    }catch(e){}
+  }
+  return out;
+}
+function getLogArray(k){ var r=ls('z3_log_'+k); if(!r) return []; try{ var v=JSON.parse(r); return Array.isArray(v)?v:[v]; }catch(e){ return []; } }
+function getLog(k){ var arr=getLogArray(k); return arr.length?arr[arr.length-1]:null; }
+function pushLog(k,entry){ var arr=getLogArray(k); arr.push(entry); ls('z3_log_'+k, JSON.stringify(arr)); }
+function deleteLogAt(k,idx){ var arr=getLogArray(k); if(idx>=0&&idx<arr.length){ arr.splice(idx,1); ls('z3_log_'+k, JSON.stringify(arr)); } }
+
+/* ---- Tagesfeedback ---- */
+var FB_EMOJI=[['1','😴','Müde'],['2','😐','Ok'],['3','🙂','Gut'],['4','😄','Stark'],['5','🤩','Bestform']];
+function fbKey(w,i){ return 'w'+w+'_d'+i; }
+function fbWidgetHtml(w,i){
+  var fb=getFb(w,i);
+  if(fb){
+    var em=FB_EMOJI.find(function(x){return x[0]===fb.emoji});
+    var stars='★★★★★☆☆☆☆☆'.slice(5-(fb.stars||0),10-(fb.stars||0));
+    return '<div class="note g fb-summary" data-fbw="'+w+'" data-fbi="'+i+'" style="cursor:pointer">'+
+      '<b>Tagesfeedback'+(em?' '+em[1]+' '+em[2]:'')+(fb.stars?' · '+stars:'')+'</b>'+
+      (fb.notes?'<br>'+fb.notes:'')+
+      '<div style="font-size:.72rem;color:var(--text3);margin-top:4px">Antippen zum Bearbeiten</div></div>';
+  }
+  return '<button class="btn sec fb-open" data-fbw="'+w+'" data-fbi="'+i+'" style="margin-bottom:12px">✍️ Wie war die Einheit?</button>';
+}
+function getFb(w,i){ var r=ls('z3_fb_'+fbKey(w,i)); if(!r) return null; try{return JSON.parse(r)}catch(e){return null} }
+function setFb(w,i,o){ o.date=new Date().toISOString(); ls('z3_fb_'+fbKey(w,i), JSON.stringify(o)); }
+function allFeedback(){
+  var o={},i,k;
+  try{ for(i=0;i<localStorage.length;i++){k=localStorage.key(i); if(k.indexOf('z3_fb_')===0) o[k]=localStorage.getItem(k);} }catch(e){}
+  for(k in MEM){ if(k.indexOf('z3_fb_')===0) o[k]=MEM[k]; }
+  return o;
+}
+function todayFeedback(){
+  var all=allFeedback(), out={}, todayStr=new Date().toDateString();
+  for(var k in all){ try{ var v=JSON.parse(all[k]); if(v&&v.date&&new Date(v.date).toDateString()===todayStr) out[k]=all[k]; }catch(e){} }
+  return out;
+}
+
+/* ============ LABOURS · Race vs Überlast ============ */
+var LAB={
+ farm  :{n:'KB Farmers Carry',   race:'2×24 kg',      over:'2×32 kg',        u:'m',    full:240, t:'labour'},
+ kbdl  :{n:'KB Deadlift',        race:'32 kg',        over:'40 kg',          u:'Reps', full:60,  t:'labour'},
+ lunge :{n:'DB Lunge',           race:'2×12,5 kg',    over:'2×20 kg',        u:'m',    full:60,  t:'labour'},
+ snatch:{n:'DB Snatch alt.',     race:'15 kg',        over:'22,5 kg',        u:'Reps', full:60,  t:'labour'},
+ bbj   :{n:'Burpee Broad Jump',  race:'Körpergewicht',over:'+10 kg Weste',   u:'m',    full:60,  t:'labour'},
+ goblet:{n:'KB Goblet Squat',    race:'16 kg',        over:'24 kg',          u:'Reps', full:60,  t:'labour'},
+ front :{n:'WP Front Carry',     race:'25 kg',        over:'35 kg (25+10)',  u:'m',    full:240, t:'labour'},
+ dbpp  :{n:'DB Push Press',      race:'2×12,5 kg',    over:'2×20 kg',        u:'Reps', full:60,  t:'labour'},
+ bear  :{n:'Bear Crawl',         race:'Körpergewicht',over:'+10 kg Weste',   u:'m',    full:120, t:'labour'},
+ cp    :{n:'WP Clean & Press',   race:'15 kg',        over:'20 kg',          u:'Reps', full:60,  t:'labour'},
+ ohc   :{n:'WP Overhead Carry',  race:'15 kg',        over:'20 kg',          u:'m',    full:180, t:'labour'},
+ devil :{n:'DB Devil Press',     race:'2×10 kg',      over:'2×15 kg',        u:'Reps', full:20,  t:'labour'}
+};
+function lab(key,w,frac){
+  var L=LAB[key], W_=WK[w];
+  var vol = Math.round(L.full * (W_.v/100) * (frac||1));
+  var load = W_.load==='over' ? L.over : L.race;
+  return vol+' '+L.u+' @ '+load;
+}
+function labLoadTag(w){ return WK[w].load==='over' ? 'ÜBERLAST' : 'Race-Last'; }
+
+/* ============ WOCHEN ============ */
+var WK={
+1:{d:['27. Juli','28. Juli','29. Juli','30. Juli','31. Juli','1. August','2. August'],
+   ph:'Phase · Ramp-in', h2:'Woche 1 · 27. Juli – 2. August',
+   p:'Umstellung auf Renn-Spezifik. Erst die Standards an Race-Last lernen – ab W2 wird überladen. Laufen kommt strukturiert zurück, Kraft läuft ab hier nur noch als Erhalt.',
+   v:50, load:'race',
+   sq:'3×5 @ 105 kg · RPE 7', rdl:'3×8 @ 90 kg', pp:'4×3 @ 75 kg', sp:'4×4 @ 57,5 kg',
+   run:'6 × 400 m @ 2:05–2:10', rest:'90 s Trabpause', sa:'8 km Z2 · HF 125–140'},
+2:{d:['3. August','4. August','5. August','6. August','7. August','8. August','9. August'],
+   ph:'Phase · Überlast', h2:'Woche 2 · 3.–9. August',
+   p:'Stationen gehen auf Überlast: Farmers 2×32 statt 2×24, Goblet 24 statt 16, Devil Press 2×15 statt 2×10. Umfang 75 %. Erste Couplets Journey → Labour.',
+   v:75, load:'over',
+   sq:'3×5 @ 110 kg · RPE 7', rdl:'3×8 @ 92,5 kg', pp:'4×3 @ 77,5 kg', sp:'4×4 @ 60 kg',
+   run:'8 × 400 m @ 2:00–2:05', rest:'90 s Trabpause', sa:'10 km Z2 · HF 125–140'},
+3:{d:['10. August','11. August','12. August','13. August','14. August','15. August','16. August'],
+   ph:'Phase · Überlast', h2:'Woche 3 · 10.–16. August',
+   p:'Härteste Labour-Woche: voller Renn-Umfang auf Überlast. 240 m Farmers mit 2×32 kg ohne Kreide – wenn das sitzt, fühlen sich 24 kg am Renntag wie nichts an.',
+   v:100, load:'over',
+   sq:'3×4 @ 110 kg · RPE 7', rdl:'3×6 @ 92,5 kg', pp:'3×3 @ 80 kg', sp:'4×3 @ 60 kg',
+   run:'10 × 400 m @ 1:58–2:03', rest:'75 s Trabpause', sa:'12 km Z2 mit 4 Labour-Stopps'},
+4:{d:['17. August','18. August','19. August','20. August','21. August','22. August','23. August'],
+   ph:'Phase · Spezifik', h2:'Woche 4 · 17.–23. August',
+   p:'Zurück auf exakte Race-Last – jetzt wird alles leicht. Samstag: volle Simulation über 12 Journeys mit deinem realistischen Pair-Anteil. Danach weißt du, was das Rennen kostet.',
+   v:100, load:'race',
+   sq:'3×3 @ 110 kg · RPE 7', rdl:'3×6 @ 92,5 kg', pp:'3×3 @ 80 kg', sp:'3×3 @ 62,5 kg',
+   run:'6 × 400 m @ 1:55–2:00 · scharf', rest:'60 s Trabpause', sa:'VOLLE SIMULATION'},
+5:{d:['24. August','25. August','26. August','27. August','28. August','29. August','30. August'],
+   ph:'Phase · Peak', h2:'Woche 5 · 24.–30. August',
+   p:'Kurze Überlast-Reize unter der Woche, Samstag halbe Simulation an Race-Last im Renntempo. Letzter harter Tag – danach Taper.',
+   v:75, load:'over',
+   sq:'2×3 @ 105 kg · RPE 6', rdl:'2×6 @ 90 kg', pp:'3×2 @ 80 kg', sp:'3×3 @ 60 kg',
+   run:'8 × 400 m @ 1:55 · scharf', rest:'60 s Trabpause', sa:'HALBE SIMULATION · Race-Last'},
+6:{d:['31. August','1. September','2. September','3. September','4. September','5. September','6. SEPTEMBER'],
+   ph:'Phase · Taper · Wettkampf', h2:'Woche 6 · 31. Aug – 6. Sept',
+   p:'Volumen runter, Schärfe rein. Race-Last, 25 % Umfang. Carb-Loading ab Donnerstag. Sonntag: Deadly Dozen Weltmeisterschaft.',
+   v:25, load:'race',
+   sq:'2×3 @ 95 kg · locker', rdl:'–', pp:'2×3 @ 70 kg', sp:'2×3 @ 55 kg',
+   run:'4 × 400 m @ Renntempo', rest:'200 m Trabpause', sa:'Reise · 2×400 m locker'}
+};
+
+/* ============ ERNÄHRUNG ============ */
+var FUEL={
+easy:{name:'Ruhetag / Recovery',kcal:3450,p:286,kh:370,f:83,col:'ice',
+ meals:[
+  ['08:45','Frühstück','120 g Haferflocken · 400 ml Milch 1,5 % · 30 g Whey · 150 g Beeren · 20 g Honig','810 kcal · 52 P · 108 KH · 17 F'],
+  ['11:30','Mittag','1 Portion Hähnchen-Tomaten-Pfanne mit Nudeln','1.075 kcal · 99,5 P · 116 KH · 22 F'],
+  ['15:30','Snack','250 g Magerquark · 30 g Walnüsse · 1 Apfel','500 kcal · 35 P · 30 KH · 22 F'],
+  ['19:00','Abend','1 Portion Hähnchen-Tomaten-Pfanne mit Nudeln','1.075 kcal · 99,5 P · 116 KH · 22 F']]},
+mid:{name:'Mittlerer Tag · Box PM',kcal:3710,p:285,kh:465,f:75,col:'green',
+ meals:[
+  ['08:45','Frühstück','120 g Haferflocken · 400 ml Milch 1,5 % · 30 g Whey · 150 g Beeren · 20 g Honig','810 kcal · 52 P · 108 KH · 17 F'],
+  ['11:30','Mittag','1 Portion Hähnchen-Tomaten-Pfanne mit Nudeln','1.075 kcal · 99,5 P · 116 KH · 22 F'],
+  ['13:30','Pre-Box','80 g Haferflocken · 1 Apfel · 20 g Honig','480 kcal · 10 P · 95 KH · 7 F'],
+  ['17:15','Shake','30 g Whey · 40 g Iso-Carb (Power Bar)','270 kcal · 25 P · 42 KH · 1 F'],
+  ['19:30','Abend','1 Portion Hähnchen-Tomaten-Pfanne mit Nudeln','1.075 kcal · 99,5 P · 116 KH · 22 F']]},
+hard:{name:'Harter Doppeltag',kcal:4285,p:296,kh:565,f:83,col:'amber',
+ meals:[
+  ['05:00','Pre-Gym','180 g Solevita Proteinpudding (oder 30 g Whey in Wasser)','210 kcal · 20 P · 23 KH · 3 F'],
+  ['08:45','Frühstück','150 g Haferflocken · 400 ml Milch 1,5 % · 30 g Whey · 150 g Beeren · 25 g Honig','950 kcal · 57 P · 132 KH · 19 F'],
+  ['11:30','Mittag','1 Portion Hähnchen-Tomaten-Pfanne mit Nudeln','1.075 kcal · 99,5 P · 116 KH · 22 F'],
+  ['15:30','Pre-Session','80 g Haferflocken · 20 g Honig · 1 Apfel','480 kcal · 10 P · 95 KH · 7 F'],
+  ['17:15','Shake','30 g Whey · 50 g Iso-Carb','300 kcal · 25 P · 50 KH · 1 F'],
+  ['19:30','Abend','1 Portion Hähnchen-Tomaten-Pfanne + 60 g Nudeln extra','1.290 kcal · 106 P · 160 KH · 24 F']]},
+sim:{name:'Simulationstag',kcal:4520,p:294,kh:625,f:85,col:'bone',
+ meals:[
+  ['07:00','Frühstück · Generalprobe','150 g Haferflocken · 400 ml Milch · 30 g Whey · 25 g Honig — exakt wie am Renntag, 2–3 h vor Start','940 kcal · 55 P · 135 KH · 18 F'],
+  ['währenddessen','Renn-Fueling testen','500 ml Iso-Getränk (40 g KH) · 1 Gel ab Minute 40 — genau so am 6.9.','320 kcal · 0 P · 80 KH · 0 F'],
+  ['direkt danach','Recovery-Shake','40 g Whey · 60 g Iso-Carb','370 kcal · 33 P · 62 KH · 1 F'],
+  ['12:30','Mittag','1 Portion Hähnchen-Tomaten-Pfanne mit Nudeln','1.075 kcal · 99,5 P · 116 KH · 22 F'],
+  ['16:00','Snack','250 g Magerquark · 30 g Walnüsse · 1 Apfel','500 kcal · 35 P · 30 KH · 22 F'],
+  ['19:30','Abend','1 Portion Hähnchen-Tomaten-Pfanne + 80 g Nudeln extra','1.315 kcal · 106 P · 172 KH · 24 F']]},
+race:{name:'Renntag · Wave 12:30–16:00',kcal:3900,p:250,kh:520,f:75,col:'red',
+ meals:[
+  ['07:30','Frühstück','120 g Haferflocken · 300 ml Milch · 30 g Whey · 25 g Honig — nichts Neues, nichts Ballaststoffreiches','790 kcal · 50 P · 110 KH · 15 F'],
+  ['3 h vor Wave','Hauptmahlzeit','200 g Nudeln (roh) · 200 g Hähnchen · wenig Sauce, wenig Fett','1.100 kcal · 75 P · 155 KH · 12 F'],
+  ['90 min vor','Top-Up','40 g Haferflocken · 20 g Honig · 500 ml Wasser','280 kcal · 5 P · 58 KH · 4 F'],
+  ['30 min vor','Letzter Schluck','300 ml Iso-Getränk (25 g KH)','100 kcal · 0 P · 25 KH · 0 F'],
+  ['im Rennen','Selbst tragen','Wasser auf der Zielkurve nutzen · optional 1 Gel nach Labour 6 · Müll bleibt bei dir','—'],
+  ['danach','Recovery','40 g Whey · 60 g Iso-Carb, dann volle Mahlzeit innerhalb 90 min','370 kcal · 33 P · 62 KH · 1 F']]}
+};
+function dayFuel(w,i){
+  if(w===6&&i===6) return 'race';
+  if((w===4||w===5)&&i===5) return 'sim';
+  return ['mid','hard','mid','hard','mid','hard','easy'][i];
+}
+
+/* ============ ÜBUNGS-DATENBANK ============ */
+var DB={
+'kb farmers carry':['KB in jeder Hand, aufrecht gehen oder laufen, Schultern zurück, Core fest. 30-m-Bahn, an jedem Ende mit beiden Füßen über die Linie. Absetzen jederzeit erlaubt – aber nur genau dort, wo du stehst.','Griffausdauer ohne Kreide ist der Kern. Im Training auf 2×32 kg – am Renntag fühlen sich 2×24 kg dann leicht an.','farmers+carry+kettlebell+technique+grip'],
+'kb deadlift':['Gerade Arme, KB vom Boden, Knie und Hüfte voll strecken, Schultern hinter die KB. KB muss jede Wiederholung den Boden berühren – nicht fallen lassen.','60 Reps am Stück ist muskuläre Ausdauer, keine Kraft. Ohne Kreide, ohne Straps. Pausen nur stehend an Ort und Stelle.','kettlebell+deadlift+technique+standard'],
+'db lunge':['DB in beiden Händen an den Seiten, ausschreitende Lunges. Hinteres Knie berührt den Boden, Beine müssen alternieren. Oben Knie und Hüfte voll strecken.','Kein Schritt nach vorn zwischen den Lunges – das ist der häufigste No-Rep. Übe den durchziehenden Rhythmus.','walking+lunge+dumbbell+technique'],
+'db snatch alt.':['Einzelne DB vom Boden in einer Bewegung nach überkopf, Ellbogen komplett strecken. Abwechselnd links/rechts, nie zweimal dieselbe Seite. Eine Seite der DB muss den Boden berühren.','Beim Hüftimpuls Core aktiv – dein bekannter Rückenpunkt. Griffwechsel unten am Boden spart Kraft.','dumbbell+snatch+alternating+technique'],
+'burpee broad jump':['Brust und Oberschenkel auf den Boden, hoch, beidbeinig nach vorn springen und beidbeinig landen. Kein Nachtreten nach der Landung, Hände dürfen nicht nach vorn krabbeln.','Auf 197 cm und über 100 kg deine teuerste Station. Kurze, flache, hohe Frequenz-Sprünge schlagen weite Einzelsprünge.','burpee+broad+jump+technique+efficiency'],
+'kb goblet squat':['KB vor der Brust über der Gürtellinie halten, mindestens bis parallel. Unterarme dürfen sich unten nicht auf den Beinen abstützen. Oben voll strecken.','Bei 60 Reps entscheidet die Atmung, nicht die Beine. Feste Blöcke von 15–20 statt bis zum Versagen.','goblet+squat+kettlebell+technique'],
+'wp front carry':['Hantelscheibe mit beiden Armen vor dem Körper tragen – nicht auf der Schulter, nicht auf dem Kopf. Gehen oder laufen erlaubt.','240 m mit gestreckten Armen vorne belastet den oberen Rücken massiv. Im Training 35 kg, damit 25 kg am Renntag Erholung sind.','weight+plate+front+carry+technique'],
+'db push press':['DB an den Schultern (nicht höher als die Ohren), Kniebeugung und explosive Streckung, Ellbogen oben komplett strecken.','Core beim Hüftimpuls fest halten. In Blöcken von 15 arbeiten – so teilst du es auch im Rennen mit deiner Partnerin.','dumbbell+push+press+technique'],
+'bear crawl':['Auf Händen und Füßen, Knie nie am Boden. Immer mindestens eine Hand und ein Fuß am Boden, kein Galoppieren. Am Ende der Bahn mit Händen und Füßen über die Linie.','Hüfte tief, kurze Züge. Auf deiner Körpergröße die technisch teuerste Station – deshalb wöchentlich üben, nicht nur simulieren.','bear+crawl+technique+efficiency'],
+'wp clean & press':['Scheibe vom Boden über Kopf, Scheibenmitte direkt über dem Kopf, Ellbogen komplett strecken. Scheibe muss jede Wiederholung den Boden berühren.','60 Reps – Rhythmus schlägt Kraft. Atmen im Ablassen, nicht im Drücken.','weight+plate+clean+and+press'],
+'wp overhead carry':['Scheibenmitte direkt über dem Kopf, Ellbogen gestreckt oder gebeugt – aber die Scheibe darf den Kopf nicht berühren. Bei 3 Verwarnungen wirst du skaliert.','Schulterstabilität unter Ermüdung. Genau die Station, an der deine rechte Schulter Feedback gibt – Überlast hier bewusst konservativ.','overhead+plate+carry+shoulder+stability'],
+'db devil press':['DB in beiden Händen, Burpee mit Brust und Oberschenkeln auf dem Boden, hoch und die DB in einer Bewegung über Kopf. Ellbogen voll strecken.','Nur 20 Reps – aber als letzte Station nach 12 Läufen. Im Training bewusst müde üben.','devil+press+dumbbell+technique'],
+'back squat':['Volle Tiefe, Thorax aufrecht, Core fest. Kein Kippen nach vorn im Aufstieg.','Reiner Erhalt in diesem Zyklus. Kraft ist für dieses Rennen im Überfluss vorhanden – hier geht es nur darum, nichts zu verlieren.','back+squat+technique+crossfit'],
+'romanian deadlift':['Stange in Hüfthöhe, Knie leicht gebeugt, Hüfte nach hinten, Stange nah am Körper. Hamstrings dehnen spüren, LWS neutral.','Ab jetzt ohne Straps – der Griff ist Wettkampfvorbereitung. Last bewusst bei 90–92,5 kg gedeckelt.','romanian+deadlift+technique'],
+'strict press':['Stange vor der Brust, Core und Po fest, senkrecht nach oben, Kopf leicht durch die Arme. Kein Hüfteinsatz.','Erhalt der Overhead-Kraft. Immer vor allem anderen – frische Schultern zuerst.','strict+press+barbell+technique'],
+'400-m-intervalle':['Gleichmäßige Splits, nicht der erste Lauf entscheidet. Kadenz hoch, Bodenkontakt kurz, aufrechter Oberkörper.','12×400 m im Rennen heißt: aus voller Ermüdung immer wieder neu anlaufen. Die ersten zwei Läufe im Training bewusst am langsamen Ende.','400m+repeats+running+workout+pacing'],
+'kadenz-check':['Uhr auf Schrittfrequenz stellen, Ziel 170 Schritte/min. Kürzer und schneller statt weiter ausgreifen.','Von 157 auf 170 – das entlastet Achilles und Knie und macht dich auf 4,8 km spürbar schneller.','running+cadence+170+drills'],
+'z2-lauf':['Ruhiges, gleichmäßiges Tempo, HF 125–140. Nase-Atmung sollte möglich sein.','Aerobe Basis für 12 Läufe. Über 90 min oder bei Hitze: trinken ab Minute 30, Kohlenhydrate bei Minute 50–60.','zone+2+running+aerobic+base'],
+'griff & core':['Farmers Hold bis kurz vor Griffversagen, Hollow Rocks mit gestrecktem Körper, Plank ohne Hüftabsenken.','Griff ist bei diesem Rennen ein echter Limiter – kein Hilfsmittel erlaubt.','grip+endurance+training+farmers+hold'],
+'schwimmen':['Wechsel Kraul/Brust, gleichmäßige Atmung, kein Verkrampfen.','Gelenkschonende Erholung zwischen zwei harten Tagen. Kein Intervalltraining.','freestyle+swimming+recovery+technique'],
+'beinpresse':['Füße hüftbreit mittig, Knie oben nicht durchdrücken, kontrolliert tief.','Maschinenkraft ohne axiale Last. Kein Ausbelasten – die Beine gehören der Bahn.','leg+press+technique'],
+'unterarm-/griffarbeit':['Schwere Hanteln halten bis kurz vor Versagen, Schultern zurück, Handgelenk neutral.','Direkt trainierbarer Limiter. Ohne Kreide, ohne Handschuhe – genau wie im Rennen.','grip+strength+training+forearm'],
+'volle simulation':['12 × 400 m plus alle 12 Labours an Race-Last. Splits pro Journey mitschreiben.','Die Generalprobe. Frühstück, Timing, Kleidung und Getränk exakt wie am 6.9.','fitness+race+simulation+pacing'],
+'halbe simulation':['6 × 400 m plus 6 Labours an Race-Last im Renntempo. Kurz und aggressiv.','Letzter harter Reiz. Danach nur noch Erholung.','race+pace+simulation+workout'],
+'beinpresse einbeinig':['Ein Fuß mittig auf der Platte, Knie in Richtung Fußspitze, kontrolliert tief, oben nicht ganz durchstrecken.','Zeigt Links-Rechts-Unterschiede, die eine beidbeinige Beinpresse verdeckt. Gut für die SI-Baustelle.','single+leg+press+technique'],
+'chest press maschine':['Griffe auf Brusthöhe, Schulterblätter zurück und unten, gleichmäßig drücken, Ellbogen nicht ganz durchstrecken.','Horizontales Pressen als Ausgleich zum vielen Overhead-Drücken in der Box.','machine+chest+press+technique'],
+'brustgestütztes rudern':['Brust auf dem Polster, Schulterblätter zusammenziehen, Ellbogen nach hinten Richtung Hüfte ziehen, kurz halten.','Das Polster nimmt die LWS-Stabilisation raus – du kannst die Last nicht mehr über den unteren Rücken mogeln. Genau deshalb spürst du hier den Rücken sauberer als beim freien Rudern.','chest+supported+row+technique'],
+'brustgestützes rudern':['Brust auf dem Polster, Schulterblätter zusammenziehen, Ellbogen nach hinten Richtung Hüfte ziehen, kurz halten.','Das Polster nimmt die LWS-Stabilisation raus – du kannst die Last nicht mehr über den unteren Rücken mogeln. Genau deshalb spürst du hier den Rücken sauberer als beim freien Rudern.','chest+supported+row+technique'],
+'lat pulldown':['Breiter Griff, leicht zurückgelehnt, Schulterblätter zuerst nach unten ziehen, dann Ellbogen Richtung Gesäßtaschen. Langsam hochlassen.','Simuliert den Pull-Up in der Bewegung. Bewusst leichter als früher, damit du den Lat spürst statt den Nacken.','lat+pulldown+technique+form'],
+'seitheben':['Leichtes Gewicht, Arme seitlich bis Schulterhöhe heben, keine Schwungholung, Schultern unten lassen.','Zählt die saubere Ausführung, nicht die Zahl. Schulter-Gesundheit für den Overhead Carry.','lateral+raise+technique+shoulder'],
+'face pull':['Kabel oder Band auf Augenhöhe, zur Stirn ziehen, Ellbogen hoch und nach hinten, Schulterblätter zusammen.','Rotatorenmanschette und Schulterblatt-Stabilität – Overhead-Gesundheit direkt nutzbar für Overhead Carry und Clean & Press.','face+pull+technique+shoulder'],
+'rückenstrecker isometrisch':['Auf der Bank oder am Boden, Rumpf gerade in der Luft halten, kein Hohlkreuz, Blick nach unten.','Baut die isometrische Kapazität des linken Erectors auf, ohne die SI-Region unter dynamischer Last zu belasten.','isometric+back+extension+hold'],
+'hspu-progression':['An der Wand, sehr langsam absenken (3 Sek, nicht 5), mit den Beinen helfen um wieder hochzukommen.','Zuerst ausführen, solange die Schultern frisch sind. Exzentrische Kraft ist der schnellste Weg zu mehr strikten Wiederholungen.','hspu+negatives+progression+technique'],
+'pull-ups':['Schulterbreiter Griff, Schulterblätter aktiv nach unten, Kinn über die Stange, kontrolliert absenken bis volle Streckung.','Bewusst ohne Kreide trainiert – das ist direkte Vorbereitung auf den kreidefreien Grip im Rennen.','pull+up+technique+crossfit'],
+'toes-to-bar':['Aus dem Hang die Füße kontrolliert zur Stange bringen, Lat aktiv, kein reines Bein-Schwingen.','Rumpfkontrolle und Griffausdauer – beides zahlt auf die Carries ein.','toes+to+bar+technique+crossfit'],
+'bar muscle-up':['Explosiver Zug, Übergang durch aktives Vorlehnen über die Stange, dann drücken bis zur Streckung.','Wenn die Schulter Widerstand meldet: Chest-to-Bar statt Muscle-Up, keine Kompromisse bei der rechten Schulter.','bar+muscle+up+technique+crossfit'],
+'labour-touch':['Alle vier Bewegungen an exakter Race-Last, sehr locker, volle Bewegungsqualität statt Tempo.','Taper-Woche: die Bewegungen bleiben im Kopf und im Griff präsent, ohne noch Ermüdung zu erzeugen.','race+standards+technique+review'],
+'snatch':['Ein Zug vom Boden in den Überkopf-Squat, Stange nah am Körper, Hüfte explosiv, unter die Stange fahren.','Technikeinheit bei 70–75 % in diesem Zyklus – die Sehnen gehören dem Laufen, nicht dem Maxen.','snatch+technique+olympic+weightlifting'],
+'clean & jerk':['Clean explosiv ins Front-Rack, dann Jerk: Dip, Drive, unter die Stange fahren.','Wie beim Snatch: Technik bei 70–75 %, kein Maxen in diesem Zyklus.','clean+and+jerk+technique+crossfit'],
+'overhead squat':['Weiter Griff, Stange über dem Hinterkopf, Arme aktiv gestreckt, Hüfte tief, Brust aufrecht.','Zahlt direkt auf den Overhead Carry ein – gleiche Schulterposition, gleiche Rumpfspannung.','overhead+squat+technique+crossfit'],
+'rennen':['12 Journeys, 12 Labours, mit Partnerin. Übergaben durch Ablegen, Pacing von Beginn an konservativ.','Der Tag, auf den alles hinarbeitet. Renntaktik: die ersten drei Journeys bewusst langsamer als möglich.','fitness+race+pacing+strategy'],
+'rep-labour-wod':['Drei Runden auf Zeit durch KB Deadlift, Goblet Squat und DB Push Press, 90 s Pause zwischen den Runden.','Ein durchlaufender WOD statt drei Einzelstationen mit Wartezeit – kürzer, härter, näher am Renngefühl.','crossfit+wod+kettlebell+dumbbell'],
+'incline press neutraler griff':['Neutraler Griff (Handflächen zueinander), Bank leicht angewinkelt, kontrolliert drücken, Ellbogen nicht ganz durchstrecken.','Ersetzt das Bankdrücken mit der Langhantel wegen der rechten Schulter. Neutraler Griff ist schmerzfrei bestätigt.','incline+press+neutral+grip+shoulder']
+};
+function dbKey(n){ return String(n).toLowerCase().replace(/\s+/g,' ').trim(); }
+
+/* ============ BUILDER ============ */
+function ex(n,l,c,k,typ){
+  var arr=getLogArray(k), lg=arr.length?arr[arr.length-1]:null, done=lg?' done':'', info=DB[dbKey(n)]?'<button class="ib" data-i="'+encodeURIComponent(n)+'">i</button>':'';
+  var sum='';
+  if(lg){ sum='<div class="ex-log">✓ '+entrySummary(lg)+(arr.length>1?' · '+arr.length+' Einträge':'')+'</div>'; }
+  return '<div class="ex"><div class="ex-i"><div class="ex-n">'+n+'</div>'+
+    (l?'<div class="ex-l">'+l+'</div>':'')+(c?'<div class="ex-c">'+c+'</div>':'')+sum+
+    '</div><div class="bwrap">'+info+
+    '<button class="logb'+done+'" data-k="'+k+'" data-n="'+encodeURIComponent(n)+'" data-t="'+(typ||'strength')+'">📊</button>'+
+    '</div></div>';
+}
+function blk(l,r){return '<div class="block"><div class="bl">'+l+'</div>'+r+'</div>';}
+function wu(t){return '<div class="wu"><b>Warm-Up</b>'+t+'</div>';}
+function note(t,c){return '<div class="note '+(c||'')+'">'+t+'</div>';}
+
+var DAYN=['Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag','Sonntag'];
+
+function dayMeta(w,i){
+  var W_=WK[w];
+  var m=[
+   {t:'Box PM · Kraft + Labour-WOD', r:'ice'},
+   {t:'Gym AM 1 h · Box PM Olympic', r:'green'},
+   {t:'Laufeinheit · 400er', r:'green'},
+   {t:'Gym AM 1 h · Box PM Press + WOD', r:'green'},
+   {t:(w===6?'Reise · Ruhe':'Box solo · Gymnastics + Distance-Labours'), r:'amber'},
+   {t:(w===4?'Volle Simulation':w===5?'Halbe Simulation':w===6?'Reise':'Langer Z2-Lauf'), r:(w>=4?'bone':'green')},
+   {t:(w===6?'🏁 WELTMEISTERSCHAFT':'Ruhetag · aktive Erholung'), r:(w===6?'bone':'ice')}
+  ];
+  return {title:DAYN[i]+' · '+W_.d[i], sub:m[i].t, rail:m[i].r};
+}
+
+function dayBody(w,i){
+  var W_=WK[w], tag=labLoadTag(w), o='';
+
+  if(i===0){ /* MONTAG */
+    if(w===6){
+      return wu('Bike 5 min · Mobility Hüfte/Schulter')+
+        blk('Taper · locker', ex('Back Squat',W_.sq,'Nur Bewegung, kein Reiz.','sq_w6')+
+          ex('DB Push Press',lab('dbpp',6),'Locker und sauber.','dbpp_w6','labour'))+
+        note('Taper-Woche. Wenn müde: streichen. Nichts hier baut noch Form auf.','g');
+    }
+    o+=wu('Bike 5 min · 90/90 Hüfte · Leg Swings · 2×10 Bodyweight Squats · 10 KB Deadlifts leer');
+    o+=blk('A · Kraft',
+      ex('Back Squat',W_.sq,'Volle Tiefe, Thorax aufrecht.','sq_w'+w)+
+      ex('Romanian Deadlift',W_.rdl,'Ohne Straps – der Griff ist ab jetzt Wettkampfvorbereitung.','rdl_w'+w));
+    o+=blk('B · Labour-WOD · '+tag,
+      ex('Rep-Labour-WOD','3 Runden auf Zeit','Pro Runde: '+Math.round(LAB.kbdl.full*WK[w].v/300)+' KB Deadlift · '+
+        Math.round(LAB.goblet.full*WK[w].v/300)+' Goblet Squat · '+Math.round(LAB.dbpp.full*WK[w].v/300)+' DB Push Press. '+
+        'Lasten: KB DL '+(WK[w].load==='over'?LAB.kbdl.over:LAB.kbdl.race)+' · Goblet '+(WK[w].load==='over'?LAB.goblet.over:LAB.goblet.race)+
+        ' · DB PP '+(WK[w].load==='over'?LAB.dbpp.over:LAB.dbpp.race)+'. 90 s zwischen den Runden.','wodrep_w'+w,'sim'));
+    return o;
+  }
+
+  if(i===1){ /* DIENSTAG */
+    o+=blk('Gym AM · 05:00 · Wellpass · 60 min',
+      ex('Beinpresse','3×12 @ 190 kg','Kontrolliert, kein Ausbelasten. Letzter Log-Wert.','bp_w'+w)+
+      ex('Incline Press neutraler Griff','3×8 @ 70 kg · RPE 6–7','Neutraler Griff wegen der rechten Schulter. Zwei Wochen schmerzfrei bei diesem Gewicht.','inc_w'+w)+
+      ex('Brustgestützes Rudern','3×12 @ 78 kg · RPE 6','Aufrecht, zum Bauchnabel ziehen. Ohne Rückenschwung – das ist der Punkt der Übung.','row_w'+w)+
+      ex('Lat Pulldown','3×12 @ 55–60 kg · RPE 6','Schulterblätter zuerst nach unten, dann Ellbogen Richtung Gesäßtaschen.','lat_w'+w)+
+      ex('Unterarm-/Griffarbeit','3 × 45 s Halten @ 2×32 kg','Bis kurz vor Griffversagen. Ohne Kreide, ohne Handschuhe.','grip_w'+w)+
+      ex('Rückenstrecker isometrisch','3 × 30 s Halten','Körpergewicht, kontrolliert.','ext_w'+w));
+    o+=blk('Box PM · Olympic Lifting',
+      ex('Snatch','5 × 2 @ 70–75 %','Technik vor Last. Thorax aufrecht, Stange hinter den Ohren im Catch.','sn_w'+w)+
+      ex('Clean & Jerk','5 × 2 @ 70–75 %','','cj_w'+w)+
+      ex('Overhead Squat','3 × 3 @ leicht','Schulterstabilität – zahlt direkt auf den Overhead Carry ein.','ohs_w'+w));
+    o+=note('Olympic bleibt drin, aber als Technikeinheit bei 70–75 %. Kein Maxen in diesem Zyklus – die Sehnen gehören dem Laufen.');
+    return o;
+  }
+
+  if(i===2){ /* MITTWOCH */
+    o+=blk('Laufeinheit · ein Ort, ein Zweck',
+      ex('400-m-Intervalle',W_.run,W_.rest+'. Erste zwei Läufe bewusst am langsamen Ende. Einmal raus, alles draußen, einmal zurück.','run_w'+w,'run')+
+      ex('Kadenz-Check','Ziel 170 Schritte/min','Uhr auf Schrittfrequenz stellen.','kad_w'+w));
+    o+=note('<b>Wetter schlecht?</b> Laufband bei Wellpass, gleiche Intervalle, 1 % Steigung. <b>Keine saubere 400-m-Strecke?</b> Dann auf Zeit laufen: 2 min hart statt 400 m.');
+    return o;
+  }
+
+  if(i===3){ /* DONNERSTAG */
+    if(w===6){
+      return blk('Taper · Standards durchgehen',
+        ex('Labour-Touch','je 12 Reps: KB Deadlift · Goblet · DB Snatch · Devil Press','Race-Lasten, sehr locker. Nur damit die Bewegungen sitzen.','touch_w6','labour')+
+        ex('400-m-Intervalle','2 × 400 m locker','','run6b_w6','run'))+
+        note('🍝 Carb-Loading startet heute. Kohlenhydrate hoch, Ballaststoffe und alles Ungewohnte raus.','');
+    }
+    o+=blk('Gym AM · 05:00 · Wellpass · 60 min',
+      ex('Beinpresse einbeinig','3×10 je Seite @ 90–95 kg','Halbe Last der bilateralen Beinpresse als Startpunkt.','bp1_w'+w)+
+      ex('Chest Press Maschine','3×10 @ 60 kg · RPE 7','','cpm_w'+w)+
+      ex('Brustgestützes Rudern','3×12 @ 78 kg · RPE 6','','row2_w'+w)+
+      ex('Lat Pulldown','3×12 @ 55–60 kg · RPE 6','','lat2_w'+w)+
+      ex('Seitheben','3×15 @ 7,5 kg','Saubere Ausführung vor Last.','sh2_w'+w)+
+      ex('Face Pull','3×20 @ 20–23 kg','Externe Rotation, Schulter-Gesundheit.','fp_w'+w));
+    o+=blk('Box PM · A · HSPU zuerst',
+      ex('HSPU-Progression','4 × 5 Negatives à 3 s','Zuerst ausführen, solange die Schultern frisch sind.','hspu_w'+w));
+    o+=blk('Box PM · B · Press',
+      ex('Strict Press',W_.sp,'Direkt nach der HSPU-Arbeit.','sp_w'+w));
+    o+=blk('Box PM · C · Couplet-WOD Teil 1 · '+tag,
+      ex('DB Snatch alt.','4 Runden: 1.000 m C2 Bike/Row/Ski + '+
+        Math.round(LAB.snatch.full*WK[w].v/400)+' Reps @ '+(WK[w].load==='over'?LAB.snatch.over:LAB.snatch.race),
+        'Erg direkt in die Station, ohne Pause. Rogue Echo Bike statt C2: 15 Cal statt 1.000 m.','coupwod1_w'+w,'sim'));
+    o+=blk('Box PM · D · Couplet-WOD Teil 2 · '+tag,
+      ex('WP Clean & Press','4 Runden: 1.000 m C2 Bike/Row/Ski + '+
+        Math.round(LAB.cp.full*WK[w].v/400)+' Reps @ '+(WK[w].load==='over'?LAB.cp.over:LAB.cp.race),
+        'Gleiche Struktur, andere Station – so bleibt die Übergangsqualität hoch statt in der Mitte zu kippen. Rogue Echo Bike statt C2: 15 Cal statt 1.000 m.','coupwod2_w'+w,'sim')+
+      ex('DB Devil Press',lab('devil',w),'Zum Abschluss, bewusst unter Ermüdung.','devil_w'+w,'labour'));
+    o+=note('Reihenfolge korrigiert: HSPU zuerst, dann Press, dann der WOD in zwei klaren Teilen statt einem Rundenwechsel mittendrin.');
+    o+=note('C2 Bike/Row/Ski laufen über Meter – nimm jede Woche ein anderes Gerät, damit sich die Belastung nicht einseitig auf Beine oder Oberkörper konzentriert. Rogue Echo Bike ist Luftwiderstand und läuft über Kalorien, nicht Meter – deshalb 15 Cal als Äquivalent.');
+    return o;
+  }
+
+  if(i===4){ /* FREITAG */
+    if(w===6){
+      return note('Reisetag / Ruhe. Maximal 15 min Mobility. Packen: Schuhe ohne Spikes, Kniebandagen, Gürtel, Ausweis, Iso-Getränk, Gel.','g');
+    }
+    o+=blk('A · Gymnastics',
+      ex('Pull-Ups','5 × max −2 Wdh','Frisch zuerst. Ohne Kreide – Griffvorbereitung.','pu_w'+w)+
+      ex('Toes-to-Bar','4 × 12','','t2b_w'+w)+
+      ex('Bar Muscle-Up','4 × 3–5','Wenn die Schulter mitspielt, sonst Chest-to-Bar.','bmu_w'+w));
+    o+=blk('B · Distance-Labours · '+tag,
+      ex('KB Farmers Carry',lab('farm',w),'30-m-Bahn. Ohne Kreide, ohne Handschuhe. Absetzen nur an Ort und Stelle.','farm_w'+w,'labour')+
+      ex('WP Front Carry',lab('front',w),'Beide Arme vorne, nicht auf der Schulter.','front_w'+w,'labour')+
+      ex('WP Overhead Carry',lab('ohc',w),'Scheibenmitte über dem Kopf, darf den Kopf nicht berühren.','ohc_w'+w,'labour')+
+      ex('DB Lunge',lab('lunge',w),'Hinteres Knie berührt den Boden, Beine wechseln.','lunge_w'+w,'labour'));
+    o+=blk('C · Bodenarbeit · deine teuersten Stationen',
+      ex('Burpee Broad Jump',lab('bbj',w),'Brust und Oberschenkel auf den Boden, beidbeinig springen und landen.','bbj_w'+w,'labour')+
+      ex('Bear Crawl',lab('bear',w),'Knie nie am Boden, kein Galopp. Kurze Züge, tiefe Hüfte.','bear_w'+w,'labour'));
+    o+=note('Diese beiden Stationen kosten dich auf 197 cm am meisten Zeit. Deshalb stehen sie frisch am Freitag – nicht als Anhängsel nach einem WOD.');
+    return o;
+  }
+
+  if(i===5){ /* SAMSTAG */
+    if(w===4){
+      return '<div class="sim"><div class="bl">Volle Simulation · Race-Last</div><div class="body">'+
+        '12 × 400 m Journey · dazwischen alle 12 Labours an exakter Wettkampflast.<br><br>'+
+        '<b>Dein Anteil:</b> ca. 60 % des Labour-Volumens – dein realistischer Pair-Anteil, wenn du die Grip-lastigen Stationen übernimmst. Die Journeys läufst du komplett, alle 12.<br><br>'+
+        '<b>Zielzeit:</b> keine. Es geht um Daten – Split jeder Journey mitschreiben, dann siehst du genau, wo du zerfällst.<br><br>'+
+        '<b>Generalprobe:</b> Frühstück, Timing, Kleidung und Getränk exakt wie am 6.9.</div></div>'+
+        blk('Simulation', ex('Volle Simulation','12 Journeys + 12 Labours','Alle 12 Splits notieren.','simfull_w4','sim'));
+    }
+    if(w===5){
+      return '<div class="sim"><div class="bl">Halbe Simulation · Renntempo</div><div class="body">'+
+        '6 × 400 m Journey · dazwischen 6 Labours an Race-Last, halber Umfang – aber im Renntempo.<br><br>'+
+        'Kurz und aggressiv. Letzter harter Reiz vor dem Wettkampf. Danach nur noch Erholung.</div></div>'+
+        blk('Simulation', ex('Halbe Simulation','6 Journeys + 6 Labours @ Renntempo','','simhalf_w5','sim'));
+    }
+    if(w===6){
+      return note('Reisetag. 2 × 400 m sehr locker zum Lösen, Standards im Kopf durchgehen. Carb-Loading, früh schlafen. Wave-Zeit prüfen – Pairs starten zwischen 12:30 und 16:00 Uhr.','g')+
+        blk('Locker', ex('400-m-Intervalle','2 × 400 m locker','','out_w6','run'));
+    }
+    return blk('Journey · lang',
+      ex('Z2-Lauf',W_.sa,'Ruhig und gleichmäßig, Kadenz im Blick. Über 90 min oder bei Hitze: trinken ab Minute 30, Kohlenhydrate bei Minute 50–60.','longrun_w'+w,'run'));
+  }
+
+  /* SONNTAG */
+  if(w===6){
+    return '<div class="sim"><div class="bl">Deadly Dozen World Championship</div><div class="body">'+
+      '<b>Mixed Double · 12 Journeys · 12 Labours</b><br><br>'+
+      '1 h vor der Wave da sein, Ausweis mit. Aufwärmen: 800 m locker, Mobility, je 6 Reps an den ersten Stationen.<br><br>'+
+      '<b>Renntaktik:</b> Journey 1 bis 3 bewusst 5 Sekunden langsamer als du könntest. Die Stationen sind leicht – der Fehler ist immer das Tempo vorne.<br><br>'+
+      '<b>Übergaben:</b> Gerät ablegen, nicht reichen. Carries in großen Blöcken teilen, Rep-Labours in kleinen.<br><br>'+
+      'Wasser steht auf der Zielkurve. Nutze es früh, nicht erst wenn du es brauchst.</div></div>'+
+      blk('Rennen', ex('Rennen','12 Journeys · 12 Labours','Endzeit und Platzierung eintragen.','race','sim'));
+  }
+  return blk('Aktive Erholung · optional',
+    ex('Schwimmen','25–30 min locker','Wechsel Kraul/Brust. Reine Erholung, kein Intervall.','swim_w'+w,'time')+
+    ex('Griff & Core','3 Runden','20 Hollow Rocks · 45 s Farmers Hold @ 2×32 kg · 30 s Plank','core_w'+w))+
+    note('Wenn die Woche hart war: einfach spazieren, essen, schlafen. Das Schwimmen ist ein Angebot, keine Pflicht.','g');
+}
+
+function buildWeek(w){
+  var W_=WK[w], o='';
+  o+='<div class="banner"><div class="ph">'+W_.ph+'</div><h2>'+W_.h2+'</h2><p>'+W_.p+'</p></div>';
+  for(var i=0;i<7;i++){
+    var m=dayMeta(w,i);
+    o+='<div class="day" id="d'+i+'w'+w+'"><div class="dh" data-t="d'+i+'w'+w+'">'+
+       '<div class="rail" style="background:var(--'+m.rail+')"></div>'+
+       '<div class="dh-t"><h3>'+m.title+'</h3><div class="sub">'+m.sub+'</div></div>'+
+       '<span class="chev">›</span></div><div class="db">'+fbWidgetHtml(w,i)+dayBody(w,i)+'</div></div>';
+  }
+  return o;
+}
+
+/* ============ VIEWS ============ */
+function curWeekIdx(){
+  var start=new Date(2026,6,27), now=new Date();
+  var wk=Math.floor((now-start)/(7*86400000))+1;
+  return (wk>=1&&wk<=6)?wk:(wk<1?1:6);
+}
+function todayIdx(){ return (new Date().getDay()+6)%7; }
+
+function buildToday(){
+  var w=curWeekIdx(), i=todayIdx(), m=dayMeta(w,i), now=new Date();
+  var f=FUEL[dayFuel(w,i)];
+  var o='<div class="hero"><div class="dt">'+now.toLocaleDateString('de-DE',{day:'numeric',month:'long'})+' · '+WK[w].ph+'</div>'+
+    '<div class="wd">'+DAYN[i]+'</div><div class="ty" style="color:var(--'+m.rail+')">'+m.sub+'</div></div>';
+  o+='<div class="hrv"><h4>🫀 HRV heute</h4><div class="hrvrow">'+
+    '<input id="hrvin" type="number" inputmode="numeric" placeholder="z. B. 72">'+
+    '<button id="hrvbtn">Prüfen</button></div><div id="hrvout"></div>'+
+    '<div style="font-size:.7rem;color:var(--text3);margin-top:8px">Unter 65 rot · 65–75 gelb · über 75 grün</div></div>';
+  o+='<button class="btn sec" id="btn-export-today" style="margin-bottom:12px">📤 Nur heutige Ergebnisse exportieren</button>';
+  o+='<div class="banner"><div class="ph">Fuel heute</div><h2>'+f.name+'</h2>'+
+    '<p>'+f.kcal.toLocaleString('de-DE')+' kcal · '+f.p+' g Protein · '+f.kh+' g KH · '+f.f+' g Fett</p></div>';
+  o+='<div class="day open"><div class="dh" data-t="tdy"><div class="rail" style="background:var(--'+m.rail+')"></div>'+
+     '<div class="dh-t"><h3>Session</h3><div class="sub">'+m.sub+'</div></div><span class="chev">›</span></div>'+
+     '<div class="db">'+fbWidgetHtml(w,i)+dayBody(w,i)+'</div></div>';
+  return o;
+}
+
+function buildRace(){
+  var o='<div class="banner"><div class="ph">Das Rennen</div><h2>12 Journeys · 12 Labours</h2>'+
+    '<p>4.800 m Laufen, 900 m Distance-Labours, 320 Reps. Mixed Pairs laufen alle 12 Journeys gemeinsam – die Labours dürft ihr frei aufteilen.</p></div>';
+  o+='<h4 class="sec">Lasten · Race vs. Training</h4>';
+  o+='<table class="rt"><tr><th>#</th><th>Labour</th><th>Umfang</th><th>Race</th><th>Überlast</th></tr>';
+  var i=1;
+  for(var k in LAB){ var L=LAB[k];
+    o+='<tr><td class="i">'+i+'</td><td>'+L.n+'</td><td>'+L.full+' '+L.u+'</td><td class="w">'+L.race+'</td><td class="o">'+L.over+'</td></tr>'; i++; }
+  o+='</table>';
+  o+='<div class="note" style="margin-top:12px"><b>Überlast-Logik:</b> W1 lernst du die Standards an Race-Last. W2, W3 und W5 läufst du auf Überlast – rund 30–50 % über Wettkampfgewicht. W4 und W6 gehen zurück auf exakte Race-Last. Genau dann fühlt sich alles leicht an, und die Simulationen liefern echte Zeiten.</div>';
+  o+='<div class="note r"><b>Keine Kreide. Keine Straps.</b> Beides ist im Regelwerk verboten. 480 m Carry plus 60 KB-Deadlifts gehen komplett auf den nackten Griff. Deshalb auch RDL und alle Carries im Training ohne Hilfsmittel.</div>';
+  o+='<h4 class="sec">Wo das Rennen entschieden wird</h4><ul class="body">'+
+    '<li><b>4,8 km in 12 Stücken</b> – jedes Mal aus voller Ermüdung neu anlaufen.</li>'+
+    '<li><b>Griffausdauer ohne Hilfsmittel.</b></li>'+
+    '<li><b>Burpee Broad Jump und Bear Crawl</b> – 180 m Bodenarbeit auf 197 cm und über 100 kg.</li>'+
+    '<li><b>Pacing</b> – wer die ersten vier Stationen ballert, zerfällt ab Station acht.</li></ul>';
+  o+='<h4 class="sec">Pairs-Strategie ohne gemeinsames Training</h4><ul class="body">'+
+    '<li><b>Laufen ist nicht teilbar.</b> Euer Renntempo ist das der langsameren Person – kläre ihre 400er-Pace vorab.</li>'+
+    '<li><b>Übergaben kosten Zeit.</b> Geräte ablegen, nicht reichen. Carries in großen Blöcken teilen, Rep-Labours in kleinen (10–15 Reps).</li>'+
+    '<li><b>Bei Distance-Labours bewegt ihr euch zusammen</b> – der Nicht-Arbeitende geht oder joggt mit.</li>'+
+    '<li><b>Dein Vorschlag:</b> du nimmst den größeren Anteil an Farmers, KB Deadlift und Plattencarries. Burpee Broad Jump und Bear Crawl hälftig.</li>'+
+    '<li>Nur eine Person trägt den Timing-Chip.</li></ul>';
+  o+='<h4 class="sec">Renntag</h4><ul class="body">'+
+    '<li>Pairs-Waves zwischen 12:30 und 16:00 Uhr. Exakte Zeit kommt erst in der Rennwoche.</li>'+
+    '<li>1 h vorher da sein, Ausweis mitnehmen, 6 min vor Start in der Startbox.</li>'+
+    '<li>Keine Verpflegung von Zuschauern. Wasser auf der Zielkurve. Eigenes Gel oder Trinkrucksack selbst tragen.</li>'+
+    '<li>Erlaubt: Kniebandagen, Gürtel, Handschuhe, Carbonschuhe. Verboten: Spikes, Kopfhörer, Kreide, Straps.</li>'+
+    '<li>Pausen jederzeit – aber nur genau dort, wo du stehst.</li></ul>';
+  return o;
+}
+
+function fuelCard(key){
+  var f=FUEL[key],o='';
+  o+='<div class="banner" style="border-color:var(--'+f.col+')"><div class="ph" style="color:var(--'+f.col+')">'+key.toUpperCase()+'</div>'+
+     '<h2>'+f.name+'</h2><div class="tot">'+
+     '<div><b>'+f.kcal.toLocaleString('de-DE')+'</b><span>kcal</span></div>'+
+     '<div><b>'+f.p+'</b><span>g Protein</span></div>'+
+     '<div><b>'+f.kh+'</b><span>g KH</span></div>'+
+     '<div><b>'+f.f+'</b><span>g Fett</span></div></div></div>';
+  o+='<div class="block">';
+  for(var i=0;i<f.meals.length;i++){ var m=f.meals[i];
+    o+='<div class="meal"><div class="t">'+m[0]+'</div><div class="m"><div class="h">'+m[1]+'</div>'+
+       '<div class="d">'+m[2]+'</div><div class="k">'+m[3]+'</div></div></div>'; }
+  o+='</div>';
+  return o;
+}
+function buildFuel(){
+  var o='<div class="banner"><div class="ph">Ernährung</div><h2>Bulk beenden, Gewicht halten</h2>'+
+    '<p>Kein Cut – aber ab jetzt keine Zunahme mehr bis zum 6.9. Jedes zusätzliche Kilo trägst du 4,8 km weit, plus 60 m Burpee Broad Jumps und 120 m Bear Crawl.</p></div>';
+  o+='<div class="note">Kontrolle: nüchtern morgens wiegen, 7-Tage-Trend flach halten. Steigt er, Ruhetage um 200–300 kcal senken. Protein bleibt bei ~270 g.</div>';
+  o+='<h4 class="sec">Wochenverteilung</h4><table class="rt">'+
+    '<tr><th>Tag</th><th>Typ</th><th>kcal</th></tr>'+
+    '<tr><td>Mo</td><td>Box PM · Kraft + Labour-WOD</td><td class="w">3.710</td></tr>'+
+    '<tr><td>Di</td><td>Gym AM 1 h + Olympic PM</td><td class="o">4.285</td></tr>'+
+    '<tr><td>Mi</td><td>Laufeinheit 400er</td><td class="w">3.710</td></tr>'+
+    '<tr><td>Do</td><td>Gym AM 1 h + Box PM</td><td class="o">4.285</td></tr>'+
+    '<tr><td>Fr</td><td>Gymnastics + Distance-Labours</td><td class="w">3.710</td></tr>'+
+    '<tr><td>Sa</td><td>Langer Lauf / Simulation</td><td class="o">4.285 / 4.520</td></tr>'+
+    '<tr><td>So</td><td>Ruhetag</td><td class="w">3.450</td></tr></table>';
+  var keys=['easy','mid','hard','sim','race'];
+  for(var i=0;i<keys.length;i++){ o+='<h4 class="sec">'+FUEL[keys[i]].name+'</h4>'+fuelCard(keys[i]); }
+  return o;
+}
+
+function buildProfile(){
+  var o='<div class="banner"><div class="ph">Profil</div><h2>Kevin Böhm</h2><p>197 cm · ~104 kg · CrossFit Friedrichshafen</p></div>';
+  o+='<h4 class="sec">Bestleistungen</h4><table class="rt">'+
+    '<tr><td>Deadlift</td><td class="w">220 kg</td><td>Back Squat</td><td class="w">160 kg</td></tr>'+
+    '<tr><td>Front Squat</td><td class="w">130 kg</td><td>Clean & Jerk</td><td class="w">110 kg</td></tr>'+
+    '<tr><td>Snatch</td><td class="w">90 kg</td><td>OHS</td><td class="w">95 kg</td></tr>'+
+    '<tr><td>Push Press</td><td class="w">100 kg</td><td>Strict Press</td><td class="w">80 kg</td></tr>'+
+    '<tr><td>Bankdrücken</td><td class="w">105 kg</td><td>Weighted Pull-Up</td><td class="w">+30 kg</td></tr></table>';
+  o+='<h4 class="sec">Equipment-Regel</h4><ul class="body">'+
+    '<li><b>Box:</b> Langhanteln, KB, DB, Scheiben, Gymnastics, Rower, Bike. Keine Kabel- oder Gym-Maschinen.</li>'+
+    '<li><b>Wellpass AM:</b> nur Maschinen. Keine Langhanteln, keine Gymnastics.</li></ul>';
+
+  o+='<h4 class="sec">Daten sichern</h4>';
+  o+='<button class="btn sec" id="btn-export">Logs als JSON herunterladen</button>';
+  o+='<div class="fld" style="margin-top:12px"><label>Backup einfügen und wiederherstellen</label><textarea id="imp" placeholder="JSON hier einfügen"></textarea></div>';
+  o+='<button class="btn sec" id="btn-import">Backup einspielen</button>';
+
+  o+='<h4 class="sec">GitHub-Sync</h4>';
+  o+='<div class="fld"><label>Repository (owner/name)</label><input id="gh-repo" placeholder="kevin/training-logs" value="'+(ls('z3_gh_repo')||'')+'"></div>';
+  o+='<div class="fld"><label>Pfad in der Repo</label><input id="gh-path" placeholder="logs/z3.json" value="'+(ls('z3_gh_path')||'logs/z3-deadlydozen.json')+'"></div>';
+  o+='<div class="fld"><label>Branch</label><input id="gh-branch" value="'+(ls('z3_gh_branch')||'main')+'"></div>';
+  o+='<div class="fld"><label>Personal Access Token</label><input id="gh-token" type="password" placeholder="ghp_…" value="'+(ls('z3_gh_token')||'')+'"></div>';
+  o+='<button class="btn sec" id="btn-ghsave">Zugangsdaten speichern</button>';
+  o+='<button class="btn" id="btn-ghup" style="margin-top:8px">Logs zu GitHub hochladen</button>';
+  o+='<div class="feed" id="gh-feed"></div>';
+  o+='<button class="btn dan" id="btn-reset" style="margin-top:22px">Alle Logs löschen</button>';
+  return o;
+}
+
+/* ============ RENDER ============ */
+var cur=1, view='today';
+function tabs(){
+  var t=document.getElementById('tabs'),o='';
+  for(var i=1;i<=6;i++) o+='<div class="tab'+(i===cur?' on':'')+'" data-w="'+i+'">W'+i+(i===6?' · Race':'')+'</div>';
+  t.innerHTML=o;
+  t.style.display = view==='plan' ? 'flex' : 'none';
+}
+function render(){
+  document.getElementById('v-today').innerHTML=buildToday();
+  document.getElementById('v-plan').innerHTML=buildWeek(cur);
+  document.getElementById('v-race').innerHTML=buildRace();
+  document.getElementById('v-fuel').innerHTML=buildFuel();
+  document.getElementById('v-profile').innerHTML=buildProfile();
+  tabs();
+  var h=ls('z3_hrv_'+new Date().toDateString());
+  if(h){ var el=document.getElementById('hrvin'); if(el){el.value=h; hrvCheck();} }
+}
+
+/* ============ MODALS ============ */
+function openInfo(name){
+  var d=DB[dbKey(name)]; if(!d) return;
+  document.getElementById('s-info').innerHTML=
+    '<h3>'+name+'</h3><div class="sh-sub">Ausführung &amp; Fokus</div>'+
+    '<p class="body">'+d[0]+'</p>'+
+    '<h4 class="sec">Warum es zählt</h4><p class="body">'+d[1]+'</p>'+
+    '<a class="yt" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query='+d[2]+'">▶ Videos auf YouTube ansehen</a>'+
+    '<button class="btn sec" style="margin-top:10px" data-close="m-info">Schließen</button>';
+  document.getElementById('m-info').classList.add('on');
+}
+function setRowHtml(kg,reps,rpe,idx){
+  return '<div class="set-row" data-idx="'+idx+'">'+
+    '<div class="set-num">S'+(idx+1)+'</div>'+
+    '<input type="number" inputmode="decimal" step="0.5" placeholder="kg" class="sf-kg" value="'+(kg||'')+'">'+
+    '<input type="number" inputmode="numeric" placeholder="Wdh" class="sf-reps" value="'+(reps||'')+'">'+
+    '<input type="number" inputmode="numeric" min="1" max="10" placeholder="RPE" class="sf-rpe" value="'+(rpe||'')+'">'+
+    '<button class="set-del" data-delrow="1">×</button></div>';
+}
+function addSetRow(kg,reps,rpe){
+  var c=document.getElementById('log-set-rows'); if(!c) return;
+  var idx=c.querySelectorAll('.set-row').length;
+  c.insertAdjacentHTML('beforeend', setRowHtml(kg,reps,rpe,idx));
+}
+function renumberSetRows(){
+  var rows=document.querySelectorAll('#log-set-rows .set-row');
+  for(var i=0;i<rows.length;i++){ rows[i].dataset.idx=i; rows[i].querySelector('.set-num').textContent='S'+(i+1); }
+}
+function entrySummary(e){
+  if(!e) return '';
+  if(e.type==='strength' && e.sets && e.sets.length){
+    return e.sets.map(function(s){ return (s.kg?s.kg+' kg':'')+(s.reps?' × '+s.reps:'')+(s.rpe?' @RPE '+s.rpe:''); }).filter(Boolean).join(' · ');
+  }
+  return [e.a,e.b,e.c].filter(Boolean).join(' · ')||'geloggt';
+}
+function fmtEntryDate(iso){
+  try{ return new Date(iso).toLocaleDateString('de-DE',{weekday:'short',day:'numeric',month:'short'})+' · '+new Date(iso).toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'}); }
+  catch(e){ return ''; }
+}
+function logEntryFormHtml(typ,lg){
+  var f='';
+  if(typ==='strength'){
+    f+='<div class="fld"><label>Sätze · kg × Wdh × RPE</label><div id="log-set-rows"></div>'+
+       '<button class="btn sec" type="button" id="add-set-btn" style="margin-top:8px">+ Satz hinzufügen</button></div>';
+  } else if(typ==='labour'){
+    f+='<div class="fld"><label>Umfang geschafft (m oder Reps)</label><input id="f1"></div>'+
+       '<div class="fld"><label>Last</label><input id="f2"></div>'+
+       '<div class="fld"><label>Zeit (mm:ss)</label><input id="f3"></div>';
+  } else if(typ==='run'){
+    f+='<div class="fld"><label>Splits</label><input id="f1" placeholder="1:58 / 2:01 / 2:00 …"></div>'+
+       '<div class="fld"><label>Ø Pace</label><input id="f2"></div>'+
+       '<div class="fld"><label>Ø Herzfrequenz</label><input id="f3"></div>';
+  } else if(typ==='sim'){
+    f+='<div class="fld"><label>Gesamtzeit</label><input id="f1"></div>'+
+       '<div class="fld"><label>Journey-Splits</label><input id="f2"></div>'+
+       '<div class="fld"><label>Wo bist du eingebrochen?</label><input id="f3"></div>';
+  } else if(typ==='time'){
+    f+='<div class="fld"><label>Dauer</label><input id="f1"></div>'+
+       '<div class="fld"><label>Distanz</label><input id="f2"></div>'+
+       '<div class="fld"><label>Ø Herzfrequenz</label><input id="f3"></div>';
+  } else {
+    f+='<div class="fld"><label>Sätze × Wiederholungen</label><input id="f1" placeholder="3×5"></div>'+
+       '<div class="fld"><label>Gewicht (kg)</label><input id="f2" inputmode="decimal"></div>'+
+       '<div class="fld"><label>RPE</label><input id="f3" inputmode="decimal" placeholder="1–10"></div>';
+  }
+  f+='<div class="fld"><label>Notiz</label><textarea id="f4"></textarea></div>';
+  return f;
+}
+function historyHtml(k){
+  var arr=getLogArray(k);
+  if(!arr.length) return '<div style="padding:20px 0;text-align:center;color:var(--text3);font-size:.85rem">Noch keine Einträge</div>';
+  var o='';
+  for(var i=arr.length-1;i>=0;i--){ var e=arr[i];
+    o+='<div class="block" style="margin-bottom:8px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">'+
+       '<div style="font-size:.72rem;color:var(--text3)">'+fmtEntryDate(e.date)+'</div>'+
+       '<button class="btn dan" style="width:auto;padding:5px 11px;margin:0;font-size:.72rem" data-histdel="'+i+'" data-histk="'+k+'">Löschen</button></div>'+
+       '<div style="font-size:.86rem">'+entrySummary(e)+'</div>'+
+       (e.note?'<div style="font-size:.78rem;color:var(--text2);margin-top:4px">'+e.note+'</div>':'')+
+       '</div>';
+  }
+  return o;
+}
+function openFb(w,i){
+  var fb=getFb(w,i)||{}, d=dayMeta(w,i);
+  var em='';
+  FB_EMOJI.forEach(function(e){
+    em+='<div class="fb-emoji'+(fb.emoji===e[0]?' sel':'')+'" data-emoji="'+e[0]+'">'+e[1]+'<span class="lbl">'+e[2]+'</span></div>';
+  });
+  var stars='';
+  for(var s=1;s<=5;s++){ stars+='<span class="fb-star'+(fb.stars&&fb.stars>=s?' on':'')+'" data-star="'+s+'">★</span>'; }
+  document.getElementById('s-fb').innerHTML=
+    '<h3>Wie war die Einheit?</h3><div class="sh-sub">'+d.title+'</div>'+
+    '<div class="fld"><label>Energie & Gefühl</label><div class="fb-emoji-row" id="fb-emoji-row">'+em+'</div></div>'+
+    '<div class="fld"><label>Workout-Qualität</label><div class="fb-star-row" id="fb-star-row">'+stars+'</div></div>'+
+    '<div class="fld"><label>Notizen</label><textarea id="fb-notes" placeholder="Technik, Gewichte, Erholung, Besonderheiten…">'+(fb.notes||'')+'</textarea></div>'+
+    '<button class="btn" id="fb-save" data-fbw="'+w+'" data-fbi="'+i+'">Speichern</button>'+
+    '<button class="btn sec" style="margin-top:8px" data-close="m-fb">Abbrechen</button>';
+  window._fbEmoji=fb.emoji||''; window._fbStars=fb.stars||0;
+  document.getElementById('m-fb').classList.add('on');
+}
+function saveFb(w,i){
+  var notes=(document.getElementById('fb-notes')||{}).value||'';
+  setFb(w,i,{emoji:window._fbEmoji||'',stars:window._fbStars||0,notes:notes});
+  document.getElementById('m-fb').classList.remove('on');
+  render();
+}
+function openLog(k,name,typ){
+  typ=typ||'strength';
+  document.getElementById('s-log').innerHTML=
+    '<h3>'+name+'</h3><div class="sh-sub">'+new Date().toLocaleDateString('de-DE',{weekday:'long',day:'numeric',month:'long'})+'</div>'+
+    '<div style="display:flex;gap:8px;margin-bottom:14px">'+
+      '<button class="logtab on" id="ltab-new" style="flex:1;text-align:center;padding:8px;border-radius:9px;border:1px solid var(--border);background:var(--card2);color:var(--text)">Eintragen</button>'+
+      '<button class="logtab" id="ltab-hist" style="flex:1;text-align:center;padding:8px;border-radius:9px;border:1px solid var(--border);background:transparent;color:var(--text2)">Verlauf ('+getLogArray(k).length+')</button>'+
+    '</div>'+
+    '<div id="lpanel-new">'+logEntryFormHtml(typ,{})+
+      '<button class="btn" id="lg-save" data-k="'+k+'" data-t="'+typ+'">Speichern</button>'+
+      '<button class="btn sec" style="margin-top:8px" data-close="m-log">Abbrechen</button></div>'+
+    '<div id="lpanel-hist" style="display:none">'+historyHtml(k)+'</div>';
+  if(typ==='strength'){
+    var last=getLog(k);
+    if(last && last.sets && last.sets.length){
+      last.sets.forEach(function(s){ addSetRow(s.kg,s.reps,s.rpe); });
+    } else { addSetRow(); addSetRow(); addSetRow(); }
+  }
+  document.getElementById('m-log').classList.add('on');
+}
+function saveLog(k,typ){
+  var n=(document.getElementById('f4')||{}).value||'', entry;
+  if(typ==='strength'){
+    var sets=[];
+    document.querySelectorAll('#log-set-rows .set-row').forEach(function(row){
+      var kg=row.querySelector('.sf-kg').value, reps=row.querySelector('.sf-reps').value, rpe=row.querySelector('.sf-rpe').value;
+      if(kg||reps) sets.push({kg:kg,reps:reps,rpe:rpe});
+    });
+    entry={type:'strength',sets:sets,note:n,date:new Date().toISOString()};
+  } else {
+    var a=(document.getElementById('f1')||{}).value||'',
+        b=(document.getElementById('f2')||{}).value||'',
+        c=(document.getElementById('f3')||{}).value||'';
+    entry={type:typ,a:a,b:b,c:c,note:n,date:new Date().toISOString()};
+  }
+  pushLog(k,entry);
+  document.getElementById('m-log').classList.remove('on');
+  render();
+}
+
+/* ============ HRV ============ */
+function hrvCheck(){
+  var el=document.getElementById('hrvin'); if(!el) return;
+  var v=parseFloat(el.value), out=document.getElementById('hrvout');
+  if(isNaN(v)){ out.style.display='none'; return; }
+  ls('z3_hrv_'+new Date().toDateString(), String(v));
+  var txt,bg,col;
+  if(v<65){ txt='Rot. Intensität heute runter: Lasten −10 bis −15 %, Intervalle halbieren oder auf Z2 wechseln. Simulationen verschieben.'; bg='rgba(255,69,58,.12)'; col='var(--red)'; }
+  else if(v<=75){ txt='Gelb. Plan wie geschrieben, aber ohne Extras. Kein Ausbelasten in den Labours.'; bg='rgba(255,176,32,.12)'; col='var(--amber)'; }
+  else { txt='Grün. Vollgas. Wenn heute Simulation oder scharfe Intervalle anstehen – heute ist der Tag dafür.'; bg='rgba(48,209,88,.12)'; col='var(--green)'; }
+  out.style.display='block'; out.style.background=bg; out.style.color=col; out.textContent=txt;
+}
+
+/* ============ GITHUB ============ */
+function feed(msg,ok){
+  var f=document.getElementById('gh-feed'); if(!f) return;
+  f.style.display='block'; f.textContent=msg;
+  f.style.background = ok?'rgba(48,209,88,.12)':'rgba(255,69,58,.12)';
+  f.style.color = ok?'var(--green)':'var(--red)';
+}
+function b64(s){ return btoa(unescape(encodeURIComponent(s))); }
+function ghUpload(){
+  var repo=ls('z3_gh_repo'), path=ls('z3_gh_path'), br=ls('z3_gh_branch')||'main', tok=ls('z3_gh_token');
+  if(!repo||!path||!tok){ feed('Repository, Pfad und Token zuerst speichern.',false); return; }
+  var body=JSON.stringify({exported:new Date().toISOString(),plan:'Z3 Deadly Dozen',logs:allLogs()},null,2);
+  var url='https://api.github.com/repos/'+repo+'/contents/'+path;
+  feed('Lade hoch …',true);
+  fetch(url+'?ref='+br,{headers:{Authorization:'token '+tok,Accept:'application/vnd.github+json'}})
+   .then(function(r){ return r.status===200?r.json():null; })
+   .then(function(j){
+      return fetch(url,{method:'PUT',headers:{Authorization:'token '+tok,Accept:'application/vnd.github+json','Content-Type':'application/json'},
+        body:JSON.stringify({message:'Z3 Logs '+new Date().toLocaleDateString('de-DE'),content:b64(body),branch:br,sha:j&&j.sha?j.sha:undefined})});
+   })
+   .then(function(r){ if(r.ok) feed('Hochgeladen: '+path,true); else r.json().then(function(e){feed('Fehler: '+(e.message||r.status),false)}); })
+   .catch(function(e){ feed('Netzwerkfehler: '+e.message,false); });
+}
+
+/* ============ EVENTS ============ */
+document.addEventListener('click',function(e){
+  var t=e.target.closest('.tab'); if(t){ cur=parseInt(t.dataset.w); document.getElementById('v-plan').innerHTML=buildWeek(cur); tabs(); window.scrollTo(0,0); return; }
+  var h=e.target.closest('.dh'); if(h){ var d=e.target.closest('.day'); if(d) d.classList.toggle('open'); return; }
+  var ib=e.target.closest('.ib'); if(ib){ openInfo(decodeURIComponent(ib.dataset.i)); return; }
+  var fbo=e.target.closest('.fb-open,.fb-summary'); if(fbo){ openFb(parseInt(fbo.dataset.fbw),parseInt(fbo.dataset.fbi)); return; }
+  var fbe=e.target.closest('.fb-emoji'); if(fbe){
+    document.querySelectorAll('.fb-emoji').forEach(function(x){x.classList.remove('sel')});
+    fbe.classList.add('sel'); window._fbEmoji=fbe.dataset.emoji; return;
+  }
+  var fbs=e.target.closest('.fb-star'); if(fbs){
+    var n=parseInt(fbs.dataset.star); window._fbStars=n;
+    document.querySelectorAll('.fb-star').forEach(function(x,idx){ x.classList.toggle('on', idx<n); }); return;
+  }
+  if(e.target.id==='fb-save'){ saveFb(parseInt(e.target.dataset.fbw),parseInt(e.target.dataset.fbi)); return; }
+  var lb=e.target.closest('.logb'); if(lb){ openLog(lb.dataset.k,decodeURIComponent(lb.dataset.n),lb.dataset.t); return; }
+  var cl=e.target.closest('[data-close]'); if(cl){ document.getElementById(cl.dataset.close).classList.remove('on'); return; }
+  if(e.target.id==='lg-save'){ saveLog(e.target.dataset.k,e.target.dataset.t); return; }
+  if(e.target.id==='add-set-btn'){ addSetRow(); return; }
+  if(e.target.closest('[data-delrow]')){ var row=e.target.closest('.set-row'); if(row) row.remove(); renumberSetRows(); return; }
+  if(e.target.id==='ltab-new'){
+    document.getElementById('ltab-new').classList.add('on'); document.getElementById('ltab-new').style.background='var(--card2)'; document.getElementById('ltab-new').style.color='var(--text)';
+    document.getElementById('ltab-hist').classList.remove('on'); document.getElementById('ltab-hist').style.background='transparent'; document.getElementById('ltab-hist').style.color='var(--text2)';
+    document.getElementById('lpanel-new').style.display='block'; document.getElementById('lpanel-hist').style.display='none'; return;
+  }
+  if(e.target.id==='ltab-hist'){
+    document.getElementById('ltab-hist').classList.add('on'); document.getElementById('ltab-hist').style.background='var(--card2)'; document.getElementById('ltab-hist').style.color='var(--text)';
+    document.getElementById('ltab-new').classList.remove('on'); document.getElementById('ltab-new').style.background='transparent'; document.getElementById('ltab-new').style.color='var(--text2)';
+    document.getElementById('lpanel-hist').style.display='block'; document.getElementById('lpanel-new').style.display='none'; return;
+  }
+  var hd=e.target.closest('[data-histdel]'); if(hd){
+    deleteLogAt(hd.dataset.histk, parseInt(hd.dataset.histdel));
+    document.getElementById('lpanel-hist').innerHTML=historyHtml(hd.dataset.histk);
+    document.getElementById('ltab-hist').textContent='Verlauf ('+getLogArray(hd.dataset.histk).length+')';
+    render(); return;
+  }
+  if(e.target.id==='hrvbtn'){ hrvCheck(); return; }
+  if(e.target.id==='btn-ghsave'){
+    ls('z3_gh_repo',document.getElementById('gh-repo').value.trim());
+    ls('z3_gh_path',document.getElementById('gh-path').value.trim());
+    ls('z3_gh_branch',document.getElementById('gh-branch').value.trim()||'main');
+    ls('z3_gh_token',document.getElementById('gh-token').value.trim());
+    feed('Zugangsdaten gespeichert.',true); return;
+  }
+  if(e.target.id==='btn-ghup'){ ghUpload(); return; }
+  if(e.target.id==='btn-export-today'){
+    var td=todayLogs(), tf=todayFeedback(), n=Object.keys(td).length+Object.keys(tf).length;
+    if(!n){ alert('Für heute ist noch nichts geloggt.'); return; }
+    var data=JSON.stringify({exported:new Date().toISOString(),day:new Date().toDateString(),logs:td,feedback:tf},null,2);
+    var a=document.createElement('a');
+    a.href=URL.createObjectURL(new Blob([data],{type:'application/json'}));
+    a.download='z3-tag-'+new Date().toISOString().slice(0,10)+'.json'; a.click(); return;
+  }
+  if(e.target.id==='btn-export'){
+    var data=JSON.stringify({exported:new Date().toISOString(),logs:allLogs(),feedback:allFeedback()},null,2);
+    var a=document.createElement('a');
+    a.href=URL.createObjectURL(new Blob([data],{type:'application/json'}));
+    a.download='z3-logs-'+new Date().toISOString().slice(0,10)+'.json'; a.click(); return;
+  }
+  if(e.target.id==='btn-import'){
+    try{ var j=JSON.parse(document.getElementById('imp').value); var L=j.logs||j, F=j.feedback||{};
+      for(var k in L) ls(k,L[k]);
+      for(var fk in F) ls(fk,F[fk]);
+      render(); alert('Backup eingespielt.'); }
+    catch(err){ alert('Konnte das JSON nicht lesen.'); } return;
+  }
+  if(e.target.id==='btn-reset'){
+    if(confirm('Wirklich alle Logs und Feedback löschen?')){
+      var L=allLogs(); for(var kk in L) del(kk);
+      var F=allFeedback(); for(var fk2 in F) del(fk2);
+      render();
+    }
+    return;
+  }
+  if(e.target.classList.contains('modal')) e.target.classList.remove('on');
+});
+document.querySelectorAll('.ni').forEach(function(n){
+  n.addEventListener('click',function(){
+    view=n.dataset.v;
+    document.querySelectorAll('.ni').forEach(function(x){x.classList.remove('on')});
+    document.querySelectorAll('.view').forEach(function(x){x.classList.remove('on')});
+    n.classList.add('on'); document.getElementById('v-'+view).classList.add('on');
+    tabs(); window.scrollTo(0,0);
+  });
+});
+
+/* ============ INIT ============ */
+(function(){
+  var race=new Date(2026,8,6), now=new Date();
+  document.getElementById('cd').textContent=Math.max(0,Math.ceil((race-now)/86400000));
+  cur=curWeekIdx();
+  render();
+  var d=document.getElementById('d'+todayIdx()+'w'+cur); if(d) d.classList.add('open');
+})();
+</script>
+</body>
+</html>
