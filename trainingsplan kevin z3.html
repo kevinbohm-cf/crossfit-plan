@@ -324,6 +324,16 @@ var WK={
    run:'4 × 400 m @ Renntempo', rest:'200 m Trabpause', sa:'Reise · 2×400 m locker'}
 };
 
+/* Olympic-Lasten absolut, abgeleitet aus PR Snatch 90 / C&J 110 / OHS 95 */
+var OLY={
+ 1:{sn:60,   cj:75,   ohs:45},
+ 2:{sn:'62,5',cj:'77,5',ohs:50},
+ 3:{sn:65,   cj:80,   ohs:50},
+ 4:{sn:65,   cj:80,   ohs:50},
+ 5:{sn:'62,5',cj:'77,5',ohs:45},
+ 6:{sn:50,   cj:60,   ohs:40}
+};
+
 /* ============ ERNÄHRUNG ============ */
 var FUEL={
 easy:{name:'Ruhetag / Recovery',kcal:3450,p:286,kh:370,f:83,col:'ice',
@@ -409,8 +419,8 @@ var DB={
 'toes-to-bar':['Aus dem Hang die Füße kontrolliert zur Stange bringen, Lat aktiv, kein reines Bein-Schwingen.','Rumpfkontrolle und Griffausdauer – beides zahlt auf die Carries ein.','toes+to+bar+technique+crossfit'],
 'bar muscle-up':['Explosiver Zug, Übergang durch aktives Vorlehnen über die Stange, dann drücken bis zur Streckung.','Wenn die Schulter Widerstand meldet: Chest-to-Bar statt Muscle-Up, keine Kompromisse bei der rechten Schulter.','bar+muscle+up+technique+crossfit'],
 'labour-touch':['Alle vier Bewegungen an exakter Race-Last, sehr locker, volle Bewegungsqualität statt Tempo.','Taper-Woche: die Bewegungen bleiben im Kopf und im Griff präsent, ohne noch Ermüdung zu erzeugen.','race+standards+technique+review'],
-'snatch':['Ein Zug vom Boden in den Überkopf-Squat, Stange nah am Körper, Hüfte explosiv, unter die Stange fahren.','Technikeinheit bei 70–75 % in diesem Zyklus – die Sehnen gehören dem Laufen, nicht dem Maxen.','snatch+technique+olympic+weightlifting'],
-'clean & jerk':['Clean explosiv ins Front-Rack, dann Jerk: Dip, Drive, unter die Stange fahren.','Wie beim Snatch: Technik bei 70–75 %, kein Maxen in diesem Zyklus.','clean+and+jerk+technique+crossfit'],
+'snatch':['Ein Zug vom Boden in den Überkopf-Squat, Stange nah am Körper, Hüfte explosiv, unter die Stange fahren.','Technikeinheit in diesem Zyklus: 60–65 kg statt Maxversuchen. Die Sehnen gehören dem Laufen.','snatch+technique+olympic+weightlifting'],
+'clean & jerk':['Clean explosiv ins Front-Rack, dann Jerk: Dip, Drive, unter die Stange fahren.','Wie beim Snatch: 75–80 kg als Technikarbeit, kein Maxen in diesem Zyklus.','clean+and+jerk+technique+crossfit'],
 'overhead squat':['Weiter Griff, Stange über dem Hinterkopf, Arme aktiv gestreckt, Hüfte tief, Brust aufrecht.','Zahlt direkt auf den Overhead Carry ein – gleiche Schulterposition, gleiche Rumpfspannung.','overhead+squat+technique+crossfit'],
 'rennen':['12 Journeys, 12 Labours, mit Partnerin. Übergaben durch Ablegen, Pacing von Beginn an konservativ.','Der Tag, auf den alles hinarbeitet. Renntaktik: die ersten drei Journeys bewusst langsamer als möglich.','fitness+race+pacing+strategy'],
 'rep-labour-wod':['Drei Runden auf Zeit durch KB Deadlift, Goblet Squat und DB Push Press, 90 s Pause zwischen den Runden.','Ein durchlaufender WOD statt drei Einzelstationen mit Wartezeit – kürzer, härter, näher am Renngefühl.','crossfit+wod+kettlebell+dumbbell'],
@@ -584,11 +594,11 @@ function dayBody(w,i){
       ex('Rückenstrecker isometrisch','3 × 30 s Halten','Körpergewicht, kontrolliert.','ext_w'+w));
     o+=warmUp(w,1);
     o+=blk('Box PM · Olympic Lifting',
-      ex('Snatch','5 × 2 @ 70–75 %','Technik vor Last. Thorax aufrecht, Stange hinter den Ohren im Catch.','sn_w'+w)+
-      ex('Clean & Jerk','5 × 2 @ 70–75 %','','cj_w'+w)+
-      ex('Overhead Squat','3 × 3 @ leicht','Schulterstabilität – zahlt direkt auf den Overhead Carry ein.','ohs_w'+w));
+      ex('Snatch','5 × 2 @ '+OLY[w].sn+' kg','Technik vor Last. Thorax aufrecht, Stange hinter den Ohren im Catch.','sn_w'+w)+
+      ex('Clean & Jerk','5 × 2 @ '+OLY[w].cj+' kg','','cj_w'+w)+
+      ex('Overhead Squat','3 × 3 @ '+OLY[w].ohs+' kg','Schulterstabilität – zahlt direkt auf den Overhead Carry ein.','ohs_w'+w));
     o+=prehabBlock(w,'di');
-    o+=note('Olympic bleibt drin, aber als Technikeinheit bei 70–75 %. Kein Maxen in diesem Zyklus – die Sehnen gehören dem Laufen.');
+    o+=note('Olympic bleibt als Technikeinheit drin. Kein Maxen in diesem Zyklus – die Sehnen gehören dem Laufen. Wenn eine Wiederholung nicht sauber ist: Satz beenden, nicht durchziehen.');
     return o;
   }
 
@@ -652,7 +662,7 @@ function dayBody(w,i){
       ex('WP Overhead Carry',lab('ohc',w),'Scheibenmitte über dem Kopf, darf den Kopf nicht berühren.','ohc_w'+w,'labour')+
       ex('DB Lunge',lab('lunge',w),'Hinteres Knie berührt den Boden, Beine wechseln.','lunge_w'+w,'labour'));
     o+=blk('D · Gymnastics',
-      ex('Pull-Ups','4 × max −2 Wdh','','pu_w'+w)+
+      ex('Pull-Ups','4 × 10 Wdh','Körpergewicht, ohne Kreide. Wenn 10 sauber gehen: +10 kg Zusatzgewicht.','pu_w'+w)+
       ex('Toes-to-Bar','3 × 12','','t2b_w'+w)+
       ex('Bar Muscle-Up','3 × 3–5','Wenn die Schulter mitspielt, sonst Chest-to-Bar.','bmu_w'+w));
     o+=prehabBlock(w,'fr');
