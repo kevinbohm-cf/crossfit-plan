@@ -133,6 +133,14 @@ ul.body li{margin-bottom:5px}
 .fb-star-row{display:flex;gap:8px;margin:8px 0 14px;font-size:1.6rem}
 .fb-star{cursor:pointer;color:var(--border)}
 .fb-star.on{color:var(--amber)}
+.rt-item{display:flex;justify-content:space-between;gap:10px;padding:6px 0;font-size:.86rem;
+  border-bottom:1px solid rgba(255,255,255,.05)}
+.rt-n{font-weight:600}
+.rt-d{color:var(--ice);white-space:nowrap;font-size:.8rem;text-align:right}
+.rt-c{font-size:.75rem;color:var(--text3);margin:-3px 0 5px}
+.blogb{width:100%;margin-top:11px;padding:10px;border-radius:9px;border:1px solid var(--border);
+  background:transparent;color:var(--text2);font-size:.82rem;font-weight:700;cursor:pointer}
+.blogb.done{background:rgba(48,209,88,.14);border-color:var(--green);color:var(--green)}
 .btn{width:100%;padding:13px;border-radius:11px;border:none;background:var(--bone);color:#000;
   font-size:.93rem;font-weight:800;cursor:pointer;margin-top:4px}
 .btn.sec{background:transparent;border:1px solid var(--border);color:var(--text2)}
@@ -449,50 +457,64 @@ function ex(n,l,c,k,typ){
 }
 function blk(l,r){return '<div class="block"><div class="bl">'+l+'</div>'+r+'</div>';}
 function wu(t){return '<div class="wu"><b>Warm-Up</b>'+t+'</div>';}
-function hipProtocol(w){
-  return blk('0 · Rücken/Hüft-Protokoll · vor jeder Einheit',
-    ex('90/90 Hüftwechsel','2 × 8 je Seite','Aufrecht sitzen, langsam wechseln, nicht mit den Händen nachhelfen.','hip90_w'+w)+
-    ex('Glute Bridge','2 × 12 · 2 s halten','Po zuerst, nicht über die LWS drücken. Rippen unten lassen.','bridge_w'+w)+
-    ex('Bird Dog','2 × 8 je Seite','Becken bleibt waagrecht. Langsam, kein Schwung.','birddog_w'+w)+
-    ex('Dead Bug','2 × 10 je Seite','LWS bleibt am Boden. Sobald sie abhebt: Bewegung kleiner machen.','deadbug_w'+w)+
-    ex('Copenhagen Plank','2 × 20 s je Seite','Adduktoren – zahlt direkt auf Lunges und Bear Crawl ein.','copen_w'+w));
+function routine(title,key,items,accent){
+  var arr=getLogArray(key), last=arr.length?arr[arr.length-1]:null, lines='';
+  items.forEach(function(it){
+    lines+='<div class="rt-item"><span class="rt-n">'+it[0]+'</span><span class="rt-d">'+it[1]+'</span></div>'+
+      (it[2]?'<div class="rt-c">'+it[2]+'</div>':'');
+  });
+  return '<div class="block" style="border:1px solid '+accent+'"><div class="bl">'+title+'</div>'+lines+
+    (last?'<div class="ex-log">✓ '+entrySummary(last)+'</div>':'')+
+    '<button class="blogb'+(last?' done':'')+'" data-k="'+key+'" data-n="'+encodeURIComponent(title)+'" data-t="routine" data-l="">'+
+    (last?'✓ geloggt · bearbeiten':'Block abhaken')+'</button></div>';
+}
+
+var WARMUPS={
+ 0:['Assault Bike oder Rower 5 min locker','Leg Swings vor/seitlich 10 je Seite','2 × 10 Bodyweight Squats','10 KB Deadlifts mit leichter KB'],
+ 1:['Assault Bike oder Rower 5 min locker','Stange leer: 10 Pass-Throughs','5 Overhead Squats leer','3 Snatch-Zugstufen leer'],
+ 2:['5 min sehr lockeres Traben','Anfersen und Kniehebe je 2 × 20 m','2 × 60 m Steigerung','Sprunggelenk lockern'],
+ 3:['Assault Bike oder Rower 5 min locker','Schulterkreisen und Band Pull-Aparts 15 Wdh','2 × 20 s Handstand an der Wand','10 leichte Push Press'],
+ 4:['Assault Bike oder Rower 5 min locker','Hüftöffner im Ausfallschritt 8 je Seite','2 × 10 m Bear Crawl locker','5 Burpees ohne Sprung']
+};
+function warmUp(w,i){
+  var list=WARMUPS[i]||WARMUPS[0];
+  var items=list.map(function(x){return [x,'',''];});
+  items.push(['Glute Bridge','12 Wdh','Po zuerst, Rippen unten lassen.']);
+  items.push(['Bird Dog','8 je Seite','Becken bleibt waagrecht.']);
+  items.push(['Copenhagen Plank','2 × 20 s je Seite','Adduktoren – zahlt auf Lunges und Bear Crawl ein.']);
+  return routine('🔥 Warm-Up + Rücken/Hüft · 10 min','wu_w'+w+'d'+i,items,'rgba(100,210,255,.25)');
 }
 function morningRoutine(w,i){
   if(w===1&&i===0) return '';
-  var t='m'+w+'d'+i;
-  return '<div class="block" style="border:1px solid rgba(100,210,255,.25)"><div class="bl" style="color:var(--ice)">☀️ Morgenroutine · täglich · 5–10 min</div>'+
-    ex('Katze-Kuh','10 Wdh langsam','Wirbel für Wirbel bewegen, nicht durchdrücken. Weckt die Wirbelsäule.','cc_'+t)+
-    ex('90/90 Hüftwechsel','8 je Seite','Aufrecht sitzen, ohne Hände nachhelfen.','h90_'+t)+
-    ex('Open Book','8 je Seite','Seitlage, Knie oben halten, oberen Arm langsam öffnen. Brustwirbelsäule und Schulter zugleich.','ob_'+t)+
-    ex('Bauchlage Y-T-W','je 8 Wdh','Bauchlage, Arme in Y, dann T, dann W vom Boden heben. Ersetzt die Wall Slides – braucht keine freie Wand.','ytw_'+t)+
-    ex('Isometrischer Wadenhalt','3 × 30 s je Seite','Einbeinig auf dem Ballen, Ferse leicht angehoben, ruhig halten. Beidbeinig starten, wenn 30 s einbeinig zu viel sind.','calfiso_'+t)+
-    ex('Glute Bridge','12 Wdh · 2 s halten','Po zuerst, Rippen unten. Aktiviert die Hüftstreckung für den Tag.','gb_'+t)+
-    ex('Dead Bug','8 je Seite','LWS bleibt am Boden. Ruhig atmen, nicht pressen.','db_'+t)+
-    '</div>';
-}
-function achillesBlock(w,tag){
-  return '<div class="block" style="border:1px solid rgba(255,176,32,.25)"><div class="bl" style="color:var(--amber)">🦶 Achilles · Sehnenbelastung · 2× pro Woche</div>'+
-    ex('Wadenheben gestreckt','3 × 12 · 3 s hoch / 3 s runter','Langsam und schwer statt schnell und leicht. Gestrecktes Knie zielt auf den Gastrocnemius.','calfstr_'+tag+'_w'+w)+
-    ex('Wadenheben gebeugt','3 × 12 · 3 s hoch / 3 s runter','Knie ca. 30° gebeugt – trifft den Soleus, der beim Laufen die meiste Last trägt.','calfbent_'+tag+'_w'+w)+
-    '</div>';
-}
-function mobilityBlock(w,tag){
-  return '<div class="block" style="border:1px solid rgba(232,226,212,.2)"><div class="bl">🧘 Post-Workout Mobility · 5 min</div>'+
-    ex('Couch Stretch','45 s je Seite','Hinteres Bein an der Wand, Po anspannen, Becken aufrichten. Nicht ins Hohlkreuz fallen.','couch_'+tag+'_w'+w)+
-    ex('Figure-4 in Rückenlage','45 s je Seite','Rückenlage, Knöchel auf dem gegenüberliegenden Knie, unteres Bein zu dir ziehen. Ersetzt die Taube – kein Druck auf die rechte Wade.','fig4_'+tag+'_w'+w)+
-    ex('Hamstring-Dehnung','45 s je Seite','Bein gestreckt erhöht ablegen, Becken aufrichten statt den Rücken zu runden.','ham_'+tag+'_w'+w)+
-    ex('Lat-Dehnung an der Stange','30 s je Seite','Hüfte nach hinten schieben, Achsel Richtung Boden. Entlastet die Schulter nach Overhead-Arbeit.','lat_'+tag+'_w'+w)+
-    ex('Zwerchfell-Atmung liegend','60 s','Rückenlage, Hand auf den Bauch, 4 s ein / 6 s aus. Bringt den Rumpf aus der Dauerspannung.','breath_'+tag+'_w'+w)+
-    '</div>';
+  return routine('☀️ Morgenroutine · täglich · 5–10 min','morn_w'+w+'d'+i,[
+    ['Katze-Kuh','10 Wdh','Wirbel für Wirbel, nicht durchdrücken.'],
+    ['90/90 Hüftwechsel','8 je Seite','Aufrecht sitzen, ohne Hände nachhelfen.'],
+    ['Open Book','8 je Seite','Brustwirbelsäule und Schulter zugleich.'],
+    ['Bauchlage Y-T-W','je 8 Wdh','Für die rechte Schulter. Braucht keine Wand.'],
+    ['Isometrischer Wadenhalt','3 × 30 s je Seite','Achillessehne. Beidbeinig starten, einbeinig steigern.'],
+    ['Glute Bridge','12 Wdh · 2 s halten',''],
+    ['Dead Bug','8 je Seite','LWS bleibt am Boden, ruhig atmen.']
+  ],'rgba(255,176,32,.25)');
 }
 function prehabBlock(w,tag){
-  return blk('Z · Prehab/Core · nach dem Training',
-    ex('Rückenstrecker isometrisch','3 × 30 s Halten','Rumpf gerade, kein Hohlkreuz. Der linke Erector ist der Grund für diesen Block.','ext_'+tag+'_w'+w)+
-    ex('Side Plank','3 × 30 s je Seite','Hüfte oben halten, Schulter über dem Ellbogen.','side_'+tag+'_w'+w)+
-    ex('Hollow Hold','3 × 20 s','LWS gedrückt halten. Bei Abheben Beine höher nehmen.','hollow_'+tag+'_w'+w)+
-    ex('Pallof Press','3 × 10 je Seite','Anti-Rotation. Langsam raus, langsam rein.','pallof_'+tag+'_w'+w))+
-    ((tag==='mo'||tag==='do')?achillesBlock(w,tag):'')+
-    mobilityBlock(w,tag);
+  var items=[
+    ['Rückenstrecker isometrisch','3 × 30 s','Rumpf gerade, kein Hohlkreuz.'],
+    ['Side Plank','3 × 30 s je Seite','Hüfte oben halten.'],
+    ['Hollow Hold','3 × 20 s','LWS gedrückt halten.'],
+    ['Pallof Press','3 × 10 je Seite','Anti-Rotation, langsam.']
+  ];
+  if(tag==='mo'||tag==='do'){
+    items.push(['Wadenheben gestreckt','3 × 12 · 3 s / 3 s','Achilles. Schwer und langsam.']);
+    items.push(['Wadenheben gebeugt','3 × 12 · 3 s / 3 s','Soleus – trägt beim Laufen die meiste Last.']);
+  }
+  return routine('🛡️ Prehab/Core'+((tag==='mo'||tag==='do')?' + Achilles':'')+' · 10 min','preh_'+tag+'_w'+w,items,'rgba(48,209,88,.22)')+
+    routine('🧘 Mobility · 5 min','mob_'+tag+'_w'+w,[
+      ['Couch Stretch','45 s je Seite','Po anspannen, Becken aufrichten.'],
+      ['Figure-4 in Rückenlage','45 s je Seite','Kein Druck auf die rechte Wade.'],
+      ['Hamstring-Dehnung','45 s je Seite','Becken aufrichten statt Rücken runden.'],
+      ['Lat-Dehnung an der Stange','30 s je Seite','Nach Overhead-Arbeit.'],
+      ['Zwerchfell-Atmung liegend','60 s','4 s ein / 6 s aus.']
+    ],'rgba(232,226,212,.2)');
 }
 function note(t,c){return '<div class="note '+(c||'')+'">'+t+'</div>';}
 
@@ -528,14 +550,13 @@ function dayBody(w,i){
         note('<b>Auswertung:</b> 5:48 gesamt bei Splits 1:00 / 0:55 / 0:55 – knapp 3 Minuten echte Arbeit. Der WOD war zu klein dosiert, nicht du zu langsam. Genau deshalb steigt das Volumen ab W2 auf 5 Runden.');
     }
     if(w===6){
-      return wu('Bike 5 min · Mobility Hüfte/Schulter')+hipProtocol(6)+
+      return warmUp(6,0)+
         blk('Taper · locker', ex('Back Squat',W_.sq,'Nur Bewegung, kein Reiz.','sq_w6')+
           ex('DB Push Press',lab('dbpp',6),'Locker und sauber.','dbpp_w6','labour'))+
         prehabBlock(6,'mo')+
         note('Taper-Woche. Wenn müde: streichen. Nichts hier baut noch Form auf.','g');
     }
-    o+=wu('Bike 5 min · Leg Swings · 2×10 Bodyweight Squats · 10 KB Deadlifts leer');
-    o+=hipProtocol(w);
+    o+=warmUp(w,0);
     o+=blk('A · Kraft',
       ex('Back Squat',W_.sq,'Volle Tiefe, Thorax aufrecht.','sq_w'+w)+
       ex('Romanian Deadlift',W_.rdl,'Ohne Straps – der Griff ist ab jetzt Wettkampfvorbereitung.','rdl_w'+w));
@@ -561,7 +582,7 @@ function dayBody(w,i){
       ex('Lat Pulldown','3×12 @ 55–60 kg · RPE 6','Schulterblätter zuerst nach unten, dann Ellbogen Richtung Gesäßtaschen.','lat_w'+w)+
       ex('Unterarm-/Griffarbeit','3 × 45 s Halten @ 2×32 kg','Bis kurz vor Griffversagen. Ohne Kreide, ohne Handschuhe.','grip_w'+w)+
       ex('Rückenstrecker isometrisch','3 × 30 s Halten','Körpergewicht, kontrolliert.','ext_w'+w));
-    o+=hipProtocol(w);
+    o+=warmUp(w,1);
     o+=blk('Box PM · Olympic Lifting',
       ex('Snatch','5 × 2 @ 70–75 %','Technik vor Last. Thorax aufrecht, Stange hinter den Ohren im Catch.','sn_w'+w)+
       ex('Clean & Jerk','5 × 2 @ 70–75 %','','cj_w'+w)+
@@ -572,7 +593,7 @@ function dayBody(w,i){
   }
 
   if(i===2){ /* MITTWOCH */
-    o+=hipProtocol(w);
+    o+=warmUp(w,2);
     o+=blk('Laufeinheit · ein Ort, ein Zweck',
       ex('400-m-Intervalle',W_.run,W_.rest+'. Erste zwei Läufe bewusst am langsamen Ende. Einmal raus, alles draußen, einmal zurück.','run_w'+w,'run')+
       ex('Kadenz-Check','Ziel 170 Schritte/min','Uhr auf Schrittfrequenz stellen.','kad_w'+w));
@@ -595,7 +616,7 @@ function dayBody(w,i){
       ex('Lat Pulldown','3×12 @ 55–60 kg · RPE 6','','lat2_w'+w)+
       ex('Seitheben','3×15 @ 7,5 kg','Saubere Ausführung vor Last.','sh2_w'+w)+
       ex('Face Pull','3×20 @ 20–23 kg','Externe Rotation, Schulter-Gesundheit.','fp_w'+w));
-    o+=hipProtocol(w);
+    o+=warmUp(w,3);
     o+=blk('Box PM · A · HSPU zuerst',
       ex('HSPU-Progression','4 × 5 Negatives à 3 s','Zuerst ausführen, solange die Schultern frisch sind.','hspu_w'+w));
     o+=blk('Box PM · B · Press',
@@ -619,7 +640,7 @@ function dayBody(w,i){
     if(w===6){
       return note('Reisetag / Ruhe. Maximal 15 min Mobility. Packen: Schuhe ohne Spikes, Kniebandagen, Gürtel, Ausweis, Iso-Getränk, Gel.','g');
     }
-    o+=hipProtocol(w);
+    o+=warmUp(w,4);
     o+=blk('A · Bodenarbeit · deine teuersten Stationen',
       ex('Burpee Broad Jump',lab('bbj',w),'Brust und Oberschenkel auf den Boden, beidbeinig springen und landen. Flache, hochfrequente Sprünge statt weiter Einzelsprünge.','bbj_w'+w,'labour')+
       ex('Bear Crawl',lab('bear',w),'Knie nie am Boden, kein Galopp. Hüfte tief, kurze Züge, durch die Nase atmen.','bear_w'+w,'labour'));
@@ -897,6 +918,10 @@ function logEntryFormHtml(typ,lg){
     f+='<div class="fld"><label>Gesamtzeit</label><input id="f1"'+va+'></div>'+
        '<div class="fld"><label>Journey-Splits</label><input id="f2"'+vb+'></div>'+
        '<div class="fld"><label>Wo bist du eingebrochen?</label><input id="f3"'+vc+'></div>';
+  } else if(typ==='routine'){
+    f+='<div class="fld"><label>Erledigt / Dauer</label><input id="f1" placeholder="komplett · 8 min"'+va+'></div>'+
+       '<div class="fld"><label>Auffälligkeiten</label><input id="f2" placeholder="Achilles, Rücken, Schulter …"'+vb+'></div>'+
+       '<div class="fld"><label>Was war schwer?</label><input id="f3"'+vc+'></div>';
   } else if(typ==='time'){
     f+='<div class="fld"><label>Dauer (Ziel vorbelegt)</label><input id="f1"'+va+'></div>'+
        '<div class="fld"><label>Distanz</label><input id="f2"'+vb+'></div>'+
@@ -1071,7 +1096,7 @@ document.addEventListener('click',function(e){
     document.querySelectorAll('.fb-star').forEach(function(x,idx){ x.classList.toggle('on', idx<n); }); return;
   }
   if(e.target.id==='fb-save'){ saveFb(parseInt(e.target.dataset.fbw),parseInt(e.target.dataset.fbi)); return; }
-  var lb=e.target.closest('.logb'); if(lb){ openLog(lb.dataset.k,decodeURIComponent(lb.dataset.n),lb.dataset.t,decodeURIComponent(lb.dataset.l||'')); return; }
+  var lb=e.target.closest('.logb,.blogb'); if(lb){ openLog(lb.dataset.k,decodeURIComponent(lb.dataset.n),lb.dataset.t,decodeURIComponent(lb.dataset.l||'')); return; }
   var cl=e.target.closest('[data-close]'); if(cl){ document.getElementById(cl.dataset.close).classList.remove('on'); return; }
   if(e.target.id==='lg-save'){ saveLog(e.target.dataset.k,e.target.dataset.t); return; }
   if(e.target.id==='add-set-btn'){ addSetRow(); return; }
