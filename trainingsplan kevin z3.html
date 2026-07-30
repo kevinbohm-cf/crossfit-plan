@@ -54,7 +54,15 @@ button,input,select,textarea{font-family:inherit}
 .day.open .db{display:block}
 
 .block{background:var(--card2);border-radius:11px;padding:11px;margin-bottom:9px}
-.bl{font-size:.66rem;letter-spacing:1.3px;text-transform:uppercase;color:var(--bone);font-weight:800;margin-bottom:8px}
+.bl{font-size:.66rem;letter-spacing:1.3px;text-transform:uppercase;color:var(--bone);font-weight:800;
+  margin-bottom:0;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:2px 0}
+.bl .btxt{flex:1;min-width:0}
+.bl .bchev{color:var(--text3);font-size:1.05rem;font-weight:400;transition:transform .18s;flex:0 0 auto}
+.bl .bdone{color:var(--green);font-size:.85rem;flex:0 0 auto}
+.block.open .bl{margin-bottom:8px}
+.block.open .bl .bchev{transform:rotate(90deg)}
+.bex{display:none}
+.block.open .bex{display:block}
 .ex{display:flex;align-items:flex-start;gap:8px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.05)}
 .ex:last-child{border-bottom:none;padding-bottom:0}
 .ex-i{flex:1;min-width:0}
@@ -284,31 +292,41 @@ function lab(key,w,frac){
 }
 function labLoadTag(w){ return WK[w].load==='over' ? 'ÜBERLAST' : 'Race-Last'; }
 
+/* ============ ERG-UMRECHNUNG ============
+   Row und Ski sind die Basis. Das C2 Bike zeigt bei gleicher Leistung rund die
+   doppelten Meter – deshalb dort immer das Doppelte ansetzen.
+   Rogue Echo Bike läuft über Kalorien: 1.000 m Row ≈ 55 Cal, also 500 m ≈ 28 Cal. */
+var ERG='500 m C2 Row/Ski';
+/* Reps pro Couplet-Runde: doppelte Renn-Anteil-Menge (weil das Erg halbiert wurde),
+   aber bei 20 gedeckelt, damit W3/W4 nicht auf 120 Reps Gesamtvolumen hochlaufen. */
+function coupReps(key,w){ return Math.min(Math.round(LAB[key].full*WK[w].v/200), 20); }
+var ERGN='Erg-Umrechnung: 500 m Row/Ski = 1.000 m C2 Bike (das Bike zeigt bei gleicher Leistung die doppelten Meter). Rogue Echo Bike stattdessen: ca. 28 Cal.';
+
 /* ============ WOCHEN ============ */
 var WK={
 1:{d:['27. Juli','28. Juli','29. Juli','30. Juli','31. Juli','1. August','2. August'],
    ph:'Phase · Ramp-in', h2:'Woche 1 · 27. Juli – 2. August',
    p:'Umstellung auf Renn-Spezifik. Erst die Standards an Race-Last lernen – ab W2 wird überladen. Laufen kommt strukturiert zurück, Kraft läuft ab hier nur noch als Erhalt.',
    v:50, load:'race',
-   sq:'3×5 @ 105 kg · RPE 7', rdl:'3×8 @ 90 kg', pp:'4×3 @ 75 kg', sp:'4×4 @ 57,5 kg',
+   sq:'3×5 @ 105 kg · RPE 7', rdl:'3×8 @ 90 kg', pp:'4×3 @ 75 kg', sp:'4×4 @ 57 kg',
    run:'6 × 400 m @ 2:05–2:10', rest:'90 s Trabpause', sa:'8 km Z2 · HF 125–140'},
 2:{d:['3. August','4. August','5. August','6. August','7. August','8. August','9. August'],
    ph:'Phase · Überlast', h2:'Woche 2 · 3.–9. August',
    p:'Stationen gehen auf Überlast: Farmers 2×32 statt 2×24, Goblet 24 statt 16, Devil Press 2×15 statt 2×10. Umfang 75 %. Erste Couplets Journey → Labour.',
    v:75, load:'over',
-   sq:'3×5 @ 110 kg · RPE 7', rdl:'3×8 @ 92,5 kg', pp:'4×3 @ 77,5 kg', sp:'4×4 @ 60 kg',
+   sq:'3×5 @ 110 kg · RPE 7', rdl:'3×8 @ 92 kg', pp:'4×3 @ 77 kg', sp:'4×4 @ 60 kg',
    run:'8 × 400 m @ 2:00–2:05', rest:'90 s Trabpause', sa:'10 km Z2 · HF 125–140'},
 3:{d:['10. August','11. August','12. August','13. August','14. August','15. August','16. August'],
    ph:'Phase · Überlast', h2:'Woche 3 · 10.–16. August',
    p:'Härteste Labour-Woche: voller Renn-Umfang auf Überlast. 240 m Farmers mit 2×32 kg ohne Kreide – wenn das sitzt, fühlen sich 24 kg am Renntag wie nichts an.',
    v:100, load:'over',
-   sq:'3×4 @ 110 kg · RPE 7', rdl:'3×6 @ 92,5 kg', pp:'3×3 @ 80 kg', sp:'4×3 @ 60 kg',
+   sq:'3×4 @ 110 kg · RPE 7', rdl:'3×6 @ 92 kg', pp:'3×3 @ 80 kg', sp:'4×3 @ 60 kg',
    run:'10 × 400 m @ 1:58–2:03', rest:'75 s Trabpause', sa:'12 km Z2 mit 4 Labour-Stopps'},
 4:{d:['17. August','18. August','19. August','20. August','21. August','22. August','23. August'],
    ph:'Phase · Spezifik', h2:'Woche 4 · 17.–23. August',
    p:'Zurück auf exakte Race-Last – jetzt wird alles leicht. Samstag: volle Simulation über 12 Journeys mit deinem realistischen Pair-Anteil. Danach weißt du, was das Rennen kostet.',
    v:100, load:'race',
-   sq:'3×3 @ 110 kg · RPE 7', rdl:'3×6 @ 92,5 kg', pp:'3×3 @ 80 kg', sp:'3×3 @ 62,5 kg',
+   sq:'3×3 @ 110 kg · RPE 7', rdl:'3×6 @ 92 kg', pp:'3×3 @ 80 kg', sp:'3×3 @ 62 kg',
    run:'6 × 400 m @ 1:55–2:00 · scharf', rest:'60 s Trabpause', sa:'VOLLE SIMULATION'},
 5:{d:['24. August','25. August','26. August','27. August','28. August','29. August','30. August'],
    ph:'Phase · Peak', h2:'Woche 5 · 24.–30. August',
@@ -327,10 +345,10 @@ var WK={
 /* Olympic-Lasten absolut, abgeleitet aus PR Snatch 90 / C&J 110 / OHS 95 */
 var OLY={
  1:{sn:60,   cj:75,   ohs:45},
- 2:{sn:'62,5',cj:'77,5',ohs:50},
+ 2:{sn:62,cj:77,ohs:50},
  3:{sn:65,   cj:80,   ohs:50},
  4:{sn:65,   cj:80,   ohs:50},
- 5:{sn:'62,5',cj:'77,5',ohs:45},
+ 5:{sn:62,cj:77,ohs:45},
  6:{sn:50,   cj:60,   ohs:40}
 };
 
@@ -395,7 +413,7 @@ var DB={
 'wp overhead carry':['Scheibenmitte direkt über dem Kopf, Ellbogen gestreckt oder gebeugt – aber die Scheibe darf den Kopf nicht berühren. Bei 3 Verwarnungen wirst du skaliert.','Schulterstabilität unter Ermüdung. Genau die Station, an der deine rechte Schulter Feedback gibt – Überlast hier bewusst konservativ.','overhead+plate+carry+shoulder+stability'],
 'db devil press':['DB in beiden Händen, Burpee mit Brust und Oberschenkeln auf dem Boden, hoch und die DB in einer Bewegung über Kopf. Ellbogen voll strecken.','Nur 20 Reps – aber als letzte Station nach 12 Läufen. Im Training bewusst müde üben.','devil+press+dumbbell+technique'],
 'back squat':['Volle Tiefe, Thorax aufrecht, Core fest. Kein Kippen nach vorn im Aufstieg.','Reiner Erhalt in diesem Zyklus. Kraft ist für dieses Rennen im Überfluss vorhanden – hier geht es nur darum, nichts zu verlieren.','back+squat+technique+crossfit'],
-'romanian deadlift':['Stange in Hüfthöhe, Knie leicht gebeugt, Hüfte nach hinten, Stange nah am Körper. Hamstrings dehnen spüren, LWS neutral.','Ab jetzt ohne Straps – der Griff ist Wettkampfvorbereitung. Last bewusst bei 90–92,5 kg gedeckelt.','romanian+deadlift+technique'],
+'romanian deadlift':['Stange in Hüfthöhe, Knie leicht gebeugt, Hüfte nach hinten, Stange nah am Körper. Hamstrings dehnen spüren, LWS neutral.','Ab jetzt ohne Straps – der Griff ist Wettkampfvorbereitung. Last bewusst bei 90–92 kg gedeckelt.','romanian+deadlift+technique'],
 'strict press':['Stange vor der Brust, Core und Po fest, senkrecht nach oben, Kopf leicht durch die Arme. Kein Hüfteinsatz.','Erhalt der Overhead-Kraft. Immer vor allem anderen – frische Schultern zuerst.','strict+press+barbell+technique'],
 '400-m-intervalle':['Gleichmäßige Splits, nicht der erste Lauf entscheidet. Kadenz hoch, Bodenkontakt kurz, aufrechter Oberkörper.','12×400 m im Rennen heißt: aus voller Ermüdung immer wieder neu anlaufen. Die ersten zwei Läufe im Training bewusst am langsamen Ende.','400m+repeats+running+workout+pacing'],
 'kadenz-check':['Uhr auf Schrittfrequenz stellen, Ziel 170 Schritte/min. Kürzer und schneller statt weiter ausgreifen.','Von 157 auf 170 – das entlastet Achilles und Knie und macht dich auf 4,8 km spürbar schneller.','running+cadence+170+drills'],
@@ -450,7 +468,12 @@ var DB={
 'wadenheben gestreckt':['Gestrecktes Knie, 3 s nach oben, kurz halten, 3 s kontrolliert absenken. Bei Bedarf Gewicht in die Hände.','Schwer und langsam statt schnell und leicht – das ist die Belastungsform, auf die Sehnengewebe anspricht. Gestrecktes Knie trifft den Gastrocnemius.','heavy+slow+calf+raise+achilles'],
 'wadenheben gebeugt':['Knie etwa 30° gebeugt, 3 s hoch, 3 s runter. Sitzend oder stehend an einer Stütze.','Der Soleus trägt beim Laufen den größten Anteil der Achillesbelastung und wird bei gestrecktem Knie kaum erreicht.','bent+knee+calf+raise+soleus'],
 'figure-4 in rückenlage':['Rückenlage, Knöchel auf dem gegenüberliegenden Knie ablegen, unteres Bein zu dir ziehen.','Ersetzt die Taube – gleiche Zielregion (Gesäß, Hüftaußenseite), aber ohne Druck auf die rechte Wade und ohne tiefe Kniebeugung.','figure+4+stretch+supine+hip'],
-'unterarm-/griffarbeit ':['Schwere Hanteln halten bis kurz vor Versagen, Schultern zurück, Handgelenk neutral.','Direkt trainierbarer Limiter. Ohne Kreide, ohne Handschuhe – genau wie im Rennen.','grip+strength+training+forearm']
+'unterarm-/griffarbeit ':['Schwere Hanteln halten bis kurz vor Versagen, Schultern zurück, Handgelenk neutral.','Direkt trainierbarer Limiter. Ohne Kreide, ohne Handschuhe – genau wie im Rennen.','grip+strength+training+forearm'],
+'welpenhaltung':['Aus dem Vierfüßlerstand die Hände nach vorn wandern lassen, Gesäß über den Knien, Stirn oder Brust sinkt Richtung Boden.','Öffnet Lat und Schulter ohne Stange oder Wand – ideal für zuhause. Sanft bleiben, kein Wippen, keine Last auf die rechte Schulter.','puppy+pose+lat+stretch+shoulder'],
+'liegende wirbelsäulen-drehung':['Rückenlage, Knie zusammen zu einer Seite auf den Boden sinken lassen, Schultern bleiben am Boden, Blick zur Gegenseite.','Sanfte Rotation für die untere Wirbelsäule zum Runterkommen. Nur so weit wie angenehm im linken Iliosakralgelenk – kein Ziehen.','supine+spinal+twist+lower+back'],
+'kindhaltung':['Fersen Richtung Boden, Stirn ablegen, Arme locker nach vorn oder neben dem Körper. Fersen dürfen abheben, wenn die Achillessehne zieht.','Klassische Ruhehaltung zum Runterkommen – dehnt sanft Rücken und Hüfte, ganz ohne Anstrengung.','childs+pose+yoga+relaxation'],
+'liegende schmetterling':['Rückenlage, Fußsohlen zusammen, Knie sinken locker zur Seite. Bei Bedarf Kissen unter die Knie legen.','Öffnet die Hüfte sanft von innen – ohne Kreuzung von Knöchel über Knie, also ohne Druck auf die rechte Wade.','reclined+butterfly+hip+stretch+yoga'],
+'beine hoch an der wand':['Po nah an die Wand, Beine gerade nach oben ablegen, Arme locker seitlich, Augen schließen.','Fördert den venösen Rückfluss aus den Beinen – guter Ausklang nach Lauf- oder Beintagen und für die beanspruchte Achillessehne.','legs+up+the+wall+recovery+yoga']
 };
 function dbKey(n){ return String(n).toLowerCase().replace(/\s+/g,' ').trim(); }
 
@@ -465,7 +488,7 @@ function ex(n,l,c,k,typ){
     '<button class="logb'+done+'" data-k="'+k+'" data-n="'+encodeURIComponent(n)+'" data-t="'+(typ||'strength')+'" data-l="'+encodeURIComponent(l||'')+'">📊</button>'+
     '</div></div>';
 }
-function blk(l,r){return '<div class="block"><div class="bl">'+l+'</div>'+r+'</div>';}
+function blk(l,r){return '<div class="block"><div class="bl"><span class="btxt">'+l+'</span><span class="bchev">›</span></div><div class="bex">'+r+'</div></div>';}
 function wu(t){return '<div class="wu"><b>Warm-Up</b>'+t+'</div>';}
 function routine(title,key,items,accent){
   var arr=getLogArray(key), last=arr.length?arr[arr.length-1]:null, lines='';
@@ -473,10 +496,11 @@ function routine(title,key,items,accent){
     lines+='<div class="rt-item"><span class="rt-n">'+it[0]+'</span><span class="rt-d">'+it[1]+'</span></div>'+
       (it[2]?'<div class="rt-c">'+it[2]+'</div>':'');
   });
-  return '<div class="block" style="border:1px solid '+accent+'"><div class="bl">'+title+'</div>'+lines+
+  return '<div class="block" style="border:1px solid '+accent+'"><div class="bl"><span class="btxt">'+title+'</span>'+
+    (last?'<span class="bdone">✓</span>':'')+'<span class="bchev">›</span></div><div class="bex">'+lines+
     (last?'<div class="ex-log">✓ '+entrySummary(last)+'</div>':'')+
     '<button class="blogb'+(last?' done':'')+'" data-k="'+key+'" data-n="'+encodeURIComponent(title)+'" data-t="routine" data-l="">'+
-    (last?'✓ geloggt · bearbeiten':'Block abhaken')+'</button></div>';
+    (last?'✓ geloggt · bearbeiten':'Block abhaken')+'</button></div></div>';
 }
 
 var WARMUPS={
@@ -518,12 +542,14 @@ function prehabBlock(w,tag){
     items.push(['Wadenheben gebeugt','3 × 12 · 3 s / 3 s','Soleus – trägt beim Laufen die meiste Last.']);
   }
   return routine('🛡️ Prehab/Core'+((tag==='mo'||tag==='do')?' + Achilles':'')+' · 10 min','preh_'+tag+'_w'+w,items,'rgba(48,209,88,.22)')+
-    routine('🧘 Mobility · 5 min','mob_'+tag+'_w'+w,[
-      ['Couch Stretch','45 s je Seite','Po anspannen, Becken aufrichten.'],
-      ['Figure-4 in Rückenlage','45 s je Seite','Kein Druck auf die rechte Wade.'],
-      ['Hamstring-Dehnung','45 s je Seite','Becken aufrichten statt Rücken runden.'],
-      ['Lat-Dehnung an der Stange','30 s je Seite','Nach Overhead-Arbeit.'],
-      ['Zwerchfell-Atmung liegend','60 s','4 s ein / 6 s aus.']
+    routine('🧘 Feierabend-Yoga · zuhause · 10 min','mob_'+tag+'_w'+w,[
+      ['Kindhaltung','90 s','Fersen dürfen abheben, falls die Achillessehne zieht. Einfach ankommen.'],
+      ['Couch Stretch','45 s je Seite','Ruhig einsinken lassen, Po sanft anspannen, Becken aufrichten.'],
+      ['Liegende Schmetterling','90 s','Knie sinken locker zur Seite, bei Bedarf Kissen drunter. Kein Druck auf die rechte Wade.'],
+      ['Hamstring-Dehnung','45 s je Seite','Becken aufrichten statt Rücken runden, Schultern lassen los.'],
+      ['Welpenhaltung','45 s','Öffnet Lat und Schulter ganz ohne Stange. Sanft bleiben, keine Last auf die rechte Schulter.'],
+      ['Liegende Wirbelsäulen-Drehung','45 s je Seite','Nur so weit wie angenehm – kein Ziehen im linken IG.'],
+      ['Beine hoch an der Wand','120 s','Augen zu, Arme locker seitlich. Guter Ausklang für die Beine nach dem Training.']
     ],'rgba(232,226,212,.2)');
 }
 function note(t,c){return '<div class="note '+(c||'')+'">'+t+'</div>';}
@@ -585,6 +611,16 @@ function dayBody(w,i){
   }
 
   if(i===1){ /* DIENSTAG */
+    if(w===1){
+      return note('✅ <b>Absolviert am 28.7.2026.</b> Gym AM entfiel bewusst (HRV 53), dafür hinten ein Finisher als Ausgleich. Diese Einheit steht so, wie du sie durchgeführt hast.','g')+
+        warmUp(1,1)+
+        blk('Box PM · Olympic Lifting',
+          ex('Snatch','5 × 2 @ 60 kg','Technik vor Last.','sn_w1')+
+          ex('Clean & Jerk','5 × 2 @ 75 kg','Als Squat Clean ausgeführt.','cj_w1')+
+          ex('Overhead Squat','3 × 3 @ 45 kg','','ohs_w1'))+
+        prehabBlock(1,'di')+
+        note('<b>Auswertung:</b> Snatch RPE 5 und OHS RPE 4 – da ist Luft. Clean & Jerk RPE 6 → 7 steigend bei nachlassender Technik, gut erklärbar über HRV 53 und den fehlenden Schlaf. Gewicht bleibt bei 75 kg, Squat Clean bleibt. Wenn es nächste Woche bei erholter HRV wieder so läuft, schauen wir nochmal drauf.');
+    }
     o+=blk('Gym AM · 05:00 · Wellpass · 60 min',
       ex('Beinpresse','3×12 @ 190 kg','Kontrolliert, kein Ausbelasten. Letzter Log-Wert.','bp_w'+w)+
       ex('Incline Press neutraler Griff','3×8 @ 70 kg · RPE 6–7','Neutraler Griff wegen der rechten Schulter. Zwei Wochen schmerzfrei bei diesem Gewicht.','inc_w'+w)+
@@ -594,15 +630,16 @@ function dayBody(w,i){
       ex('Rückenstrecker isometrisch','3 × 30 s Halten','Körpergewicht, kontrolliert.','ext_w'+w));
     o+=warmUp(w,1);
     o+=blk('Box PM · Olympic Lifting',
-      ex('Snatch','5 × 2 @ '+OLY[w].sn+' kg','Technik vor Last. Thorax aufrecht, Stange hinter den Ohren im Catch.','sn_w'+w)+
-      ex('Clean & Jerk','5 × 2 @ '+OLY[w].cj+' kg','','cj_w'+w)+
+      ex('Snatch','5 × 2 @ '+OLY[w].sn+' kg','Langsam vom Boden ziehen – so bekommst du den Kontakt am Oberschenkel besser. Füße erst setzen, wenn die Arme gestreckt sind.','sn_w'+w)+
+      ex('Clean & Jerk','5 × 2 @ '+OLY[w].cj+' kg','Als Squat Clean. Technik vor Last.','cj_w'+w)+
       ex('Overhead Squat','3 × 3 @ '+OLY[w].ohs+' kg','Schulterstabilität – zahlt direkt auf den Overhead Carry ein.','ohs_w'+w));
     o+=prehabBlock(w,'di');
-    o+=note('Olympic bleibt als Technikeinheit drin. Kein Maxen in diesem Zyklus – die Sehnen gehören dem Laufen. Wenn eine Wiederholung nicht sauber ist: Satz beenden, nicht durchziehen.');
+    o+=note('Olympic bleibt Technikeinheit. Wenn eine Wiederholung nicht sauber ist: Satz beenden statt durchziehen.');
     return o;
   }
 
   if(i===2){ /* MITTWOCH */
+    if(w===1) o+=note('✅ <b>Absolviert am 29.7.2026.</b> Auf dem Laufband, 12 km/h im Intervall (2:00 statt Ziel 2:05–2:10), Trabpause 8 km/h. Kadenz stieg 162 → 174, Bodenkontaktzeit fiel 280 → 260 ms: die Laufform wurde unter Ermüdung besser, nicht schlechter. Genau der Befund, auf den es bei deinem Limiter ankommt.','g');
     o+=warmUp(w,2);
     o+=blk('Laufeinheit · ein Ort, ein Zweck',
       ex('400-m-Intervalle',W_.run,W_.rest+'. Erste zwei Läufe bewusst am langsamen Ende. Einmal raus, alles draußen, einmal zurück.','run_w'+w,'run')+
@@ -619,6 +656,7 @@ function dayBody(w,i){
         ex('400-m-Intervalle','2 × 400 m locker','','run6b_w6','run'))+
         note('🍝 Carb-Loading startet heute. Kohlenhydrate hoch, Ballaststoffe und alles Ungewohnte raus.','');
     }
+    if(w===1) o+=note('✅ <b>Absolviert am 30.7.2026.</b> Gym AM entfiel (HRV 51 bei Basis 61), Seitheben und Face Pull wurden abends in der Box nachgeholt. Couplet selbst umgebaut auf 500 m Row + 500 m Ski und 16 Reps – Einbruch Ende Runde 2 von 4. Die Erg-Korrektur war richtig, aber 4 volle Runden waren damit noch zu viel. HSPU: ab Rep 3–4 kippt die Kontrolle, Hände nach innen gedreht lief spürbar sauberer.','g');
     o+=blk('Gym AM · 05:00 · Wellpass · 60 min',
       ex('Beinpresse einbeinig','3×10 je Seite @ 90–95 kg','Halbe Last der bilateralen Beinpresse als Startpunkt.','bp1_w'+w)+
       ex('Chest Press Maschine','3×10 @ 60 kg · RPE 7','','cpm_w'+w)+
@@ -632,14 +670,14 @@ function dayBody(w,i){
     o+=blk('Box PM · B · Press',
       ex('Strict Press',W_.sp,'Direkt nach der HSPU-Arbeit.','sp_w'+w));
     o+=blk('Box PM · C · Couplet-WOD Teil 1 · '+tag,
-      ex('DB Snatch alt.','4 Runden: 1.000 m C2 Bike/Row/Ski + '+
-        Math.round(LAB.snatch.full*WK[w].v/400)+' Reps @ '+(WK[w].load==='over'?LAB.snatch.over:LAB.snatch.race),
-        'Erg direkt in die Station, ohne Pause. Rogue Echo Bike statt C2: 15 Cal statt 1.000 m.','coupwod1_w'+w,'sim'));
+      ex('DB Snatch alt.','4 Runden: '+ERG+' + '+
+        coupReps('snatch',w)+' Reps @ '+(WK[w].load==='over'?LAB.snatch.over:LAB.snatch.race),
+        'Erg direkt in die Station, ohne Pause. '+ERGN,'coupwod1_w'+w,'sim'));
     o+=blk('Box PM · D · Couplet-WOD Teil 2 · '+tag,
-      ex('WP Clean & Press','4 Runden: 1.000 m C2 Bike/Row/Ski + '+
-        Math.round(LAB.cp.full*WK[w].v/400)+' Reps @ '+(WK[w].load==='over'?LAB.cp.over:LAB.cp.race),
-        'Gleiche Struktur, andere Station – so bleibt die Übergangsqualität hoch statt in der Mitte zu kippen. Rogue Echo Bike statt C2: 15 Cal statt 1.000 m.','coupwod2_w'+w,'sim')+
-      ex('DB Devil Press',lab('devil',w),'Zum Abschluss, bewusst unter Ermüdung.','devil_w'+w,'labour'));
+      ex('WP Clean & Press','4 Runden: '+ERG+' + '+
+        coupReps('cp',w)+' Reps @ '+(WK[w].load==='over'?LAB.cp.over:LAB.cp.race),
+        'Gleiche Struktur, andere Station – so bleibt die Übergangsqualität hoch statt in der Mitte zu kippen. '+ERGN,'coupwod2_w'+w,'sim')+
+      ex('DB Devil Press',lab('devil',w),'Einmalig zum Abschluss, nicht pro Runde. Bewusst unter Ermüdung.','devil_w'+w,'labour'));
     o+=prehabBlock(w,'do');
     o+=note('Reihenfolge korrigiert: HSPU zuerst, dann Press, dann der WOD in zwei klaren Teilen statt einem Rundenwechsel mittendrin.');
     o+=note('C2 Bike/Row/Ski laufen über Meter – nimm jede Woche ein anderes Gerät, damit sich die Belastung nicht einseitig auf Beine oder Oberkörper konzentriert. Rogue Echo Bike ist Luftwiderstand und läuft über Kalorien, nicht Meter – deshalb 15 Cal als Äquivalent.');
@@ -881,7 +919,7 @@ function openInfo(name){
 function setRowHtml(kg,reps,rpe,idx){
   return '<div class="set-row" data-idx="'+idx+'">'+
     '<div class="set-num">S'+(idx+1)+'</div>'+
-    '<input type="number" inputmode="decimal" step="0.5" placeholder="kg" class="sf-kg" value="'+(kg||'')+'">'+
+    '<input type="number" inputmode="decimal" step="any" placeholder="kg" class="sf-kg" value="'+normNum(kg)+'">'+
     '<input type="number" inputmode="numeric" placeholder="Wdh" class="sf-reps" value="'+(reps||'')+'">'+
     '<input type="number" inputmode="numeric" min="1" max="10" placeholder="RPE" class="sf-rpe" value="'+(rpe||'')+'">'+
     '<button class="set-del" data-delrow="1">×</button></div>';
@@ -944,13 +982,28 @@ function logEntryFormHtml(typ,lg){
   f+='<div class="fld"><label>Notiz</label><textarea id="f4">'+vn+'</textarea></div>';
   return f;
 }
+function normNum(v){ return String(v||'').replace(',','.'); }
+/* Holt das Gewicht aus einem Ziel-Label. Versteht:
+   "@ 105 kg" · "@ 7,5 kg" · "@ 90–95 kg" (nimmt 90) · "@ 2×32 kg" (nimmt 32 pro Hand)
+   · "@ 2×12,5 kg" · Zusätze wie "· RPE 7" oder "je Seite" stören nicht. */
+function extractKg(label){
+  var seg=String(label||'').match(/@\s*([^·]*?)\s*kg/i);
+  if(!seg) return '';
+  var s=seg[1], nums=s.match(/\d+(?:[.,]\d+)?/g);
+  if(!nums||!nums.length) return '';
+  /* "2×32" → Last pro Hand, also die letzte Zahl. Sonst die erste (auch bei Bereichen). */
+  if(/[×x]/.test(s) && nums.length>1) return normNum(nums[nums.length-1]);
+  return normNum(nums[0]);
+}
 function parseTarget(typ,label){
   label=label||'';
   if(typ==='strength'){
-    var m=label.match(/(\d+)\s*[×x]\s*(\d+)\s*@\s*([\d.,]+)\s*kg/i);
-    if(!m) return null;
-    var rpeM=label.match(/RPE\s*([\d.,]+)/i);
-    return {sets:parseInt(m[1]),reps:m[2],kg:m[3],rpe:rpeM?rpeM[1]:''};
+    var kg=extractKg(label);
+    /* Sätze × Wdh – erlaubt Zwischentext ("je Seite", "Negatives à 3 s") */
+    var m2=label.match(/(\d+)\s*[×x]\s*(\d+)/);
+    if(m2) return {sets:parseInt(m2[1]),reps:m2[2],kg:kg,rpe:''};
+    if(kg) return {sets:3,reps:'',kg:kg,rpe:''};
+    return null;
   }
   if(typ==='labour'){
     var idx=label.indexOf('@');
@@ -1025,7 +1078,8 @@ function openLog(k,name,typ,targetLabel){
     '<div id="lpanel-hist" style="display:none">'+historyHtml(k)+'</div>';
   if(typ==='strength'){
     if(last && last.sets && last.sets.length){
-      last.sets.forEach(function(s){ addSetRow(s.kg,s.reps,s.rpe); });
+      /* Gewicht und Wdh aus der letzten Session übernehmen, RPE bewusst leer lassen */
+      last.sets.forEach(function(s){ addSetRow(s.kg,s.reps,''); });
     } else {
       var pt=parseTarget('strength',targetLabel);
       if(pt){ for(var i=0;i<pt.sets;i++) addSetRow(pt.kg,pt.reps,pt.rpe); }
@@ -1095,6 +1149,7 @@ function ghUpload(){
 document.addEventListener('click',function(e){
   var t=e.target.closest('.tab'); if(t){ cur=parseInt(t.dataset.w); document.getElementById('v-plan').innerHTML=buildWeek(cur); tabs(); window.scrollTo(0,0); return; }
   var h=e.target.closest('.dh'); if(h){ var d=e.target.closest('.day'); if(d) d.classList.toggle('open'); return; }
+  var bh=e.target.closest('.bl'); if(bh){ var bk=e.target.closest('.block'); if(bk) bk.classList.toggle('open'); return; }
   var ib=e.target.closest('.ib'); if(ib){ openInfo(decodeURIComponent(ib.dataset.i)); return; }
   var fbo=e.target.closest('.fb-open,.fb-summary'); if(fbo){ openFb(parseInt(fbo.dataset.fbw),parseInt(fbo.dataset.fbi)); return; }
   var fbe=e.target.closest('.fb-emoji'); if(fbe){
@@ -1182,12 +1237,29 @@ var SEED={
  'z3_log_sq_w1':'[{"type":"strength","sets":[{"kg":"105","reps":"5","rpe":"7"},{"kg":"105","reps":"5","rpe":"7"},{"kg":"105","reps":"5","rpe":"7"}],"note":"Hat sich schwer auf den Schultern angefühlt","date":"2026-07-27T14:23:06.382Z"}]',
  'z3_log_rdl_w1':'[{"type":"strength","sets":[{"kg":"90","reps":"8","rpe":"5"},{"kg":"90","reps":"8","rpe":"5"},{"kg":"90","reps":"8","rpe":"5"}],"note":"","date":"2026-07-27T14:24:09.605Z"}]',
  'z3_log_wodrep_w1':'[{"type":"sim","a":"5:48","b":"1:00 0:55 0:55","c":"Squats am langsamsten","note":"DL 40kg\\nSQUAT 24kg\\nPush Press 2x17,5kg","date":"2026-07-27T14:36:31.556Z"}]',
- 'z3_fb_w1_d0':'{"emoji":"1","stars":2,"notes":"Bin einfach nicht fit\\n\\nEinheit für heute OK aber für einen Normalen Montag zu kurz. Ich habe ca. 2h Zeit und die Einheit hat jetzt 45 Minuten gedauert mit allem","date":"2026-07-27T14:37:44.986Z"}'
+ 'z3_fb_w1_d0':'{"emoji":"1","stars":2,"notes":"Bin einfach nicht fit\\n\\nEinheit für heute OK aber für einen Normalen Montag zu kurz. Ich habe ca. 2h Zeit und die Einheit hat jetzt 45 Minuten gedauert mit allem","date":"2026-07-27T14:37:44.986Z"}',
+ 'z3_log_wu_w1d1':'[{"type":"routine","a":"","b":"","c":"","note":"","date":"2026-07-28T14:11:47.227Z"}]',
+ 'z3_log_sn_w1':'[{"type":"strength","sets":[{"kg":"60","reps":"2","rpe":"5"},{"kg":"60","reps":"2","rpe":"5"},{"kg":"60","reps":"2","rpe":"5"},{"kg":"60","reps":"2","rpe":"5"},{"kg":"60","reps":"2","rpe":"5"}],"note":"Ziel: 5 × 2 @ 60 kg\\nVersuch an der Technik zu arbeiten vor allem am zweiten Zug gemerkt. Wenn ich langsamer vom Boden ziehe, komme ich besser im Kontakt. Oberschenkel mit der Stange kann die Stange besser am Oberschenkel halten und so den Push mehr aus der Hüfte nehmen, was ich gemerkt hab meine Füße setzen zu früh auf im umsetzen in den Squad, d.h. meine Füße sind schon gesetzt, bevor die Arme gestreckt sind","date":"2026-07-28T14:12:48.927Z"}]',
+ 'z3_log_cj_w1':'[{"type":"strength","sets":[{"kg":"75","reps":"2","rpe":"6"},{"kg":"75","reps":"2","rpe":"6"},{"kg":"75","reps":"2","rpe":"7"},{"kg":"75","reps":"2","rpe":"7"},{"kg":"75","reps":"2","rpe":"7"}],"note":"Ziel: 5 × 2 @ 75 kg\\nDer Squat Clean macht das echt anstrengend\\nTechnisch schön waren die Wiederholungen heute nicht","date":"2026-07-28T14:27:31.888Z"}]',
+ 'z3_log_ohs_w1':'[{"type":"strength","sets":[{"kg":"45","reps":"3","rpe":"4"},{"kg":"45","reps":"3","rpe":"4"},{"kg":"45","reps":"3","rpe":"4"}],"note":"Ziel: 3 × 3 @ 45 kg","date":"2026-07-28T14:37:19.228Z"}]',
+ 'z3_fb_w1_d1':'{"emoji":"1","stars":2,"notes":"Habe noch drei Runden von folgendem gemacht\\n10 Z-Press 2x16kg KB\\n10/10 Gorilla Row 2x28kg\\n5 Ring Dips\\n5 Chin Up","date":"2026-07-28T14:42:38.413Z"}',
+ 'z3_log_morn_w1d2':'[{"type":"routine","a":"","b":"","c":"","note":"","date":"2026-07-29T03:11:40.737Z"}]',
+ 'z3_log_wu_w1d2':'[{"type":"routine","a":"","b":"","c":"","note":"Anfersen und Steigerung nicht gemacht","date":"2026-07-29T17:19:38.108Z"}]',
+ 'z3_log_preh_mi_w1':'[{"type":"routine","a":"2 Runden","b":"","c":"","note":"Habe noch 10 Clam Shells je Seite pro Runde ergaenzt","date":"2026-07-29T18:13:31.107Z"}]',
+ 'z3_log_run_w1':'[{"type":"run","a":"6 x 400 m @ 12 km/h = je 2:00","b":"5:00/km im Intervall","c":"137 Schnitt, max 158","note":"Ziel: 6 x 400 m @ 2:05-2:10\\nAuf dem Laufband gelaufen, Arbeit 12 km/h, Trabpause 8 km/h.\\n\\nGarmin: 4,97 km in 31:54, 470 kcal.\\nSchneller als das Ziel (2:00 statt 2:05-2:10). Trabpause mit 8 km/h deutlich zuegiger als die empfohlenen 6-6,5 km/h, HF fiel nur auf 116-121.\\nHF-Peak ueber die Serie nur 150 auf 156, also kaum Drift.","date":"2026-07-29T17:57:52.246Z"}]',
+ 'z3_log_kad_w1':'[{"type":"strength","sets":[],"note":"Ziel 170 Schritte/min. Aus Garmin ausgewertet.\\nKadenz je Intervall: 162 - 168 - 171 - 170 - 174 - 174.\\nAb Intervall 3 durchgehend ueber Ziel, Ende bei 174.\\nBodenkontaktzeit faellt 280 auf 260 ms, Schrittlaenge 1,20 auf 1,17 m bei konstantem Tempo.\\nLaufform wurde mit Ermuedung also besser statt schlechter.","date":"2026-07-29T17:57:52.300Z"}]',
+ 'z3_log_wu_w1d3':'[{"type":"routine","a":"","b":"","c":"","note":"","date":"2026-07-30T13:39:36.420Z"}]',
+ 'z3_log_hspu_w1':'[{"type":"strength","sets":[],"note":"Ziel: 4 x 5 Negatives a 3 s\\nRunde 1 okay, die fuenf Wiederholungen aber sehr anstrengend.\\nRunde 2: Wiederholung 4 und 5 schon sehr schwer, gerade das letzte Stueck.\\nRunde 3: erste Reps bereits schneller als vorher, Wiederholung 3, 4 und 5 im letzten Drittel extrem schwer, bei 5 wurde ich sehr schnell.\\nRunde 4: Haende etwas nach innen gedreht. Wiederholung 1-3 okay, 4 schwierig, 5 etwas besser als 4.\\nHabe versucht in allen Runden den Rumpf sauber zu halten, Kopf relativ Richtung Wand. War schon ganz gut.","date":"2026-07-30T13:52:24.601Z"}]',
+ 'z3_log_sp_w1':'[{"type":"strength","sets":[{"kg":"57","reps":"4","rpe":"6"},{"kg":"57","reps":"4","rpe":"7"},{"kg":"57","reps":"4","rpe":"7"},{"kg":"57","reps":"4","rpe":"8"}],"note":"Ziel: 4 x 4 @ 57 kg\\nRPE sauber steigend 6-7-7-8, keine Ausfaelle.","date":"2026-07-30T14:07:39.991Z"}]',
+ 'z3_log_coupwod1_w1':'[{"type":"sim","a":"25:20 (Hauptteil, 4 Runden)","b":"","c":"Ende Runde 2 eingebrochen","note":"Workout selbst umgebaut:\\n4 Runden\\n- 500 m Row\\n- 16 alt. DB Snatch @ 22,5 kg\\n- 500 m Ski\\n- 16 Plate G2OH @ 20 kg\\nIn 25:20 min.\\nDann 1:00 min Rest.\\n10 DB Devil Press @ 2x17,5 kg (einmalig, nicht pro Runde).\\n\\nIm ersten Teil Ende Runde 2 eingebrochen. Devil Press danach uebel, Plan waren 20 Reps, das war nicht drin.","date":"2026-07-30T14:52:36.040Z"}]',
+ 'z3_log_preh_do_w1':'[{"type":"routine","a":"2 Runden","b":"","c":"","note":"","date":"2026-07-30T15:10:08.293Z"}]',
+ 'z3_log_sh2_w1':'[{"type":"strength","sets":[{"kg":"5","reps":"15","rpe":""},{"kg":"5","reps":"15","rpe":""},{"kg":"5","reps":"15","rpe":""}],"note":"Ziel: 3 x 15 @ 7,5 kg\\nMit Kurzhanteln in der Box am Abend. Bewusst leichter fuer saubere Ausfuehrung.","date":"2026-07-30T15:10:35.129Z"}]',
+ 'z3_log_fp_w1':'[{"type":"strength","sets":[{"kg":"","reps":"20","rpe":""},{"kg":"","reps":"20","rpe":""}],"note":"Ziel: 3 x 20 @ 20-23 kg\\nMit Gummiband in der Box am Abend, daher kein kg-Wert. 2 von 3 Saetzen.","date":"2026-07-30T15:10:54.030Z"}]'
 };
 function applySeed(){
-  if(ls('z3_seed_20260727')==='1') return;
+  if(ls('z3_seed_20260730')==='1') return;
   for(var k in SEED){ if(!ls(k)) ls(k,SEED[k]); }
-  ls('z3_seed_20260727','1');
+  ls('z3_seed_20260730','1');
 }
 
 /* ============ INIT ============ */
