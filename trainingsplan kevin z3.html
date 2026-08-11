@@ -326,7 +326,7 @@ var WK={
    ph:'Phase · Spezifik', h2:'Woche 4 · 17.–23. August',
    p:'Zurück auf exakte Race-Last – jetzt wird alles leicht. Samstag: volle Simulation über 12 Journeys mit deinem realistischen Pair-Anteil. Danach weißt du, was das Rennen kostet.',
    v:100, load:'race',
-   sq:'3×3 @ 110 kg · RPE 7', rdl:'3×6 @ 92 kg', pp:'3×3 @ 80 kg', sp:'3×3 @ 60 kg',
+   sq:'3×3 @ 110 kg · RPE 7', rdl:'3×6 @ 100 kg', pp:'3×3 @ 80 kg', sp:'3×3 @ 60 kg',
    run:'6 × 400 m @ 1:55–2:00 · scharf', rest:'60 s Trabpause', sa:'VOLLE SIMULATION'},
 5:{d:['24. August','25. August','26. August','27. August','28. August','29. August','30. August'],
    ph:'Phase · Peak', h2:'Woche 5 · 24.–30. August',
@@ -534,8 +534,7 @@ function prehabBlock(w,tag){
   var items=[
     ['Rückenstrecker isometrisch','3 × 30 s','Rumpf gerade, kein Hohlkreuz.'],
     ['Side Plank','3 × 30 s je Seite','Hüfte oben halten.'],
-    ['Hollow Hold','3 × 20 s','LWS gedrückt halten.'],
-    ['Pallof Press','3 × 10 je Seite','Anti-Rotation, langsam.']
+    ['Hollow Hold','3 × 20 s','LWS gedrückt halten.']
   ];
   if(tag==='mo'||tag==='do'){
     items.push(['Wadenheben gestreckt','3 × 12 · 3 s / 3 s','Achilles. Schwer und langsam.']);
@@ -559,11 +558,11 @@ var DAYN=['Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag','Sonnt
 function dayMeta(w,i){
   var W_=WK[w];
   var m=[
-   {t:'Box PM · Kraft + Labour-WOD', r:'ice'},
-   {t:'Gym AM 1 h · Box PM Olympic', r:'green'},
+   {t:(w>=4?'Box PM · Labour-WOD + Anti-Krampf':'Box PM · Kraft + Labour-WOD'), r:'ice'},
+   {t:(w>=4?'Gym Nachmittag · nur Maschinen':'Gym AM 1 h · Box PM Olympic'), r:'green'},
    {t:'Laufeinheit · 400er', r:'green'},
-   {t:'Gym AM 1 h · Box PM Press + WOD', r:'green'},
-   {t:(w===6?'Reise · Ruhe':'Box solo · Gymnastics + Distance-Labours'), r:'amber'},
+   {t:(w>=3?'Box solo · Bodenarbeit + Distance-Labours':'Gym AM 1 h · Box PM Press + WOD'), r:'green'},
+   {t:(w===6?'Reise · Ruhe':(w>=3?'Box PM · Couplet-WOD':'Box solo · Gymnastics + Distance-Labours')), r:'amber'},
    {t:(w===4?'Volle Simulation':w===5?'Halbe Simulation':w===6?'Reise':'Langer Z2-Lauf'), r:(w>=4?'bone':'green')},
    {t:(w===6?'🏁 WELTMEISTERSCHAFT':'Ruhetag · aktive Erholung'), r:(w===6?'bone':'ice')}
   ];
@@ -592,15 +591,33 @@ function dayBody(w,i){
         prehabBlock(6,'mo')+
         note('Taper-Woche. Wenn müde: streichen. Nichts hier baut noch Form auf.','g');
     }
+    if(w>=4){
+      o+=note('Reduzierte Struktur ab hier: nur noch renn-spezifische Inhalte. Kraft (Back Squat/RDL) ist zum Dienstag gewandert.','');
+      o+=warmUp(w,0);
+      o+=blk('A · Labour-WOD · '+tag,
+        ex('Rep-Labour-WOD','3 Runden auf Zeit','Pro Runde: '+Math.round(LAB.kbdl.full*WK[w].v/200)+' KB Deadlift · '+
+          Math.round(LAB.goblet.full*WK[w].v/200)+' Goblet Squat · '+Math.round(LAB.dbpp.full*WK[w].v/200)+' DB Push Press. '+
+          'Lasten: KB DL '+(WK[w].load==='over'?LAB.kbdl.over:LAB.kbdl.race)+' · Goblet '+(WK[w].load==='over'?LAB.goblet.over:LAB.goblet.race)+
+          ' · DB PP '+(WK[w].load==='over'?LAB.dbpp.over:LAB.dbpp.race)+'. 90 s zwischen den Runden.','wodrep_w'+w,'sim'));
+      o+=blk('B · Anti-Krampf · Rumpfausdauer unter Ermüdung',
+        ex('Bear Crawl',lab('bear',w,0.5),'Hüfte tief, Knie knapp über dem Boden. Ruhig durch die Nase atmen statt zu pressen.','bearmo_w'+w,'labour')+
+        ex('Bear Hold mit Atmung','3 × 45 s','Position halten und dabei bewusst tief in den Bauch atmen. Genau der Konflikt aus dem Rennen: Brace und Atmung gleichzeitig.','bearbreath_w'+w)+
+        ex('Suitcase Carry','3 × 40 m je Seite @ 32 kg','Einseitig, Anti-Lateralflexion. Schulter unten lassen, nicht zur Seite kippen.','suit_w'+w,'labour'));
+      o+=prehabBlock(w,'mo');
+      return o;
+    }
     o+=warmUp(w,0);
     o+=blk('A · Kraft',
       ex('Back Squat',W_.sq,'Volle Tiefe, Thorax aufrecht.','sq_w'+w)+
       ex('Romanian Deadlift',W_.rdl,'Ohne Straps – der Griff ist ab jetzt Wettkampfvorbereitung.','rdl_w'+w));
     o+=blk('B · Labour-WOD · '+tag,
-      ex('Rep-Labour-WOD','5 Runden auf Zeit','Pro Runde: '+Math.round(LAB.kbdl.full*WK[w].v/200)+' KB Deadlift · '+
+      ex('Rep-Labour-WOD','3 Runden auf Zeit','Pro Runde: '+Math.round(LAB.kbdl.full*WK[w].v/200)+' KB Deadlift · '+
         Math.round(LAB.goblet.full*WK[w].v/200)+' Goblet Squat · '+Math.round(LAB.dbpp.full*WK[w].v/200)+' DB Push Press. '+
         'Lasten: KB DL '+(WK[w].load==='over'?LAB.kbdl.over:LAB.kbdl.race)+' · Goblet '+(WK[w].load==='over'?LAB.goblet.over:LAB.goblet.race)+
-        ' · DB PP '+(WK[w].load==='over'?LAB.dbpp.over:LAB.dbpp.race)+'. 90 s zwischen den Runden.','wodrep_w'+w,'sim'));
+        ' · DB PP '+(WK[w].load==='over'?LAB.dbpp.over:LAB.dbpp.race)+'. 90 s zwischen den Runden.<br><br>'+
+        '<b>3 Runden statt 5 – und die werden zu Ende gebracht.</b> Zweimal in Folge abgebrochen liefert weder Daten noch Pacing-Übung. '+
+        'Wenn alle 3 Runden sauber durchlaufen und die Squats nicht weiter zerfallen, geht es auf 4.<br>'+
+        '<b>Pflicht:</b> Rundenzeit einzeln stoppen und die Squat-Teilsätze notieren (z. B. 10/10/10). Genau daran sieht man, ob der Squat hält.','wodrep_w'+w,'sim'));
     o+=blk('C · Anti-Krampf · Rumpfausdauer unter Ermüdung',
       ex('Bear Crawl',lab('bear',w,0.5),'Hüfte tief, Knie knapp über dem Boden. Ruhig durch die Nase atmen statt zu pressen.','bearmo_w'+w,'labour')+
       ex('Bear Hold mit Atmung','3 × 45 s','Position halten und dabei bewusst tief in den Bauch atmen. Genau der Konflikt aus dem Rennen: Brace und Atmung gleichzeitig.','bearbreath_w'+w)+
@@ -622,6 +639,7 @@ function dayBody(w,i){
         note('<b>Auswertung:</b> Snatch RPE 5 und OHS RPE 4 – da ist Luft. Clean & Jerk RPE 6 → 7 steigend bei nachlassender Technik, gut erklärbar über HRV 53 und den fehlenden Schlaf. Gewicht bleibt bei 75 kg, Squat Clean bleibt. Wenn es nächste Woche bei erholter HRV wieder so läuft, schauen wir nochmal drauf.');
     }
     if(w===3){
+      o+=note('⚠️ <b>Abbruch am 11.8.2026.</b> Box AM (Z2 Rad + Kraftblock) komplett durchgeführt und geloggt. Beim Olympic Lifting danach die Langhantel im ersten Snatch-Satz mit voller Wucht gegen die Stirn bekommen, dazu schon vorher Erschöpfung und schlechte Nacht – Einheit abgebrochen. Kopf-Check ohne Auffälligkeiten. Ab Donnerstag greift die neue, reduzierte Wochenstruktur (nur noch renn-spezifische Inhalte, ein Gym-Termin/Woche).','g');
       o+=note('⚠️ <b>Nur diese Woche:</b> kein Gym AM. Stattdessen Box ab 05:00/05:30 – Z2 auf dem Rad plus ein kurzer Kraftblock mit Kurzhanteln und Rig.','');
       o+=blk('Box AM · 05:00 · Z2 Rad · 35–40 min',
         ex('Z2 auf dem Bike','35–40 min · HF 125–140','Ruhig und gleichmäßig, kein Intervallcharakter. Ersetzt den Grundlagenreiz, den sonst der Samstagslauf liefert – und schont die Beine für das Olympic Lifting am Nachmittag.','z2bike_w3','run'));
@@ -636,6 +654,18 @@ function dayBody(w,i){
         ex('Snatch','5 × 2 @ '+OLY[w].sn+' kg','Langsam vom Boden ziehen. Füße erst setzen, wenn die Arme gestreckt sind.','sn_w'+w)+
         ex('Clean & Jerk','5 × 2 @ '+OLY[w].cj+' kg','Als Squat Clean. Vor den Arbeitssätzen 2–3 Jerks aus dem Rack bei 50–55 kg – der erste Jerk je Satz war bisher immer der wackelige.','cj_w'+w)+
         ex('Overhead Squat','3 × 3 @ '+OLY[w].ohs+' kg','Schulterstabilität – zahlt direkt auf den Overhead Carry ein.','ohs_w'+w));
+      o+=prehabBlock(w,'di');
+      return o;
+    }
+    if(w>=4){
+      o+=note('Ein Gym-Termin, Nachmittag, reine Maschinenarbeit. Kein Barbell, kein Olympic Lifting bis zum Rennen.','');
+      o+=blk('Gym · Nachmittag · Wellpass · reine Maschinenarbeit',
+        ex('Face Pull leicht · Warm-up','2×20 @ 15 kg','Externe Rotation aktivieren, bevor irgendetwas Schweres kommt.','fpwu_w'+w)+
+        ex('Beinpresse','3×12 @ 190 kg','Erhalt der Beinkraft, kein Ausbelasten.','bp_w'+w)+
+        ex('Brustgestütztes Rudern','3×12 @ 75 kg · RPE 6','Aufrecht, zum Bauchnabel ziehen, kein Rückenschwung.','row_w'+w)+
+        ex('Chest Press Maschine','3×10 @ 57 kg · RPE 7','Horizontaler Push-Reiz.','cpm_w'+w)+
+        ex('Shoulder Press Maschine','3×8 @ 40 kg · RPE 7','Ersatz für Strict Press – die Überkopf-Komponente, die Chest Press nicht abdeckt. Erste Woche vorsichtig einsteigen, Gewicht ist ein Schätzwert.','shpm_w'+w)+
+        ex('Lat Pulldown','3×12 @ 59 kg · RPE 6','Schulterblätter zuerst nach unten, dann Ellbogen Richtung Gesäßtaschen.','lat_w'+w));
       o+=prehabBlock(w,'di');
       return o;
     }
@@ -676,6 +706,23 @@ function dayBody(w,i){
         note('🍝 Carb-Loading startet heute. Kohlenhydrate hoch, Ballaststoffe und alles Ungewohnte raus.','');
     }
     if(w===1) o+=note('✅ <b>Absolviert am 30.7.2026.</b> Gym AM entfiel (HRV 51 bei Basis 61), Seitheben und Face Pull wurden abends in der Box nachgeholt. Couplet selbst umgebaut auf 500 m Row + 500 m Ski und 16 Reps – Einbruch Ende Runde 2 von 4. Die Erg-Korrektur war richtig, aber 4 volle Runden waren damit noch zu viel. HSPU: ab Rep 3–4 kippt die Kontrolle, Hände nach innen gedreht lief spürbar sauberer.','g');
+    if(w>=3){
+      o+=note('Donnerstag und Freitag getauscht: die renn-spezifischste Session (Bodenarbeit + Lauf-Kopplung + Distance-Labours) liegt jetzt hier, mit mehr Erholung bis zum langen Lauf am Samstag.','');
+      o+=warmUp(w,4);
+      o+=blk('A · Bodenarbeit · deine teuersten Stationen',
+        ex('Burpee Broad Jump',lab('bbj',w),'Brust und Oberschenkel auf den Boden, beidbeinig springen und landen. Flache, hochfrequente Sprünge statt weiter Einzelsprünge.','bbj_w'+w,'labour')+
+        ex('Bear Crawl',lab('bear',w),'Knie nie am Boden, kein Galopp. Hüfte tief, kurze Züge, durch die Nase atmen.','bear_w'+w,'labour'));
+      o+=blk('B · Lauf-Kopplung · der eigentliche Test',
+        ex('400 m nach Bodenarbeit','3 × 400 m','Direkt nach je einem Bodenarbeits-Block 400 m laufen. Ziel ist nicht Tempo, sondern aufrechte Haltung bei müdem Rumpf. Sobald du einknickst: langsamer, nicht durchbeißen.','crampcouple_w'+w,'run'));
+      o+=blk('C · Distance-Labours · '+tag,
+        ex('KB Farmers Carry',lab('farm',w),'30-m-Bahn. Ohne Kreide, ohne Handschuhe. Für dich der einfachste Teil – hier Tempo machen.','farm_w'+w,'labour')+
+        ex('WP Front Carry',lab('front',w),'Beide Arme vorne, nicht auf der Schulter.','front_w'+w,'labour')+
+        ex('WP Overhead Carry',lab('ohc',w),'Scheibenmitte über dem Kopf, darf den Kopf nicht berühren.','ohc_w'+w,'labour')+
+        ex('DB Lunge',lab('lunge',w),'Hinteres Knie berührt den Boden, Beine wechseln.','lunge_w'+w,'labour'));
+      o+=prehabBlock(w,'do');
+      o+=note('Reihenfolge nach deinem Limiter sortiert: Bodenarbeit frisch nach vorn, direkt gefolgt vom Laufen. Genau die Kombination, an der im Rennen dein Bauch dicht macht – und die einzige, die man dagegen trainieren kann.');
+      return o;
+    }
     o+=blk('Gym AM · 05:00 · Wellpass · 60 min',
       ex('Face Pull leicht · Warm-up','2×20 @ 15 kg','Zum Aufwärmen, bewusst leicht. Aktiviert die externe Rotation, bevor gedrückt wird – und du bekommst die Übung nicht mehr am Ende mit müder Schulter.','fpwu_w'+w)+
       ex('Beinpresse einbeinig','3×10 je Seite @ 56 kg','Nicht die halbe bilaterale Last – ohne Rumpfstabilisierung geht deutlich weniger. 56 kg lag bei RPE 8/7/7.','bp1_w'+w)+
@@ -705,6 +752,19 @@ function dayBody(w,i){
     if(w===1) o+=note('✅ <b>Absolviert am 31.7.2026.</b> Bodenarbeit + Lauf als 3 Runden à 10 m BBJ + 20 m Bear Crawl + 400 m: 3:46 / 3:48 / 3:45 – kein Abbau über die Wiederholungen, R3 die schnellste. Bester Limiter-Befund bisher. Overhead Carry mit 20 kg statt 15 (Scheibe nicht verfügbar), Lunge 2×15 statt 2×12,5. Pull-Ups als 8 × 5 strict.','g');
     if(w===6){
       return note('Reisetag / Ruhe. Maximal 15 min Mobility. Packen: Schuhe ohne Spikes, Kniebandagen, Gürtel, Ausweis, Iso-Getränk, Gel.','g');
+    }
+    if(w>=3){
+      o+=note('Donnerstag und Freitag getauscht: hier steht jetzt das Couplet, erg-basiert und dadurch leichter für die Beine vor dem langen Lauf am Samstag.','');
+      o+=warmUp(w,3);
+      o+=blk('A · Couplet-WOD Teil 1 · Race-Last',
+        ex('DB Snatch alt.','4 Runden: '+ERG+' + '+coupReps('snatch',w)+' Reps @ '+LAB.snatch.race,
+          'Erg direkt in die Station, ohne Pause. Bewusst Race-Last, auch in Überlast-Wochen – die Überlast steckt hier im Rep-Umfang, nicht im Gewicht. '+ERGN,'coupwod1_w'+w,'sim'));
+      o+=blk('B · Couplet-WOD Teil 2 · Race-Last',
+        ex('WP Clean & Press','4 Runden: '+ERG+' + '+coupReps('cp',w)+' Reps @ '+LAB.cp.race,
+          'Gleiche Struktur, andere Station – so bleibt die Übergangsqualität hoch statt in der Mitte zu kippen. '+ERGN,'coupwod2_w'+w,'sim')+
+        ex('DB Devil Press',lab('devil',w),'Einmalig zum Abschluss, nicht pro Runde. Bewusst unter Ermüdung.','devil_w'+w,'labour'));
+      o+=prehabBlock(w,'fr');
+      return o;
     }
     o+=warmUp(w,4);
     o+=blk('A · Bodenarbeit · deine teuersten Stationen',
@@ -1378,12 +1438,17 @@ var SEED={
  'z3_log_lunge_w2':'[{"type": "labour", "a": "45 m", "b": "2×20 kg", "c": "2:36", "note": "Ziel: 45 m @ 2×20 kg\\n3×15 m. 3,47 s/m gegenüber 1,67 in W1 – mit Abstand die limitierendste Station.", "date": "2026-08-07T11:05:01.782Z"}]',
  'z3_log_pu_w2':'[{"type": "strength", "sets": [{"kg": "", "reps": "5", "rpe": "6"}, {"kg": "", "reps": "5", "rpe": "7"}, {"kg": "", "reps": "5", "rpe": "7"}, {"kg": "", "reps": "5", "rpe": "8"}, {"kg": "", "reps": "5", "rpe": "9"}, {"kg": "", "reps": "5", "rpe": "10"}, {"kg": "", "reps": "3", "rpe": "8"}, {"kg": "", "reps": "3", "rpe": "8"}], "note": "Ziel: 4 × 10 Wdh\\n36 Reps gesamt, 1 min Pause zwischen den Sätzen. Sechster Satz bei RPE 10.", "date": "2026-08-07T11:19:18.401Z"}]',
  'z3_log_t2b_w2':'[{"type": "strength", "sets": [{"kg": "", "reps": "12", "rpe": "6"}, {"kg": "", "reps": "12", "rpe": "7"}, {"kg": "", "reps": "12", "rpe": "8"}], "note": "Ziel: 3 × 12\\nImmer als 6+6. Etwas schwerer als in W1 (6→6→7).", "date": "2026-08-07T11:24:02.365Z"}]',
- 'z3_fb_w2_d4':'{"emoji": "2", "stars": 3, "notes": "Die Distance Labours alle nacheinander mit jeweils 1 min Pause dazwischen.\\n\\nNacht war nicht so gut. Samstag und Sonntag unterwegs, da gibt es kein Training.\\n\\nFür die BMU war keine Power mehr da.", "date": "2026-08-07T12:21:50.036Z"}'
+ 'z3_fb_w2_d4':'{"emoji": "2", "stars": 3, "notes": "Die Distance Labours alle nacheinander mit jeweils 1 min Pause dazwischen.\\n\\nNacht war nicht so gut. Samstag und Sonntag unterwegs, da gibt es kein Training.\\n\\nFür die BMU war keine Power mehr da.", "date": "2026-08-07T12:21:50.036Z"}',
+ 'z3_log_wu_w3d0':'[{"type": "routine", "a": "", "b": "", "c": "", "note": "", "date": "2026-08-10T13:49:48.028Z"}]',
+ 'z3_log_sq_w3':'[{"type": "strength", "sets": [{"kg": "110", "reps": "4", "rpe": "7"}, {"kg": "110", "reps": "4", "rpe": "7"}, {"kg": "110", "reps": "4", "rpe": "8"}], "note": "Ziel: 3×4 @ 110 kg · RPE 7\\nRPE 7/7/8 – besser als W2 (8/7/8 bei 5 Wdh). Das freie Wochenende hat gewirkt.", "date": "2026-08-10T14:06:00.518Z"}]',
+ 'z3_log_rdl_w3':'[{"type": "strength", "sets": [{"kg": "95", "reps": "6", "rpe": "5"}, {"kg": "95", "reps": "6", "rpe": "5"}, {"kg": "95", "reps": "6", "rpe": "5"}], "note": "Ziel: 3×6 @ 92 kg\\n95 kg, RPE 5 durchgehend – dritte Woche bei 95 und der RPE fällt weiter (6 → 5). Zu leicht. Ab W4 auf 100 kg.", "date": "2026-08-10T14:15:29.372Z"}]',
+ 'z3_log_wodrep_w3':'[{"type": "sim", "a": "2 Runden + 30 DL / 8 Squats", "b": "", "c": "Squats", "note": "Ziel: 5 Runden auf Zeit\\nAbgebrochen nach 2 Runden plus 30 DL und 8 Squats.\\n\\nSplits:\\nR1: 15/15 DL · 10/10/10 Squats · 5×6 PP\\nR2: 15/15 DL · 8/8/7/7 Squats · 5×6 PP\\nR3: 15/15 DL · 8 Squats (Abbruch)\\n\\nRundenzeiten: R1 5:31 · R2 8:01 · R3 3:45 (Teilrunde)\\nReine Arbeitszeit R1 5:31 → R2 6:31.\\n\\nBEFUND (dritter Montag in Folge derselbe): Deadlift dreimal identisch 15/15, Push Press stabil 5×6. Nur der Squat zerfällt – von 3 auf 4 Teilsätze, in R3 Abbruch bei 8.\\nStrukturelle Ursache: Back Squat 3×4 @ 110 kg bis RPE 8 läuft VOR dem WOD. Die einzige Station, die zusammenbricht, geht mit vorermüdeten Beinen rein.\\nKONSEQUENZ: WOD ab sofort 3 Runden statt 5 – dafür vollständig, mit Rundenzeiten und Squat-Teilsätzen.", "date": "2026-08-10T14:43:05.618Z"}]',
+ 'z3_fb_w3_d0':'{"emoji": "1", "stars": 2, "notes": "", "date": "2026-08-10T14:44:40.079Z"}'
 };
 function applySeed(){
-  if(ls('z3_seed_20260809')==='1') return;
+  if(ls('z3_seed_20260810')==='1') return;
   for(var k in SEED){ if(!ls(k)) ls(k,SEED[k]); }
-  ls('z3_seed_20260809','1');
+  ls('z3_seed_20260810','1');
 }
 
 /* ============ INIT ============ */
