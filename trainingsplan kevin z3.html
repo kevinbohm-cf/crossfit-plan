@@ -562,8 +562,8 @@ function dayMeta(w,i){
    {t:(w>=4?'Gym Nachmittag · nur Maschinen':'Gym AM 1 h · Box PM Olympic'), r:'green'},
    {t:'Laufeinheit · 400er', r:'green'},
    {t:(w>=3?'Box solo · Bodenarbeit + Distance-Labours':'Gym AM 1 h · Box PM Press + WOD'), r:'green'},
-   {t:(w===6?'Reise · Ruhe':(w>=3?'Box PM · Couplet-WOD':'Box solo · Gymnastics + Distance-Labours')), r:'amber'},
-   {t:(w===4?'Volle Simulation':w===5?'Halbe Simulation':w===6?'Reise':'Langer Z2-Lauf'), r:(w>=4?'bone':'green')},
+   {t:(w===6?'Reise · Ruhe':(w>=3?(w===4?'🏖️ Urlaub':'Box PM · Couplet-WOD'):'Box solo · Gymnastics + Distance-Labours')), r:'amber'},
+   {t:(w===4?'🏖️ Urlaub':w===5?'Simulation · alle Stationen':w===6?'Reise':'Langer Z2-Lauf'), r:(w>=4?'bone':'green')},
    {t:(w===6?'🏁 WELTMEISTERSCHAFT':'Ruhetag · aktive Erholung'), r:(w===6?'bone':'ice')}
   ];
   return {title:DAYN[i]+' · '+W_.d[i], sub:m[i].t, rail:m[i].r};
@@ -592,14 +592,16 @@ function dayBody(w,i){
         note('Taper-Woche. Wenn müde: streichen. Nichts hier baut noch Form auf.','g');
     }
     if(w>=4){
-      o+=note('Reduzierte Struktur ab hier: nur noch renn-spezifische Inhalte. Kraft (Back Squat/RDL) ist zum Dienstag gewandert.','');
+      o+=note('Reduzierte Struktur ab hier: nur noch renn-spezifische Inhalte. Back Squat ist zum Dienstag gewandert (Beinpresse).','');
       o+=warmUp(w,0);
       o+=blk('A · Labour-WOD · '+tag,
         ex('Rep-Labour-WOD','3 Runden auf Zeit','Pro Runde: '+Math.round(LAB.kbdl.full*WK[w].v/200)+' KB Deadlift · '+
           Math.round(LAB.goblet.full*WK[w].v/200)+' Goblet Squat · '+Math.round(LAB.dbpp.full*WK[w].v/200)+' DB Push Press. '+
           'Lasten: KB DL '+(WK[w].load==='over'?LAB.kbdl.over:LAB.kbdl.race)+' · Goblet '+(WK[w].load==='over'?LAB.goblet.over:LAB.goblet.race)+
           ' · DB PP '+(WK[w].load==='over'?LAB.dbpp.over:LAB.dbpp.race)+'. 90 s zwischen den Runden.','wodrep_w'+w,'sim'));
-      o+=blk('B · Anti-Krampf · Rumpfausdauer unter Ermüdung',
+      o+=blk('B · Accessory',
+        ex('Romanian Deadlift','3 × 6 @ 100 kg','Erhalt, kein Ausbelasten – der einzige verbliebene Reiz für die hintere Kette. Ohne Straps.','rdl_w'+w));
+      o+=blk('C · Anti-Krampf · Rumpfausdauer unter Ermüdung',
         ex('Bear Crawl',lab('bear',w,0.5),'Hüfte tief, Knie knapp über dem Boden. Ruhig durch die Nase atmen statt zu pressen.','bearmo_w'+w,'labour')+
         ex('Bear Hold mit Atmung','3 × 45 s','Position halten und dabei bewusst tief in den Bauch atmen. Genau der Konflikt aus dem Rennen: Brace und Atmung gleichzeitig.','bearbreath_w'+w)+
         ex('Suitcase Carry','3 × 40 m je Seite @ 32 kg','Einseitig, Anti-Lateralflexion. Schulter unten lassen, nicht zur Seite kippen.','suit_w'+w,'labour'));
@@ -665,6 +667,7 @@ function dayBody(w,i){
         ex('Brustgestütztes Rudern','3×12 @ 75 kg · RPE 6','Aufrecht, zum Bauchnabel ziehen, kein Rückenschwung.','row_w'+w)+
         ex('Chest Press Maschine','3×10 @ 57 kg · RPE 7','Horizontaler Push-Reiz.','cpm_w'+w)+
         ex('Shoulder Press Maschine','3×8 @ 40 kg · RPE 7','Ersatz für Strict Press – die Überkopf-Komponente, die Chest Press nicht abdeckt. Erste Woche vorsichtig einsteigen, Gewicht ist ein Schätzwert.','shpm_w'+w)+
+        ex('Single Leg Leg Extension','3×12 je Seite · leicht','Gezielt für die rechte Patellasehne – kontrollierte Last statt Vermeidung, wie beim Spanish Squat Isometric Hold. Bewusst leicht, sauber bis in die Streckung, kein Anlauf zur Ausbelastung.','sleg_w'+w)+
         ex('Lat Pulldown','3×12 @ 59 kg · RPE 6','Schulterblätter zuerst nach unten, dann Ellbogen Richtung Gesäßtaschen.','lat_w'+w));
       o+=prehabBlock(w,'di');
       return o;
@@ -754,6 +757,9 @@ function dayBody(w,i){
       return note('Reisetag / Ruhe. Maximal 15 min Mobility. Packen: Schuhe ohne Spikes, Kniebandagen, Gürtel, Ausweis, Iso-Getränk, Gel.','g');
     }
     if(w>=3){
+      if(w===4){
+        return note('🏖️ <b>Urlaub – kein Training.</b> Letzte Einheit diese Woche war Donnerstag.','g');
+      }
       o+=note('Donnerstag und Freitag getauscht: hier steht jetzt das Couplet, erg-basiert und dadurch leichter für die Beine vor dem langen Lauf am Samstag.','');
       o+=warmUp(w,3);
       o+=blk('A · Couplet-WOD Teil 1 · Race-Last',
@@ -790,18 +796,15 @@ function dayBody(w,i){
     if(w===1) return note('✅ <b>Absolviert am 1.8.2026.</b> Statt 8 km wurden 21,13 km in 2:21:36 (Romanshorn, 6:42/km, HF 128). 100 % der Zeit im Zielpuls, Kadenz nur 167 → 165 über die volle Distanz. Entkopplung +6,3 % bei 94 % Luftfeuchte. Größter Befund: Verpflegung mit rund 11 g KH/h deutlich zu niedrig.','g')+
       note('<b>Verpflegungsregel ab sofort</b><br>Trinken: alle 15 min ein paar Schlucke, ab Minute 0 – 500–1.000 mg Natrium pro Liter.<br>Gels: unter 75 min keine · ab 75 min erstes Gel bei <b>Minute 40</b>, dann alle <b>30 min</b>.<br>Renntag: letztes Gel 90 min vor Start, danach nur Flüssigkeit. Während des Rennens nichts.<br>Darm-Training (um eine Woche gestreckt, da der Lauf am 8.8. ausfiel): W3 30 g/h · W4 45 g/h · W5 60 g/h mit Renn-Setup. Nichts Neues am 6.9.','');
     if(w===4){
-      return '<div class="sim"><div class="bl">Volle Simulation · Race-Last</div><div class="body">'+
-        '12 × 400 m Journey · dazwischen alle 12 Labours an exakter Wettkampflast.<br><br>'+
-        '<b>Dein Anteil:</b> ca. 60 % des Labour-Volumens – dein realistischer Pair-Anteil, wenn du die Grip-lastigen Stationen übernimmst. Die Journeys läufst du komplett, alle 12.<br><br>'+
-        '<b>Zielzeit:</b> keine. Es geht um Daten – Split jeder Journey mitschreiben, dann siehst du genau, wo du zerfällst.<br><br>'+
-        '<b>Generalprobe:</b> Frühstück, Timing, Kleidung und Getränk exakt wie am 6.9.</div></div>'+
-        blk('Simulation', ex('Volle Simulation','12 Journeys + 12 Labours','Alle 12 Splits notieren.','simfull_w4','sim'));
+      return note('🏖️ <b>Urlaub – kein Training.</b> Die volle Simulation entfällt ersatzlos. Die Generalprobe findet stattdessen am 29.8. statt: alle 12 Stationen, halbes Volumen – siehe W5.','g');
     }
     if(w===5){
-      return '<div class="sim"><div class="bl">Halbe Simulation · Renntempo</div><div class="body">'+
-        '6 × 400 m Journey · dazwischen 6 Labours an Race-Last, halber Umfang – aber im Renntempo.<br><br>'+
-        'Kurz und aggressiv. Letzter harter Reiz vor dem Wettkampf. Danach nur noch Erholung.</div></div>'+
-        blk('Simulation', ex('Halbe Simulation','6 Journeys + 6 Labours @ Renntempo','','simhalf_w5','sim'));
+      return '<div class="sim"><div class="bl">Simulation · alle 12 Stationen, halbes Volumen</div><div class="body">'+
+        'Da die volle Simulation am 22.8. wegen Urlaub ausfällt, ist das jetzt deine einzige komplette Generalprobe vor dem 6.9.<br><br>'+
+        '12 × 400 m Journey – komplett, wie im Rennen. Dazwischen <b>alle 12 Labours</b>, aber jede Station nur mit halber Distanz/Reps (Race-Last bleibt). So testest du die komplette Renn-Logik – alle 12 Wechsel zwischen Journey und Labour – bei einem Gesamtvolumen, das an einem Trainingssamstag machbar bleibt.<br><br>'+
+        '<b>Zielzeit:</b> keine. Split jeder Journey notieren, dann siehst du, wo du zerfällst – über die volle Länge, nicht nur die Hälfte der Stationen.<br><br>'+
+        '<b>Generalprobe:</b> Frühstück, Timing, Kleidung und Getränk exakt wie am 6.9.</div></div>'+
+        blk('Simulation', ex('Simulation · alle Stationen','12 Journeys + 12 Labours @ halbem Volumen','Alle 12 Splits notieren.','simhalf_w5','sim'));
     }
     if(w===6){
       return note('Reisetag. 2 × 400 m sehr locker zum Lösen, Standards im Kopf durchgehen. Carb-Loading, früh schlafen. Wave-Zeit prüfen – Pairs starten zwischen 12:30 und 16:00 Uhr.','g')+
