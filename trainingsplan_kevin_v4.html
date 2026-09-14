@@ -419,6 +419,10 @@ function normalWeek(w,c){return{
   N('Reihenfolge ist bindend: HSPU vor Strict Press, Endurance ganz zum Schluss. Nach 45 min Rad sind Rumpf und Trizeps nicht mehr trainierbar.','blue'),
   hspuMo(w,c.hspu,c.neg),
   kraftMo(w,c.sp,c.wpu),
+  B('Accessory · Schulterhealth',[
+    ex('Cuban Rotation','3×12','Außenrotation, Gegenspieler zum vielen Drücken','Ellbogen 90°, langsam und kontrolliert'),
+    ex('Band Pull-Apart','3×20','Schulterblattstabilität für HSPU und Press','Schulterblätter aktiv zusammenziehen')
+  ],'accmo_z4w'+w),
   WOD('C · Endurance 45 min · solo',c.endName,c.endBody,c.endNote,'end_z4w'+w),
   mobi()
 ]),
@@ -442,11 +446,15 @@ function normalWeek(w,c){return{
     ex('Squat Snatch','' + c.sn,'Technik halten, nicht entwickeln – Thorax aufrecht, Stange hinter den Ohren','Kein Maxversuch. Wenn die Position bricht, Gewicht runter.'),
     ex('Clean & Jerk','' + c.cj,'Überkopfvolumen ohne strikte Ermüdung','Jerk mit sauberem Split, Kopf durch')
   ],'oly_z4w'+w),
-  B('B · HSPU-Position',[
+  B('B · Accessory',[
+    ex('Bulgarian Split Squat','3×8 je Seite','Einbeiniges Beinvolumen, da Mittwoch kein Squat-Haupttag ist','Hinterer Fuß erhöht, vorderes Knie stabil'),
+    ex('Ring Row strict','3×12','Zugvolumen ohne Langhantel','Körper bleibt eine Linie, Brust zur Ringhöhe')
+  ],'accmi_z4w'+w),
+  B('C · HSPU-Position',[
     ex('Wandzugewandter Handstand-Hold','4×30 s','Die eigentliche HSPU-Position, ermüdungsfrei geübt','Nase zur Wand. Rücken-zur-Wand-Holds trainieren die falsche Position.'),
     ex('Box HSPU','4×5','Volumen in der Inversion bei reduziertem Hebel','Hüfte über der Schulter, nicht zu flach werden')
   ],'hspupos_z4w'+w,'text'),
-  WOD('C · Gymnastics-WOD',c.wodMiName,c.wodMiBody,c.wodMiNote,'wodmi_z4w'+w),
+  WOD('D · Gymnastics-WOD',c.wodMiName,c.wodMiBody,c.wodMiNote,'wodmi_z4w'+w),
   mobi()
 ]),
 4:day('Aktive Erholung · Schwimmen & Rad','Mittag + abends','engine',[
@@ -476,6 +484,9 @@ function normalWeek(w,c){return{
 ]),
 6:day('Lauf · '+c.runType,'flexibel','out',[
   N('Zuhause: Longrun. Bei deiner Freundin: 400er-Intervalle auf der Bahn plus Calisthenics-Block im Park nebenan. Wenn der Lauf auf Sonntag rutscht, tauschen Sa und So einfach die Rolle.','blue'),
+  WU(c.runType==='Intervalle'
+    ? 'Warm-Up 12 min: 10 min lockeres Einlaufen · Beinschwingen vor/zurück und seitlich je 10 · Ausfallschritte gehend 10 · A-Skips 2×20 m · 3×80 m Steigerungen bis Renntempo'
+    : 'Warm-Up 8 min: 5 min lockeres Einlaufen · Beinschwingen vor/zurück und seitlich je 10 · Ausfallschritte gehend 10'),
   B('Lauf',[ex('Lauf','' + c.run,c.runFocus,c.runNote)],'run_z4w'+w,'text'),
   B('Optional bei der Freundin · Calisthenics-Park',[
     ex('Pull-Ups','3 Sätze aufgeteilt','Zugvolumen ohne Zusatzlast','Reihenfolge einhalten'),
@@ -634,6 +645,7 @@ var P={};
       ex('Wandzugewandter Handstand-Hold','4×30 s','Die eigentliche HSPU-Position, ermüdungsfrei geübt','Nase zur Wand'),
       ex('Box HSPU','4×5','Volumen in der Inversion bei reduziertem Hebel','Hüfte über der Schulter')
     ],'hspupos_z4w1','text'),
+    WU('Warm-Up 12 min vor dem Lauf: 10 min lockeres Einlaufen · Beinschwingen vor/zurück und seitlich je 10 · Ausfallschritte gehend 10 · A-Skips 2×20 m · 3×80 m Steigerungen bis Renntempo'),
     B('B · Lauf',[ex('Lauf','8×400 m @ 1:52–1:55 · 90 s Trabpause','Tempohärte knapp unter 5-km-Renntempo','')],'run_z4w1','text'),
     B('Optional danach · nur wenn die Beine nichts mehr sagen müssen',[
       ex('Pull-Ups','3 Sätze aufgeteilt','Zugvolumen',''),
