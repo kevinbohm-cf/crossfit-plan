@@ -434,9 +434,37 @@ var SEED_LOGS={
   'w1-6_b4_e0':[{date:'2026-09-20T09:15:00',dateLabel:'20. Sept. 2026, 09:15',type:'text',result:'3x6',notes:''}],
   'w1-6_b4_e1':[{date:'2026-09-20T09:15:00',dateLabel:'20. Sept. 2026, 09:15',type:'text',result:'3x15',notes:''}],
   'w1-6_b4_e2':[{date:'2026-09-20T09:15:00',dateLabel:'20. Sept. 2026, 09:15',type:'text',result:'3x10',notes:''}],
-  'w1-6_b4_e3':[{date:'2026-09-20T09:29:00',dateLabel:'20. Sept. 2026, 09:29',type:'text',result:'2x8',notes:''}]
+  'w1-6_b4_e3':[{date:'2026-09-20T09:29:00',dateLabel:'20. Sept. 2026, 09:29',type:'text',result:'2x8',notes:''}],
+  'w2-1_b3_e0':[{date:'2026-09-21T15:21:00',dateLabel:'21. Sept. 2026, 15:21',type:'strength',
+    sets:[{kg:'',reps:0,rpe:''},{kg:'',reps:0,rpe:''}],
+    notes:'Da ging heute gar nichts. Nach 2 Fehlversuchen abgebrochen, Abbruchregel hat gegriffen. Ursprünglicher Log mit 6 Sätzen war ein Fehleintrag – real waren es nur 2 Versuche.'}],
+  'w2-1_b3_e1':[{date:'2026-09-21T15:31:00',dateLabel:'21. Sept. 2026, 15:31',type:'text',
+    result:'4x3 5s',
+    notes:'1. gut\n2. ok im unteren 1/3 wirds schwer\n3. 3. Rep im unteren 1/3 runtergefallen\n4. besser als Runde 3'}],
+  'w2-1_b3_e2':[{date:'2026-09-21T15:34:00',dateLabel:'21. Sept. 2026, 15:34',type:'text',result:'4x30s',notes:''}],
+  'w2-1_b4_e0':[{date:'2026-09-21T15:56:00',dateLabel:'21. Sept. 2026, 15:56',type:'strength',
+    sets:[{kg:54,reps:5,rpe:7},{kg:54,reps:5,rpe:7},{kg:54,reps:5,rpe:8},{kg:54,reps:5,rpe:8},{kg:54,reps:5,rpe:8}],
+    notes:'Tempo 2-1-2'}],
+  'w2-1_b4_e1':[{date:'2026-09-21T16:08:00',dateLabel:'21. Sept. 2026, 16:08',type:'strength',
+    sets:[{kg:8,reps:4,rpe:7},{kg:8,reps:4,rpe:8},{kg:8,reps:4,rpe:8},{kg:8,reps:3,rpe:9}],notes:''}],
+  'end_z4w2':[{date:'2026-09-21T16:58:00',dateLabel:'21. Sept. 2026, 16:58',type:'text',
+    result:'Wie Vorgabe',
+    notes:'Ich habe ein 12551 m Bike Training mit einer Zeit von 24:00.0 absolviert und wollte es mit dir teilen.\n\nDie Details findest du hier:\nhttps://log.concept2.com/share/2606249/120820878'}],
+  'w2-2_b1_e0':[{date:'2026-09-22T05:51:00',dateLabel:'22. Sept. 2026, 05:51',type:'strength',
+    sets:[{kg:35,reps:10,rpe:6},{kg:35,reps:10,rpe:7},{kg:35,reps:10,rpe:7},{kg:35,reps:10,rpe:7}],
+    notes:'Heute wieder normales AM Gym, daher andere T-Bar als letztes mal und Gewicht anders'}],
+  'w2-2_b1_e1':[{date:'2026-09-22T06:02:00',dateLabel:'22. Sept. 2026, 06:02',type:'strength',
+    sets:[{kg:50,reps:10,rpe:5},{kg:55,reps:10,rpe:6},{kg:60,reps:10,rpe:8},{kg:55,reps:10,rpe:7}],notes:''}],
+  'w2-2_b1_e2':[{date:'2026-09-22T06:21:00',dateLabel:'22. Sept. 2026, 06:21',type:'strength',
+    sets:[{kg:59,reps:12,rpe:6},{kg:59,reps:12,rpe:6},{kg:59,reps:12,rpe:6},{kg:59,reps:12,rpe:7}],notes:''}],
+  'w2-2_b1_e3':[{date:'2026-09-22T06:28:00',dateLabel:'22. Sept. 2026, 06:28',type:'strength',
+    sets:[{kg:6,reps:15,rpe:6},{kg:7,reps:15,rpe:8},{kg:6,reps:15,rpe:7}],notes:'Sitzend mit Kurzhanteln'}],
+  'w2-2_b1_e4':[{date:'2026-09-22T06:10:00',dateLabel:'22. Sept. 2026, 06:10',type:'strength',
+    sets:[{kg:20,reps:20,rpe:4},{kg:20,reps:20,rpe:5},{kg:20,reps:20,rpe:6}],notes:''}]
 };
 var SEED_FEEDBACK={
+  'w2-1':{emoji:3,stars:4,date:'2026-09-21T17:05:00',
+    notes:'An sich alles gut\nDenke die Vorbelastung von gestern war der Hauptgrund das ich heute schwächer war'},
   'w1-6':{emoji:4,stars:4,date:'2026-09-20T09:32:00',
     notes:'Hab es Sonntag morgen gemacht\nFrühstück 1 Protein Quetschi\nIntra Workout im Getränk\nDie Dips waren übel, das war schon mal deutlich besser. In Runde 2 musste ich die Dips aufbrechen und ab Runde 3 dann auch die Push Ups und Pike Push Ups'},
   'w1-5':{emoji:2,stars:4,date:'2026-09-18T15:55:00',
@@ -465,20 +493,20 @@ var MORGEN=N('Morgenroutine 5 min vor allem anderen: Katze-Kuh 10 · Hüftbeuger
 
 /* ===== Gym AM ===== */
 function gymDi(w){return B('Gym AM · Wellpass 60 min · Oberkörper',[
-ex('T-Bar Rudern brustgestützt','4×10 @ 45–50 kg','Rückenbreite und Zugkraft für Pull-Ups','Aufrecht bleiben, zum Bauchnabel ziehen. Freie Last wiegt anders als die Maschine – erste Woche antasten.'),
-ex('Chest Press','4×10 @ 57 kg','Horizontale Pressekraft als Basis für den HSPU-Lockout','Schulterblätter fixiert, nicht bis zur vollen Streckung durchdrücken'),
-ex('Face Pull','3×20 @ 15 kg','Außenrotatoren – Vorbereitung der Schulter auf die Isolation','Ellbogen hoch, langsam zurück'),
-ex('Lat Pulldown','4×12 @ 59 kg','Latvolumen ohne Griffermüdung für den Nachmittag','Zug in den Lats spüren, nicht in der Schulter'),
-ex('Seitheben','3×15 @ 7,5 kg','Seitliche Schulter – zuletzt, damit nichts vorermüdet','Leicht bleiben, sauber führen')
+ex('A1 · T-Bar Rudern brustgestützt','4×10 @ 45–50 kg','Rückenbreite und Zugkraft für Pull-Ups','Superset mit A2, kein Rest dazwischen. Aufrecht bleiben, zum Bauchnabel ziehen. Freie Last wiegt anders als die Maschine – erste Woche antasten.'),
+ex('A2 · Chest Press','4×10 @ 57 kg','Horizontale Pressekraft als Basis für den HSPU-Lockout','Direkt nach A1, danach 90 s Pause vor dem nächsten Paar. Schulterblätter fixiert, nicht bis zur vollen Streckung durchdrücken'),
+ex('B1 · Lat Pulldown','4×12 @ 59 kg','Latvolumen ohne Griffermüdung für den Nachmittag','Superset mit B2, kein Rest dazwischen. Zug in den Lats spüren, nicht in der Schulter'),
+ex('B2 · Seitheben','3×15 @ 7,5 kg','Seitliche Schulter, direkt im Anschluss an B1','90 s Pause danach, dann Face Pull. Leicht bleiben, sauber führen'),
+ex('Face Pull','3×20 @ 15 kg','Außenrotatoren – Finisher, solo','Ellbogen hoch, langsam zurück')
 ],'gymdi_z4w'+w);}
 
 function gymMi(w){return B('Gym AM · Wellpass 60 min · Beine & Trizeps',[
-ex('Beinpresse einbeinig','4×10 je Seite @ 56 kg','Beinvolumen ohne Wirbelsäulenlast am Tag nach dem schweren Squat','Bewusst kontrolliert – das ist Durchblutung, kein zweiter schwerer Reiz'),
-ex('Hip Abduction','3×15','Hüftstabilität, Superset mit der Beinpresse','Oberkörper ruhig halten'),
-ex('Incline Press neutraler Griff','4×8 @ 70 kg','Schrägdruck als schulterfreundlicher Ersatz für die Shoulder Press','Neutraler Griff, Ellbogen nicht ausweichen lassen'),
-ex('Face Pull','3×20 @ 15 kg','Gegenspieler zum Drücken','Ellbogen hoch'),
-ex('Trizeps Pushdown','4×15','Lockout-Ausdauer – die Stelle, an der die HSPU stirbt','Ellbogen am Körper fixiert, volle Streckung halten'),
-ex('Hollow Hold','3×40 s','Rumpfspannung in HSPU-Position','Rippen unten, durch die Nase atmen')
+ex('A1 · Incline Press neutraler Griff','4×8 @ 70 kg','Schrägdruck als schulterfreundlicher Ersatz für die Shoulder Press','Superset mit A2, kein Rest dazwischen – echte Antagonisten, Druck vs. Zug. Neutraler Griff, Ellbogen nicht ausweichen lassen'),
+ex('A2 · Face Pull','3×20 @ 15 kg','Gegenspieler zum Drücken, direkt im Anschluss an A1','90 s Pause danach, dann Paar B. Ellbogen hoch, langsam zurück'),
+ex('B1 · Beinpresse einbeinig','4×10 je Seite @ 56 kg','Beinvolumen ohne Wirbelsäulenlast am Tag nach dem schweren Squat','Superset mit B2, kein Rest dazwischen – keine Muskelüberschneidung, reine Zeitersparnis. Bewusst kontrolliert – das ist Durchblutung, kein zweiter schwerer Reiz'),
+ex('B2 · Trizeps Pushdown','4×15','Lockout-Ausdauer, direkt im Anschluss an B1 – die Stelle, an der die HSPU stirbt','90 s Pause danach, dann Paar C. Ellbogen am Körper fixiert, volle Streckung halten'),
+ex('C1 · Hip Abduction','3×15','Hüftstabilität, Finisher-Paar mit C2','Superset mit C2, kein Rest dazwischen – beides leicht, kein Interferenzrisiko. Oberkörper ruhig halten'),
+ex('C2 · Hollow Hold','3×40 s','Rumpfspannung in HSPU-Position, direkt im Anschluss an C1','Rippen unten, durch die Nase atmen')
 ],'gymmi_z4w'+w);}
 
 /* ===== Blöcke ===== */
@@ -602,42 +630,42 @@ wodFrName:'Grace · 30 Clean & Jerk für Zeit',wodFrBody:'30 Clean & Jerk @ 60 k
 runType:'Longrun',run:'55 min Zone 2',runFocus:'Aerobe Basis und Kadenz',runNote:'Kadenz 168–172. Unter 75 min brauchst du keine Verpflegung.',
 sunday:'Tanita-Messung morgens nüchtern nachholen.'};
 
-CFG[2]={hspu:'6×1 strikt, volle Pause',neg:'4×3 · 5 s absenken',sp:'5×5 @ 54 kg',wpu:'4×4 @ +8 kg',
+CFG[2]={hspu:'4×1 strikt, volle Pause · Abbruch nach 2 Fehlversuchen in Folge, Rest in Handstand-Hold',neg:'4×3 · 5 s absenken',sp:'5×5 @ 54 kg',wpu:'4×4 @ +8 kg',
 sq:'5×5 @ 108 kg',lunge:'55 kg',dl:'4×4 @ 152 kg',rdl:'95 kg',sn:'5×2 @ 60 kg',cj:'4×2 @ 75 kg',
 hspuVol:'4×7 Banded',cgb:'3×8 @ 65 kg',dips:'7',core:1,
 endName:'Threshold-Block · durchgehend',endBody:'8 min einrollen · 4 Runden à 4 min Rad @ RPE 7 + 2 min Row @ 2:00/500 m, ohne Pause zwischen den Runden · 5 min ausrollen',
 endNote:'24 min ununterbrochen an der Schwelle. Der Wechsel aufs Rudergerät ist die Erholung, langsamer werden ist keine Option. Aufrecht rudern, zum Bauchnabel ziehen.',
-wodDiName:'Fran · 21-15-9 für Zeit',wodDiBody:'Thruster @ 43 kg · Pull-Ups',wodDiNote:'Ehrlicher Versuch, aber die 21er nicht unbroken erzwingen.',
-wodMiName:'Annie · 50-40-30-20-10',wodMiBody:'Double Unders · Sit-Ups',wodMiNote:'Seilarbeit sauber, kein Gehacke.',
+wodDiName:'Press-Pull Chipper I',wodDiBody:'For Time (16 min Cap): 30 Cal Row · 20 Push Press @ 45 kg · 20 Chest-to-Bar Pull-Ups (oder sauberes Kipping) · 30 Cal Row',wodDiNote:'Fokus: Press- und Zugkapazität unter Volumen, komplett beinfrei nach dem schweren Squat. Baseline – wird in W13 identisch wiederholt.',
+wodMiName:'Rope & Core Flow',wodMiBody:'50-40-30-20-10: Double Unders · Hollow Rocks',wodMiNote:'Fokus: Seilkoordination und Rumpfausdauer, überall machbar außer einem Sprungseil.',
 wodFrName:'Jackie · für Zeit',wodFrBody:'1.000 m Row · 50 Thruster @ 20 kg · 30 Pull-Ups',wodFrNote:'Row bei 1:58–2:00 halten, nicht auf den Thrustern einbrechen.',
 runType:'Intervalle',run:'8×400 m @ 1:52–1:55 · 90 s Trabpause',runFocus:'Tempohärte knapp unter 5-km-Renntempo',runNote:'Bei der Freundin auf der Bahn. Zuhause ersatzweise 8×90 s zügig mit 90 s Trab.'};
 
-CFG[3]={hspu:'8×1 strikt, volle Pause',neg:'4×3 · 6 s absenken',sp:'5×4 @ 58 kg',wpu:'4×4 @ +10 kg',
+CFG[3]={hspu:'5×1 strikt, volle Pause · gleiche Abbruchregel',neg:'4×3 · 6 s absenken',sp:'5×4 @ 58 kg',wpu:'4×4 @ +10 kg',
 sq:'5×4 @ 115 kg',lunge:'60 kg',dl:'4×4 @ 162 kg',rdl:'100 kg',sn:'4×2 @ 65 kg',cj:'4×2 @ 80 kg',
 hspuVol:'4×8 Banded',cgb:'4×6 @ 70 kg',dips:'8',core:2,
 endName:'Dein Workout',endBody:'Ab dieser Woche dein eigenes Endurance-Workout · 45 min',endNote:'Inhalt und Ergebnis hier eintragen, damit ich Di und Mi dagegen planen kann.',
-wodDiName:'Karen · 150 Wall Balls für Zeit',wodDiBody:'150 Wall Balls @ 9 kg',wodDiNote:'Nach dem schweren Squat bewusst in Sätzen zu 15–20 arbeiten.',
-wodMiName:'Elizabeth · 21-15-9 für Zeit',wodMiBody:'Squat Clean @ 60 kg · Ring Dips',wodMiNote:'Ring Dips strikt, wenn möglich – das zahlt direkt auf den HSPU-Lockout ein.',
-wodFrName:'DT · 5 Runden für Zeit',wodFrBody:'12 Deadlifts · 9 Hang Power Cleans · 6 Push Jerks @ 70 kg',wodFrNote:'Nach dem schweren Deadlift kontrolliert. Core beim Hüftimpuls aktiv halten.',
+wodDiName:'Press-Pull Chipper II',wodDiBody:'For Time (18 min Cap): 40 Cal Row · 24 Push Press @ 47,5 kg · 24 Chest-to-Bar Pull-Ups · 40 Cal Row',wodDiNote:'Fokus: mehr Volumen als letzte Woche, Beine bleiben komplett raus nach dem Squat.',
+wodMiName:'Gymnastics Density I',wodMiBody:'AMRAP 14: 8 Toes-to-Bar · 8 Ring Rows strict · 10 Push-Ups',wodMiNote:'Fokus: Zug- und Druckausdauer unter Ermüdung – zahlt direkt auf Strict HSPU und Weighted Pull-Up ein. Baseline – wird in W13 identisch wiederholt.',
+wodFrName:'Engine Threshold I',wodFrBody:'4 Runden: 15 Cal Bike · 12 DB Snatch @ 22,5 kg alternierend · 200 m Farmer Carry @ 24 kg je Hand',wodFrNote:'Fokus: aerobe Kapazität und Griffkraft, keine weitere Hüftstreckung nach dem Deadlift. Baseline – wird in W14 identisch wiederholt.',
 runType:'Longrun',run:'65 min Zone 2 inkl. 4×3 min an der Schwelle',runFocus:'Aerobe Basis mit Tempoblock',runNote:'Schwellenblöcke nach 20 min einbauen, 2 min Trab dazwischen.',
 sunday:''};
 
-CFG[4]={hspu:'5×2 strikt oder 1.1-Cluster mit 15 s Pause',neg:'4×3 · 6 s absenken',sp:'5×3 @ 62 kg',wpu:'4×3 @ +12 kg',
+CFG[4]={hspu:'4×1 strikt, volle Pause · 1.1-Cluster nur versuchen, wenn 3 saubere Einzelreps stehen',neg:'4×3 · 6 s absenken',sp:'5×3 @ 62 kg',wpu:'4×3 @ +12 kg',
 sq:'4×4 @ 122 kg',lunge:'65 kg',dl:'4×3 @ 175 kg',rdl:'105 kg',sn:'4×2 @ 68 kg',cj:'4×2 @ 85 kg',
 hspuVol:'5×8 Banded',cgb:'4×6 @ 72,5 kg',dips:'8',core:2,
 endName:'Dein Workout',endBody:'Dein eigenes Endurance-Workout · 45 min',endNote:'Inhalt und Ergebnis eintragen.',
-wodDiName:'Kelly · 5 Runden für Zeit',wodDiBody:'400 m Lauf · 30 Box Jumps @ 60 cm · 30 Wall Balls @ 9 kg',wodDiNote:'Volumenspitze der Woche. Kein Satz mehr als vorgesehen – hier ist dir das in Zyklus 3 entglitten.',
-wodMiName:'Isabel · 30 Snatch für Zeit',wodMiBody:'30 Power Snatch @ 60 kg',wodMiNote:'Technik vor Zeit. Sobald die Position bricht, Pause statt Wiederholung.',
-wodFrName:'Nancy · 5 Runden für Zeit',wodFrBody:'400 m Lauf · 15 Overhead Squats @ 43 kg',wodFrNote:'Stange hinter den Ohren, Brust raus.',
+wodDiName:'Press-Pull Chipper III',wodDiBody:'For Time (20 min Cap): 50 Cal Row · 30 Push Press @ 50 kg · 30 Chest-to-Bar Pull-Ups · 50 Cal Row',wodDiNote:'Volumenspitze der Woche. Kein Satz mehr als vorgesehen – hier ist dir das in Zyklus 3 entglitten.',
+wodMiName:'Gymnastics Density II',wodMiBody:'AMRAP 16: 10 Toes-to-Bar · 10 Ring Rows strict · 12 Push-Ups',wodMiNote:'Mehr Runden-Potential als letzte Woche bei gleicher Bewegungsauswahl.',
+wodFrName:'Engine Threshold II',wodFrBody:'5 Runden: 15 Cal Bike · 14 DB Snatch @ 22,5 kg alternierend · 200 m Farmer Carry @ 26 kg je Hand',wodFrNote:'Eine Runde mehr als letzte Woche, Griffkraft steigt mit.',
 runType:'Intervalle',run:'10×400 m @ 1:52–1:55 · 90 s Trabpause',runFocus:'Tempohärte bei hoher Wochenlast',runNote:'Wenn die letzten beiden Intervalle mehr als 3 s abfallen: abbrechen, Ziel erreicht.'};
 
 CFG[5]={hspu:'Max-Reps-Test, danach 4×1',neg:'3×3 · 6 s absenken',sp:'3RM-Test · Ziel 66–70 kg',wpu:'3RM-Test · Ziel +14–16 kg',
 sq:'4×3 @ 130 kg',lunge:'65 kg',dl:'3×3 @ 185 kg',rdl:'100 kg',sn:'4×2 @ 70 kg',cj:'3×2 @ 88 kg',
 hspuVol:'4×6 Banded',cgb:'3×6 @ 72,5 kg',dips:'8',core:2,
 endName:'Dein Workout',endBody:'Dein eigenes Endurance-Workout · 45 min',endNote:'Inhalt und Ergebnis eintragen.',
-wodDiName:'Fight Gone Bad · 3 Runden',wodDiBody:'Je 1 min: Wall Balls 9 kg · Sumo Deadlift High Pull 35 kg · Box Jumps 50 cm · Push Press 35 kg · Rudern (Kalorien) · 1 min Pause',wodDiNote:'Punkte notieren, Vergleichswert für W14.',
-wodMiName:'Amanda scaled · 9-7-5 für Zeit',wodMiBody:'Squat Snatch @ 50 kg · Ring Rows strikt',wodMiNote:'Muscle-Ups ersetzt durch strikte Ring Rows – Strict schlägt Kipping in diesem Zyklus.',
-wodFrName:'Diane scaled · 21-15-9 für Zeit',wodFrBody:'Deadlift @ 100 kg · Pike HSPU',wodFrNote:'Der Klassiker in deiner Skalierung. In W16 wiederholst du ihn mit strikten HSPU.',
+wodDiName:'Engine-Complex Test I',wodDiBody:'3 Runden · je 1 min pro Station, 1 min Pause zwischen den Runden: Wall Balls @ 9 kg · DB Push Press @ 20 kg · Box Step-Overs · Rudern (Kalorien)',wodDiNote:'Multi-Stationen-Kapazitätstest unter Zeitdruck, Reps zählen. Baseline – wird in W14 identisch wiederholt.',
+wodMiName:'Gymnastics Density — kurz & dicht',wodMiBody:'AMRAP 10: 6 Toes-to-Bar · 6 Ring Rows strict · 8 Push-Ups',wodMiNote:'Kürzere, dichtere Version – zeigt, wie viel Kapazität nach vier Wochen Aufbau noch da ist.',
+wodFrName:'Engine Threshold Test',wodFrBody:'3 Runden für Zeit: 15 Cal Bike · 12 DB Snatch @ 25 kg alternierend · 200 m Farmer Carry @ 28 kg je Hand',wodFrNote:'Reduziertes Volumen vor dem Deload. Sauber zu Ende bringen, nicht ins Rote fahren.',
 runType:'Longrun',run:'70 min Zone 2',runFocus:'Längster Lauf des Blocks',runNote:'Ab 75 min Flüssigkeit ab Minute 30. Heute knapp darunter, also Wasser danach.',
 sunday:'Tanita-Messung morgens nüchtern – Vergleich zu W1.'};
 
@@ -645,9 +673,9 @@ CFG[12]={hspu:'6×1 strikt, volle Pause',neg:'4×3 · 5 s absenken',sp:'4×5 @ 5
 sq:'4×5 @ 100 kg',lunge:'50 kg',dl:'4×5 @ 140 kg',rdl:'90 kg',sn:'5×2 @ 55 kg',cj:'4×2 @ 70 kg',
 hspuVol:'4×6 Banded',cgb:'3×8 @ 60 kg',dips:'6',core:1,
 endName:'Dein Workout',endBody:'Dein eigenes Endurance-Workout · 45 min · bewusst moderat',endNote:'Erste Woche zurück. Ergebnis eintragen.',
-wodDiName:'Cindy · AMRAP 15',wodDiBody:'5 Pull-Ups · 10 Push-Ups · 15 Air Squats',wodDiNote:'Wiedereinstieg. Fang nicht dort an, wo du im Oktober aufgehört hast.',
-wodMiName:'Annie · 50-40-30-20-10',wodMiBody:'Double Unders · Sit-Ups',wodMiNote:'Seilgefühl zurückholen.',
-wodFrName:'Helen · 3 Runden für Zeit',wodFrBody:'400 m Lauf · 21 Kettlebell Swings @ 24 kg · 12 Pull-Ups',wodFrNote:'Vergleich mit W1 im Verlauf.',
+wodDiName:'Cindy · AMRAP 15',wodDiBody:'5 Pull-Ups · 10 Push-Ups · 15 Air Squats',wodDiNote:'Wiedereinstieg. Fang nicht dort an, wo du im Oktober aufgehört hast. Direkter Vergleich mit W1.',
+wodMiName:'Gymnastics Density — Re-Entry',wodMiBody:'AMRAP 12: 5 Toes-to-Bar · 5 Ring Rows strict · 8 Push-Ups',wodMiNote:'Leichtere Version der W3-Vorlage. Technik zuerst nach dem Urlaub, nicht Tempo.',
+wodFrName:'Helen · 3 Runden für Zeit',wodFrBody:'400 m Lauf · 21 Kettlebell Swings @ 24 kg · 12 Pull-Ups',wodFrNote:'Direkter Vergleich mit W1.',
 runType:'Longrun',run:'45 min Zone 2',runFocus:'Wiedereinstieg in die Laufbelastung',runNote:'Kadenz 168–172, kein Tempo.',
 sunday:'Tanita-Messung – Bilanz des Urlaubsblocks.'};
 
@@ -655,18 +683,18 @@ CFG[13]={hspu:'8×1 strikt, volle Pause',neg:'4×2 · 6 s absenken',sp:'5×4 @ 5
 sq:'4×4 @ 112 kg',lunge:'58 kg',dl:'4×4 @ 160 kg',rdl:'98 kg',sn:'4×2 @ 62 kg',cj:'4×2 @ 78 kg',
 hspuVol:'4×8 Banded',cgb:'4×6 @ 68 kg',dips:'8',core:2,
 endName:'Dein Workout',endBody:'Dein eigenes Endurance-Workout · 45 min',endNote:'Ergebnis eintragen.',
-wodDiName:'Fran · 21-15-9 für Zeit',wodDiBody:'Thruster @ 43 kg · Pull-Ups',wodDiNote:'Vergleich mit W2.',
-wodMiName:'Elizabeth · 21-15-9 für Zeit',wodMiBody:'Squat Clean @ 60 kg · Ring Dips',wodMiNote:'Ring Dips strikt.',
-wodFrName:'Jackie · für Zeit',wodFrBody:'1.000 m Row · 50 Thruster @ 20 kg · 30 Pull-Ups',wodFrNote:'Vergleich mit W2.',
+wodDiName:'Press-Pull Chipper I',wodDiBody:'For Time (16 min Cap): 30 Cal Row · 20 Push Press @ 45 kg · 20 Chest-to-Bar Pull-Ups (oder sauberes Kipping) · 30 Cal Row',wodDiNote:'Identisch zu W2 – Vergleichswert.',
+wodMiName:'Gymnastics Density I',wodMiBody:'AMRAP 14: 8 Toes-to-Bar · 8 Ring Rows strict · 10 Push-Ups',wodMiNote:'Identisch zu W3 – Vergleichswert.',
+wodFrName:'Engine Threshold III',wodFrBody:'5 Runden: 18 Cal Bike · 14 DB Snatch @ 25 kg alternierend · 200 m Farmer Carry @ 26 kg je Hand',wodFrNote:'Aufbau nach dem Urlaub, Volumen und Last leicht über dem Ausgangswert von W3.',
 runType:'Intervalle',run:'8×400 m @ 1:55–1:58 · 90 s Trabpause',runFocus:'Tempo zurückholen',runNote:'Etwas langsamer als vor dem Urlaub ansetzen.'};
 
 CFG[14]={hspu:'5×2 strikt oder 1.1-Cluster',neg:'4×3 · 6 s absenken',sp:'5×3 @ 62 kg',wpu:'4×3 @ +20 kg',
 sq:'4×3 @ 125 kg',lunge:'65 kg',dl:'3×3 @ 180 kg',rdl:'105 kg',sn:'4×2 @ 68 kg',cj:'4×2 @ 85 kg',
 hspuVol:'5×8 Banded',cgb:'4×6 @ 72,5 kg',dips:'9',core:2,
 endName:'Dein Workout',endBody:'Dein eigenes Endurance-Workout · 45 min',endNote:'Ergebnis eintragen.',
-wodDiName:'Fight Gone Bad · 3 Runden',wodDiBody:'Je 1 min: Wall Balls 9 kg · Sumo Deadlift High Pull 35 kg · Box Jumps 50 cm · Push Press 35 kg · Rudern (Kalorien) · 1 min Pause',wodDiNote:'Vergleich mit W5.',
-wodMiName:'DT · 5 Runden für Zeit',wodMiBody:'12 Deadlifts · 9 Hang Power Cleans · 6 Push Jerks @ 70 kg',wodMiNote:'Härteste Woche des zweiten Blocks.',
-wodFrName:'Karen · 150 Wall Balls für Zeit',wodFrBody:'150 Wall Balls @ 9 kg',wodFrNote:'Vergleich mit W3.',
+wodDiName:'Engine-Complex Test I',wodDiBody:'3 Runden · je 1 min pro Station, 1 min Pause zwischen den Runden: Wall Balls @ 9 kg · DB Push Press @ 20 kg · Box Step-Overs · Rudern (Kalorien)',wodDiNote:'Identisch zu W5 – Vergleichswert. Härteste Woche des zweiten Blocks.',
+wodMiName:'Gymnastics Density III',wodMiBody:'AMRAP 18: 12 Toes-to-Bar · 12 Ring Rows strict · 14 Push-Ups',wodMiNote:'Peak-Volumen der Gymnastics-Density-Reihe.',
+wodFrName:'Engine Threshold I',wodFrBody:'4 Runden: 15 Cal Bike · 12 DB Snatch @ 22,5 kg alternierend · 200 m Farmer Carry @ 24 kg je Hand',wodFrNote:'Identisch zu W3 – Vergleichswert.',
 runType:'Longrun',run:'60 min Zone 2',runFocus:'Aerobe Basis halten',runNote:''};
 
 /* ===== Wochen-Meta ===== */
@@ -686,7 +714,7 @@ var WEEKS=[
 {n:13,s:'2026-12-07',e:'2026-12-13',ph:'Phase 5 · Re-Entry',t:'Woche 13 · 7.–13. Dezember',d:'Zurück auf Vor-Urlaub-Niveau. Ab hier zählt wieder jede Session.',v:['72–76 %','Volumen hoch','Aufbau']},
 {n:14,s:'2026-12-14',e:'2026-12-20',ph:'Phase 6 · Peak',t:'Woche 14 · 14.–20. Dezember',d:'Härteste Woche des zweiten Blocks. Strict-Volumen am Maximum.',v:['80 %','Volumen Peak','Strict Max']},
 {n:15,s:'2026-12-21',e:'2026-12-27',ph:'Phase 6 · Peak',t:'Woche 15 · 21.–27. Dezember',d:'Weihnachtswoche, realistisch geplant: drei Einheiten, 24. bis 26.12. frei.',v:['3 Einheiten','24.–26.12. frei','Taper']},
-{n:16,s:'2026-12-28',e:'2027-01-03',ph:'Phase 6 · Test',t:'Woche 16 · 28. Dez – 3. Januar',d:'Testwoche. HSPU Max Reps, Strict Press 1RM, Weighted Pull-Up 1RM, Back Squat 3RM, Diane-Wiederholung.',v:['1RM-Tests','5 unbroken?','Jahresabschluss']}
+{n:16,s:'2026-12-28',e:'2027-01-03',ph:'Phase 6 · Test',t:'Woche 16 · 28. Dez – 3. Januar',d:'Testwoche. HSPU Max Reps, Strict Press 1RM, Weighted Pull-Up 1RM, Back Squat 3RM, Engine-Complex-Wiederholung.',v:['1RM-Tests','5 unbroken?','Jahresabschluss']}
 ];
 
 /* ===== Plan ===== */
@@ -754,6 +782,44 @@ var P={};
       ex('Push-Ups','3×15','Allgemeines Druckvolumen','Nach der Pull-Pause'),
       ex('Dips','3×8–10','Trizeps – immer zuletzt','Am stärksten vorermüdet, genau richtig als Abschluss')
     ],'calis_z4w1')
+  ]);
+})();
+
+/* W2-Sonderfall: Mi Geschäftsreise (nur Gym, 5 Uhr oder 1h abends), Do letztes Gym-Fenster vor Abreise zur Freundin –
+   übernimmt komplett Freitags-Box-Inhalt (Deadlift, HSPU-Volumen, Close-Grip Bench, Dips), Oly-Technik und Jackie entfallen diese Woche.
+   Ab Do Nachmittag bis So nur Laufbahn + Calisthenics-Park bei der Freundin erreichbar. */
+(function(){
+  var c=CFG[2];
+  P[2][3]=day('Geschäftsreise · nur Gym','5:00 Uhr oder 1 h abends','gym',[
+    MORGEN,
+    N('Box heute nicht erreichbar. Oly-Technik entfällt diese Woche komplett – kein Ersatz, nächste Woche wieder normal.','orange'),
+    gymMi(2),
+    WOD('Optional, falls Zeit/Platz reicht',c.wodMiName,c.wodMiBody,'Bodyweight + Seil, überall machbar – auch im Hotelzimmer. Kein Muss, wenn das Zeitfenster knapp ist.','wodmi_z4w2')
+  ]);
+  P[2][4]=day('Gym · letztes Fenster vor Abreise (übernimmt Freitag)','vormittags','gym',[
+    MORGEN,
+    N('Freitag ist ab heute Nachmittag nicht mehr erreichbar (Abreise zur Freundin). Der komplette Freitagsinhalt läuft deshalb hier, Langhantel und Bank bestätigt vorhanden.','orange'),
+    WU('Warm-Up 10 min: 5 min Rad · 10 Good Mornings · 8 Hip Airplanes je Seite · Deadlift-Aufwärmleiter 5×60 · 5×100 · 3× Arbeitslast minus 20 kg'),
+    B('A · Deadlift',[
+      ex('Deadlift','' + c.dl,'Maximalkraft der hinteren Kette','Mit Straps. Spannung vor dem ersten Zug aufbauen. Rechte Seite von letzter Woche im Kopf behalten.'),
+      ex('Romanian Deadlift','3×8 @ '+c.rdl,'Hamstrings und Hüftscharnier','Rücken neutral')
+    ],'dl_z4w2'),
+    B('B · HSPU-Volumen & Trizeps',[
+      ex('Banded oder Pike HSPU','' + c.hspuVol,'Wiederholungsvolumen im Bereich, der für 5 unbroken zählt','Band so wählen, dass die letzte Wiederholung noch sauber ist'),
+      ex('Close-Grip Bankdrücken','' + c.cgb,'Trizeps-Lockout unter Last','Griff schulterbreit, Ellbogen eng am Körper'),
+      ex('Dips','3×'+c.dips,'Trizeps und Schulterstabilität, Maschine oder Barren statt Ringe','Zuletzt, sauber und strikt')
+    ],'hspuvol_z4w2'),
+    mobi()
+  ]);
+  P[2][5]=day('Nur Laufbahn + Calisthenics-Park','flexibel','out',[
+    N('Ab heute bis Sonntag nur Bahn und Calisthenics-Park bei der Freundin erreichbar. Bewusst locker – Samstag sind die Intervalle, zwei harte Lauftage in Folge wollen wir nicht.','blue'),
+    B('Calisthenics · locker',[
+      ex('Pike Push-Ups','3×8–10','HSPU-Muster halten','Füße erhöht'),
+      ex('Pull-Ups','3×6–8','Zugvolumen, Stil frei',''),
+      ex('Push-Ups','3×15','Allgemeines Druckvolumen',''),
+      ex('Dips','3×8–10','Trizeps – zuletzt','')
+    ],'calisfr_z4w2'),
+    B('Lauf locker',[ex('Lauf','20–25 min Zone 2','Aktive Erholung, kein Tempo','Gespräch muss möglich sein – morgen sind die Intervalle')],'runfr_z4w2','text')
   ]);
 })();
 
@@ -862,9 +928,9 @@ P[16]={
   B('Test',[ex('Back Squat 3RM','Ziel 135–140 kg','Beinmaximalkraft','')],'test3_z4w16')]),
 4:day('Aktive Erholung','flexibel','engine',[
   B('Zone 2',[ex('Rad oder Row','30 min locker','Erholung vor dem Benchmark','')],'z2_z4w16','text')]),
-5:day('Benchmark · Diane scaled','flexibel','test',[
-  N('Identische Bedingungen wie in W5 – gleiche Lasten, gleiche Reihenfolge. Nur so ist der Vergleich etwas wert. Wenn die strikten HSPU stehen, läufst du ihn Rx.','yellow'),
-  WOD('Benchmark · 21-15-9 für Zeit','Diane scaled','Deadlift @ 100 kg · Pike HSPU oder strikte HSPU','Vergleich mit W5 im Verlauf des Eintrags.','bench_z4w16')]),
+5:day('Benchmark · Engine-Complex Test','flexibel','test',[
+  N('Identische Bedingungen wie in W5 – gleiche Lasten, gleiche Reihenfolge. Nur so ist der Vergleich etwas wert.','yellow'),
+  WOD('Benchmark','Engine-Complex Test I','3 Runden · je 1 min pro Station, 1 min Pause zwischen den Runden: Wall Balls @ 9 kg · DB Push Press @ 20 kg · Box Step-Overs · Rudern (Kalorien)','Vergleich mit W5 im Verlauf des Eintrags.','bench_z4w16')]),
 6:day('Jahresabschluss','flexibel','out',[
   B('Frei wählbar',[ex('Lauf oder Rad','60 min Zone 2','Zyklus 4 ist durch','Logs exportieren und schicken.')],'run_z4w16','text')]),
 0:day('Ruhetag','','rest',[REST('Ruhetag. Zyklus 5 wird auf Basis deiner Testwerte geplant.')])};
@@ -906,13 +972,13 @@ function renderRow(r,rowKey){
     (r.f?'<div class="ex-focus">Fokus: '+esc(r.f)+'</div>':'')+
     (r.o?'<div class="ex-note">'+esc(r.o)+'</div>':'')+'</div>'+btn+'</div></div>';
 }
-function renderBlock(bl,dayId,blockIdx){
+function renderBlock(bl,domId,blockIdx,logDayId){
   if(bl.t==='b'){
-    var bid=dayId+'_blk'+blockIdx;
+    var bid=domId+'_blk'+blockIdx;
     var open=!!OPEN_BLOCKS[bid];
     var h='<div class="block'+(open?' open':'')+'" id="'+bid+'"><div class="block-header" onclick="toggleBlock(\''+bid+'\')">'+
       '<div class="block-label">'+esc(bl.l)+'</div><span class="block-chevron">›</span></div><div class="block-content">';
-    for(var i=0;i<bl.r.length;i++)h+=renderRow(bl.r[i],dayId+'_b'+blockIdx+'_e'+i);
+    for(var i=0;i<bl.r.length;i++)h+=renderRow(bl.r[i],logDayId+'_b'+blockIdx+'_e'+i);
     return h+'</div></div>';
   }
   if(bl.t==='w'){
@@ -926,7 +992,7 @@ function renderBlock(bl,dayId,blockIdx){
   return '';
 }
 function canonicalDay(week,dow){return 'w'+week+'-'+dow;}
-function renderDayBody(d,dayId){var h='';for(var i=0;i<d.bl.length;i++)h+=renderBlock(d.bl[i],dayId,i);return h;}
+function renderDayBody(d,domId,logDayId){var h='';for(var i=0;i<d.bl.length;i++)h+=renderBlock(d.bl[i],domId,i,logDayId||domId);return h;}
 function dateForDay(week,dow){
   var w=WEEKS[week-1],start=new Date(w.s+'T00:00:00'),idx=DOW_ORDER.indexOf(dow);
   return new Date(start.getTime()+idx*86400000).toLocaleDateString('de-DE',{day:'numeric',month:'short'});
@@ -944,7 +1010,7 @@ function renderPlan(week){
       '<div class="day-header-text"><h3>'+DOW_NAME[dow]+' · '+dateForDay(week,dow)+'</h3>'+
       '<div class="day-time">'+esc(d.ti)+(d.tm?' · '+esc(d.tm):'')+'</div></div>'+
       '<span class="day-badge '+BADGE_CLASS[d.bd]+'">'+BADGE_TEXT[d.bd]+'</span><span class="chevron">›</span></div>'+
-      '<div class="day-body">'+renderDayBody(d,cid)+
+      '<div class="day-body">'+renderDayBody(d,id,cid)+
       '<button class="btn btn-ghost" style="margin-top:4px" onclick="openFeedback(\''+cid+'\',\''+DOW_NAME[dow]+' '+dateForDay(week,dow)+'\')">Tagesfeedback</button></div></div>';
   }
   document.getElementById('plan-days').innerHTML=h;
@@ -989,7 +1055,8 @@ function renderToday(){
   tp.style.color=d?BADGE_COLOR[d.bd]:'var(--text3)';
   document.getElementById('t-week').textContent=w.t+' · '+w.ph;
   document.getElementById('hd-pill').textContent='W'+wk;
-  document.getElementById('t-content').innerHTML=(d?renderDayBody(d,t.cid):'<div class="rest-card">Außerhalb des Zyklus. Über den Plan-Tab ist jede Woche einsehbar.</div>')+
+  var domId='td-w'+wk+'-'+dow;
+  document.getElementById('t-content').innerHTML=(d?renderDayBody(d,domId,t.cid):'<div class="rest-card">Außerhalb des Zyklus. Über den Plan-Tab ist jede Woche einsehbar.</div>')+
     (d?'<button class="btn btn-ghost" style="margin-top:4px" onclick="openFeedback(\''+t.cid+'\',\''+DOW_NAME[dow]+'\')">Tagesfeedback</button>':'');
   refreshLogButtons();
   return wk;
