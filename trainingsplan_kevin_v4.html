@@ -62,6 +62,13 @@ header{position:sticky;top:0;z-index:40;background:rgba(11,14,19,0.94);backdrop-
 .ex-top{display:flex;align-items:flex-start;gap:9px}
 .ex-info{flex:1;min-width:0}
 .ex-name{font-size:0.87rem;font-weight:600}
+.ex-check{display:none;color:var(--green);font-weight:800;margin-left:6px}
+.ex-row.done .ex-check{display:inline}
+.ex-row.done .ex-name{color:var(--green)}
+.block-progress{font-size:0.66rem;font-weight:700;color:var(--text3);margin-left:auto}
+.block-progress.complete{color:var(--green)}
+.wod-check{display:none;color:var(--green);font-weight:800;margin-left:6px}
+.wod-box.done .wod-check{display:inline}
 .ex-load{font-size:0.81rem;color:var(--blue);margin-top:1px}
 .ex-focus{font-size:0.74rem;color:var(--green);margin-top:4px;line-height:1.45}
 .ex-note{font-size:0.74rem;color:var(--text3);margin-top:3px;line-height:1.45}
@@ -179,13 +186,13 @@ textarea.fld{min-height:64px;resize:vertical}
     <h3>Tagestypen</h3>
     <table class="ntable">
       <tr><th>Tag</th><th>kcal</th><th>Protein</th><th>KH</th><th>Fett</th></tr>
-      <tr><td>Hart · Mo/Di</td><td>4.400</td><td>210 g</td><td>640 g</td><td>110 g</td></tr>
-      <tr><td>Mittel · Mi/Fr/Sa</td><td>4.000</td><td>210 g</td><td>560 g</td><td>100 g</td></tr>
+      <tr><td>Hart · Mo/Di/Mi</td><td>4.400</td><td>210 g</td><td>640 g</td><td>110 g</td></tr>
+      <tr><td>Mittel · Fr/Sa</td><td>4.000</td><td>210 g</td><td>560 g</td><td>100 g</td></tr>
       <tr><td>Leicht · Do/So</td><td>3.450</td><td>210 g</td><td>440 g</td><td>95 g</td></tr>
       <tr><td>Urlaub W7–W11</td><td>3.100–3.300</td><td>180–200 g</td><td>nach Aktivität</td><td>frei</td></tr>
     </table>
     <div class="kpi">
-      <div><b>≈3.950</b><span>Wochenschnitt kcal</span></div>
+      <div><b>≈4.000</b><span>Wochenschnitt kcal</span></div>
       <div><b>2.669</b><span>Grundumsatz</span></div>
       <div><b>±0,3 kg</b><span>Zieltrend / 14 Tage</span></div>
     </div>
@@ -229,11 +236,12 @@ textarea.fld{min-height:64px;resize:vertical}
   </div>
   <div class="sec">
     <h3>Wochengerüst</h3>
+    <p>Gilt ab Woche 4. In Woche 1–3 lag der Squat am Dienstag und die Oly-Technik am Mittwoch.</p>
     <table class="ntable">
       <tr><th>Tag</th><th>Inhalt</th><th>Last</th></tr>
       <tr><td>Mo</td><td>Box 2 h: Strict Skill → Kraft → Endurance 45 min, danach coachen</td><td>hart</td></tr>
-      <tr><td>Di</td><td>Gym AM Oberkörper + Box PM Squat schwer + WOD</td><td>hart</td></tr>
-      <tr><td>Mi</td><td>Gym AM Beine/Trizeps + Box PM Oly-Technik + Gymnastics-WOD</td><td>mittel</td></tr>
+      <tr><td>Di</td><td>Gym AM Beine & Zug + Box PM Oly-Technik, HSPU-Position, WOD</td><td>hart</td></tr>
+      <tr><td>Mi</td><td>Gym AM Druck + Box PM Back Squat + Gymnastics-WOD</td><td>hart</td></tr>
       <tr><td>Do</td><td>Aktive Erholung: Schwimmen 30 min + Rad 60 min Zone 2</td><td>leicht</td></tr>
       <tr><td>Fr</td><td>Box PM: Posteriore Kette + HSPU-Volumen + WOD</td><td>hart</td></tr>
       <tr><td>Sa</td><td>Lauf – Longrun zuhause, 400er-Intervalle bei der Freundin</td><td>mittel</td></tr>
@@ -245,9 +253,9 @@ textarea.fld{min-height:64px;resize:vertical}
     <p>Ausgangspunkt: eine saubere Wiederholung frisch. Mit 80 kg Strict Press bei 104 kg Körpergewicht liegt deine Pressekraft rechnerisch bei drei bis vier Wiederholungen. Der Engpass ist also nicht Kraft, sondern Zeit kopfüber, Trizeps-Lockout unter Inversion und Spannungshaltung über mehrere Wiederholungen.</p>
     <ul>
       <li><b>Mo schwer:</b> strikte Einzelwiederholungen mit voller Pause plus Negatives mit 5 s Absenken – das Exzentrische ist bei einer Wiederholung der Haupttreiber</li>
-      <li><b>Mi Position:</b> wandzugewandter Handstand-Hold und Box HSPU, reine Positionsarbeit ohne Ermüdung</li>
+      <li><b>Di Position:</b> wandzugewandter Handstand-Hold und Box HSPU, reine Positionsarbeit ohne Ermüdung</li>
       <li><b>Fr Volumen:</b> Banded oder Pike HSPU im Bereich 6–8 Wiederholungen plus Close-Grip Bench</li>
-      <li><b>Trizeps zweimal wöchentlich</b> direkt: Close-Grip Bench Fr, Pushdown Mi</li>
+      <li><b>Trizeps zweimal wöchentlich</b> direkt: Close-Grip Bench Fr, Overhead-Trizepsdrücken Mi</li>
       <li><b>Core ausschließlich wandzugewandt</b> – Rücken-zur-Wand trainiert die Hohlkreuzposition, die dich in der HSPU zusammenklappen lässt</li>
     </ul>
     <p>Meilensteine: 2–3 unbroken bis W5, Halten über den Urlaub mit Pike-Arbeit, 5 unbroken als Testmarke in W16.</p>
@@ -260,7 +268,8 @@ textarea.fld{min-height:64px;resize:vertical}
       <li>Maschinen ausschließlich im Wellpass, in der Box nie</li>
       <li>Gym AM belastet nie das Muster, das die Box-Einheit desselben Tages schwer trainiert</li>
       <li>HRV unter 65: Last runter, WOD streichen, Kraftteil halbieren. Über 75: freie Fahrt</li>
-      <li>Calisthenics-Reihenfolge immer Pull-Ups → Push-Ups → Pike Push-Ups → Dips</li>
+      <li>Calisthenics-Reihenfolge immer Pike Push-Ups → Pull-Ups → Push-Ups → Dips</li>
+      <li>Supersätze nur aus Übungen ohne Muskelüberschneidung</li>
       <li>Rudern aufrecht, Zug zum Bauchnabel</li>
     </ul>
   </div>
@@ -282,12 +291,13 @@ textarea.fld{min-height:64px;resize:vertical}
       <tr><th>Maschine</th><th>Last</th></tr>
       <tr><td>Beinpresse einbeinig</td><td>56 kg</td></tr>
       <tr><td>Beinpresse bilateral</td><td>190 kg</td></tr>
-      <tr><td>T-Bar brustgestützt</td><td>Start 45–50 kg, freie Last wiegt anders</td></tr>
+      <tr><td>T-Bar brustgestützt</td><td>35–37,5 kg (Stand W3: 35 kg bei RPE 6–7)</td></tr>
       <tr><td>Chest Press</td><td>57 kg</td></tr>
       <tr><td>Lat Pulldown</td><td>59 kg</td></tr>
       <tr><td>Incline Press neutral</td><td>70 kg</td></tr>
-      <tr><td>Face Pull</td><td>15 kg</td></tr>
-      <tr><td>Seitheben</td><td>7,5 kg</td></tr>
+      <tr><td>Face Pull</td><td>15 kg · nur noch als Warm-up</td></tr>
+      <tr><td>Reverse Butterfly</td><td>antasten (anderes Gym 45–52,5 kg)</td></tr>
+      <tr><td>Seitheben</td><td>6 kg, sitzend mit Kurzhanteln</td></tr>
     </table>
   </div>
   <div class="sec">
@@ -460,9 +470,90 @@ var SEED_LOGS={
   'w2-2_b1_e3':[{date:'2026-09-22T06:28:00',dateLabel:'22. Sept. 2026, 06:28',type:'strength',
     sets:[{kg:6,reps:15,rpe:6},{kg:7,reps:15,rpe:8},{kg:6,reps:15,rpe:7}],notes:'Sitzend mit Kurzhanteln'}],
   'w2-2_b1_e4':[{date:'2026-09-22T06:10:00',dateLabel:'22. Sept. 2026, 06:10',type:'strength',
-    sets:[{kg:20,reps:20,rpe:4},{kg:20,reps:20,rpe:5},{kg:20,reps:20,rpe:6}],notes:''}]
+    sets:[{kg:20,reps:20,rpe:4},{kg:20,reps:20,rpe:5},{kg:20,reps:20,rpe:6}],notes:''}],
+  'w2-2_b3_e0':[{date:'2026-09-22T14:59:00',dateLabel:'22. Sept. 2026, 14:59',type:'strength',
+    sets:[{kg:110,reps:5,rpe:6},{kg:110,reps:5,rpe:6},{kg:110,reps:5,rpe:6},{kg:110,reps:5,rpe:6},{kg:110,reps:5,rpe:7}],notes:''}],
+  'w2-2_b3_e1':[{date:'2026-09-22T15:08:00',dateLabel:'22. Sept. 2026, 15:08',type:'strength',
+    sets:[{kg:55,reps:8,rpe:5},{kg:55,reps:8,rpe:5},{kg:55,reps:8,rpe:6}],notes:''}],
+  'woddi_z4w2':[{date:'2026-09-22T15:28:00',dateLabel:'22. Sept. 2026, 15:28',type:'text',
+    result:'5:40',
+    notes:'Rundenzeiten R1 | 01:29 | R2 | 01:37 | R3 | 01:13 | R4 | 01:21\nPP 4x5@45kg\nC2B 8/6/6'}],
+  'w2-2_b5_e0':[{date:'2026-09-22T15:35:00',dateLabel:'22. Sept. 2026, 15:35',type:'text',
+    result:'2x8',notes:'Straight leg raises'}],
+  'w2-2_b5_e1':[{date:'2026-09-22T15:35:00',dateLabel:'22. Sept. 2026, 15:35',type:'text',result:'2x10',notes:''}],
+  'w2-2_b5_e2':[{date:'2026-09-22T15:35:00',dateLabel:'22. Sept. 2026, 15:35',type:'strength',
+    sets:[{kg:28,reps:30,rpe:''},{kg:28,reps:30,rpe:''}],notes:''}],
+  'w2-2_b5_e3':[{date:'2026-09-22T15:35:00',dateLabel:'22. Sept. 2026, 15:35',type:'text',result:'2x10',notes:''}],
+  'w2-3_b2_e0':[{date:'2026-09-23T19:21:00',dateLabel:'23. Sept. 2026, 19:21',type:'strength',
+    sets:[{kg:60,reps:8,rpe:7},{kg:60,reps:8,rpe:8},{kg:60,reps:7,rpe:9},{kg:53,reps:8,rpe:8}],notes:''}],
+  'w2-3_b2_e1':[{date:'2026-09-23T19:29:00',dateLabel:'23. Sept. 2026, 19:29',type:'strength',
+    sets:[{kg:45,reps:20,rpe:5},{kg:48.75,reps:20,rpe:5},{kg:52.5,reps:15,rpe:7}],notes:'Butterfly Reverse'}],
+  'w2-3_b2_e2':[{date:'2026-09-23T19:48:00',dateLabel:'23. Sept. 2026, 19:48',type:'strength',
+    sets:[{kg:101,reps:10,rpe:5},{kg:117,reps:10,rpe:6},{kg:117,reps:10,rpe:6},{kg:117,reps:10,rpe:6}],notes:'Liegende Beinpresse Beidbeinig'}],
+  'w2-3_b2_e3':[{date:'2026-09-23T19:38:00',dateLabel:'23. Sept. 2026, 19:38',type:'strength',
+    sets:[{kg:17.5,reps:15,rpe:5},{kg:21.5,reps:12,rpe:8},{kg:17.5,reps:12,rpe:8},{kg:17.5,reps:10,rpe:7}],notes:''}],
+  'w2-3_b2_e4':[{date:'2026-09-23T19:54:00',dateLabel:'23. Sept. 2026, 19:54',type:'strength',
+    sets:[{kg:96,reps:15,rpe:3},{kg:117,reps:15,rpe:4},{kg:131,reps:15,rpe:5}],notes:'Gewichte nicht beachten'}],
+  'wodmi_z4w2':[{date:'2026-09-23T20:13:00',dateLabel:'23. Sept. 2026, 20:13',type:'text',
+    result:'10:21',
+    notes:'50 DU gingen unbroken\n40 & 30er Runde mehrmals hängen geblieben\n20 & 10 wieder unbroken\n\nHollow Rock Runde 1 25-15-10\nDanach nur noch 5er Sätze am Stück möglich'}],
+  'w2-4_b3_e0':[{date:'2026-09-24T06:30:00',dateLabel:'24. Sept. 2026, 06:30',type:'strength',
+    sets:[{kg:150,reps:4,rpe:6},{kg:150,reps:4,rpe:6},{kg:150,reps:4,rpe:6},{kg:150,reps:4,rpe:6}],
+    notes:'Gym um 6 Uhr morgens\nOhne Lifting Straps, auch kein Chalk'}],
+  'w2-4_b3_e1':[{date:'2026-09-24T06:38:00',dateLabel:'24. Sept. 2026, 06:38',type:'strength',
+    sets:[{kg:95,reps:8,rpe:5},{kg:95,reps:8,rpe:5},{kg:95,reps:8,rpe:6}],notes:'Ohne Straps oder Chalk'}],
+  'w2-4_b4_e0':[{date:'2026-09-24T06:48:00',dateLabel:'24. Sept. 2026, 06:48',type:'strength',
+    sets:[{kg:'',reps:10,rpe:5},{kg:'',reps:10,rpe:6},{kg:'',reps:10,rpe:6},{kg:'',reps:10,rpe:7}],
+    notes:'Banded kann ich weder im Gym noch in der Box machen\nDaher nur Pike Push Ups'}],
+  'w2-4_b4_e1':[{date:'2026-09-24T06:57:00',dateLabel:'24. Sept. 2026, 06:57',type:'strength',
+    sets:[{kg:65,reps:8,rpe:6},{kg:65,reps:8,rpe:6},{kg:65,reps:8,rpe:6}],notes:''}],
+  'w2-4_b4_e2':[{date:'2026-09-24T07:04:00',dateLabel:'24. Sept. 2026, 07:04',type:'strength',
+    sets:[{kg:'',reps:7,rpe:5},{kg:'',reps:7,rpe:6},{kg:'',reps:7,rpe:8}],notes:''}],
+  'w2-5_b1_e0':[{date:'2026-09-25T00:00:00',dateLabel:'25. Sept. 2026',type:'text',result:'2x8',notes:'Box Pike Push-Ups'}],
+  'w2-5_b1_e1':[{date:'2026-09-25T00:00:00',dateLabel:'25. Sept. 2026',type:'text',result:'2x6',notes:'Paralleler Griff'}],
+  'w2-5_b1_e2':[{date:'2026-09-25T00:00:00',dateLabel:'25. Sept. 2026',type:'text',result:'2x15',notes:'Nicht unbroken'}],
+  'w2-5_b1_e3':[{date:'2026-09-25T00:00:00',dateLabel:'25. Sept. 2026',type:'text',result:'2x6',notes:''}],
+  'w2-0_b1_e0':[{date:'2026-09-27T00:00:00',dateLabel:'27. Sept. 2026',type:'text',result:'3x8',notes:''}],
+  'w2-0_b1_e1':[{date:'2026-09-27T00:00:00',dateLabel:'27. Sept. 2026',type:'text',result:'3x6',notes:'Chin-Up/Pull-Up'}],
+  'w2-0_b1_e2':[{date:'2026-09-27T00:00:00',dateLabel:'27. Sept. 2026',type:'text',result:'3x10',notes:''}],
+  'w2-0_b1_e3':[{date:'2026-09-27T00:00:00',dateLabel:'27. Sept. 2026',type:'text',result:'3x6',notes:''}],
+  "w2-5_b2_e0":[{"date": "2026-09-25T16:15:00", "dateLabel": "25. Sept. 2026, 16:15", "type": "text", "result": "8×400 m Intervalle (vom Samstag vorgezogen) · 6,10 km · Ø HF 138 · Max HF 163", "notes": "Statt lockerem Lauf die Intervalle auf der Bahn in Romanshorn.\nGarmin-Auswertung: Rep-Dauer 1:49–1:57, Pausen 1:22–1:27 bei ca. 7,2 km/h.\nØ HF Rep 1: 140 → Rep 8: 154, Pausen-HF 133 → 143, Kadenz 177 → 185 spm.\nReps 3 und 7 knapp über dem Zielfenster (1:57), Rest im Fenster."}],
+  "w3-1_b3_e0":[{"date": "2026-09-28T16:13:00", "dateLabel": "28. Sept. 2026, 16:13", "type": "strength", "sets": [{"kg": "", "reps": 1, "rpe": ""}, {"kg": "", "reps": 1, "rpe": ""}, {"kg": "", "reps": 1, "rpe": ""}, {"kg": "", "reps": 1, "rpe": ""}, {"kg": "", "reps": 1, "rpe": ""}], "notes": "1. schwer aber ging. Bin aber zum Schluss von der Wand gefallen\n2. ok, merke aber, dass ich viel aus dem Trapez drücke\n3. gleich wie Runde 2\n4. wie Runde 2\n5. 1/2 Rep, zwar noch einen Teil hochgedrückt, aber dann links eingebrochen und von der Wand gefallen"}],
+  "w3-1_b3_e1":[{"date": "2026-09-28T16:24:00", "dateLabel": "28. Sept. 2026, 16:24", "type": "text", "result": "4x3 @6s", "notes": "1. ok\n2. ok\n3. 3. Rep unteres 1/3 sehr schwer\n4. wie Runde 3"}],
+  "w3-1_b3_e2":[{"date": "2026-09-28T16:26:00", "dateLabel": "28. Sept. 2026, 16:26", "type": "text", "result": "3x30s", "notes": ""}],
+  "w3-1_b4_e0":[{"date": "2026-09-28T16:53:00", "dateLabel": "28. Sept. 2026, 16:53", "type": "strength", "sets": [{"kg": 58, "reps": 4, "rpe": 7}, {"kg": 58, "reps": 4, "rpe": 7}, {"kg": 58, "reps": 4, "rpe": 8}, {"kg": 58, "reps": 4, "rpe": 8}, {"kg": 58, "reps": 4, "rpe": 8}], "notes": ""}],
+  "w3-1_b4_e1":[{"date": "2026-09-28T17:07:00", "dateLabel": "28. Sept. 2026, 17:07", "type": "strength", "sets": [{"kg": 10, "reps": 4, "rpe": 6}, {"kg": 10, "reps": 4, "rpe": 7}, {"kg": 10, "reps": 4, "rpe": 8}, {"kg": 10, "reps": 4, "rpe": 9}], "notes": "Mit Grips"}],
+  "w3-1_b5_e0":[{"date": "2026-09-28T17:18:00", "dateLabel": "28. Sept. 2026, 17:18", "type": "strength", "sets": [{"kg": 5, "reps": 12, "rpe": 5}, {"kg": 7.5, "reps": 12, "rpe": 8}, {"kg": 5, "reps": 12, "rpe": 6}], "notes": ""}],
+  "w3-1_b5_e1":[{"date": "2026-09-28T17:12:00", "dateLabel": "28. Sept. 2026, 17:12", "type": "strength", "sets": [{"kg": "", "reps": 20, "rpe": ""}, {"kg": "", "reps": 20, "rpe": ""}, {"kg": "", "reps": 20, "rpe": ""}], "notes": "Rotes Band\nIm Supersatz mit den Cuban Rotations"}],
+  "end_z4w3":[{"date": "2026-09-28T17:38:00", "dateLabel": "28. Sept. 2026, 17:38", "type": "text", "result": "EMOM 15 (geplant EMOM 40, abgebrochen)", "notes": "EMOM15\n15 Pull Ups\n10 Burpees\n15 TTB\n10 Box Jumps\n15 cal C2 Bike\n\nVolumen aktuell zu hoch für EMOM 40. TTB mit Straight Leg Raises skaliert wegen dem Rücken."}],
+  "w3-2_b2_e0":[{"date": "2026-09-29T06:06:00", "dateLabel": "29. Sept. 2026, 06:06", "type": "strength", "sets": [{"kg": 35, "reps": 10, "rpe": 6}, {"kg": 35, "reps": 10, "rpe": 6}, {"kg": 35, "reps": 10, "rpe": 7}, {"kg": 35, "reps": 10, "rpe": 7}], "notes": "Supersatz mit Chest Press"}],
+  "w3-2_b2_e1":[{"date": "2026-09-29T06:07:00", "dateLabel": "29. Sept. 2026, 06:07", "type": "strength", "sets": [{"kg": 55, "reps": 10, "rpe": 6}, {"kg": 55, "reps": 10, "rpe": 6}, {"kg": 55, "reps": 10, "rpe": 6}, {"kg": 55, "reps": 10, "rpe": 7}], "notes": ""}],
+  "w3-2_b2_e2":[{"date": "2026-09-29T06:23:00", "dateLabel": "29. Sept. 2026, 06:23", "type": "strength", "sets": [{"kg": 59, "reps": 12, "rpe": 6}, {"kg": 59, "reps": 12, "rpe": 6}, {"kg": 59, "reps": 12, "rpe": 6}, {"kg": 59, "reps": 12, "rpe": 6}], "notes": "Supersatz mit Seitheben"}],
+  "w3-2_b2_e3":[{"date": "2026-09-29T06:24:00", "dateLabel": "29. Sept. 2026, 06:24", "type": "strength", "sets": [{"kg": 6, "reps": 15, "rpe": 6}, {"kg": 6, "reps": 15, "rpe": 6}, {"kg": 6, "reps": 15, "rpe": 7}, {"kg": 6, "reps": 15, "rpe": 6}], "notes": ""}],
+  "w3-2_b2_e4":[{"date": "2026-09-29T06:37:00", "dateLabel": "29. Sept. 2026, 06:37", "type": "strength", "sets": [{"kg": 15, "reps": 20, "rpe": 4}, {"kg": 18, "reps": 20, "rpe": 4}, {"kg": 20, "reps": 20, "rpe": 5}], "notes": "Supersatz mit Beinpresse 3x10@150kg"}],
+  "w3-3_b1_e0":[{"date": "2026-09-30T07:17:00", "dateLabel": "30. Sept. 2026, 07:17", "type": "strength", "sets": [{"kg": 53, "reps": 8, "rpe": 7}, {"kg": 53, "reps": 8, "rpe": 7}, {"kg": 53, "reps": 8, "rpe": 7}, {"kg": 53, "reps": 8, "rpe": 7}], "notes": "Supersatz mit Face Pulls"}],
+  "w3-3_b1_e1":[{"date": "2026-09-30T07:17:00", "dateLabel": "30. Sept. 2026, 07:17", "type": "strength", "sets": [{"kg": 15, "reps": 20, "rpe": 6}, {"kg": 15, "reps": 20, "rpe": 6}, {"kg": 15, "reps": 20, "rpe": 6}], "notes": "Würde für die Zukunft 1-2 Sätze leicht am Anfang zum Warm Up und die eigentliche Übung mit Reverse Butterfly ersetzen"}],
+  "w3-3_b1_e2":[{"date": "2026-09-30T07:37:00", "dateLabel": "30. Sept. 2026, 07:37", "type": "strength", "sets": [{"kg": 25, "reps": 10, "rpe": 6}, {"kg": 35, "reps": 10, "rpe": 6}, {"kg": 40, "reps": 10, "rpe": 6}, {"kg": 40, "reps": 10, "rpe": 6}], "notes": "Andere Beinpresse\nLinks schwerer als rechts"}],
+  "w3-3_b1_e3":[{"date": "2026-09-30T07:40:00", "dateLabel": "30. Sept. 2026, 07:40", "type": "strength", "sets": [{"kg": 17.5, "reps": 15, "rpe": 5}, {"kg": 17.5, "reps": 15, "rpe": 5}, {"kg": 17.5, "reps": 15, "rpe": 5}, {"kg": 17.5, "reps": 15, "rpe": 5}], "notes": "Evtl zu Overhead Trizeps Extensions wechseln?"}],
+  "w3-3_b1_e4":[{"date": "2026-09-30T07:51:00", "dateLabel": "30. Sept. 2026, 07:51", "type": "strength", "sets": [{"kg": 131, "reps": 15, "rpe": 5}, {"kg": 138, "reps": 15, "rpe": 5}, {"kg": 138, "reps": 15, "rpe": 6}], "notes": ""}],
+  "w3-3_b1_e5":[{"date": "2026-09-30T07:51:00", "dateLabel": "30. Sept. 2026, 07:51", "type": "text", "result": "3x40s", "notes": ""}],
+  "w3-3_b3_e0":[{"date": "2026-09-30T15:19:00", "dateLabel": "30. Sept. 2026, 15:19", "type": "strength", "sets": [{"kg": 65, "reps": 2, "rpe": 6}, {"kg": 65, "reps": 2, "rpe": 6}, {"kg": 65, "reps": 2, "rpe": 6}, {"kg": 65, "reps": 2, "rpe": 8}], "notes": "Fühlt sich heute richtig schwer an\nE2:30MOM"}],
+  "w3-3_b3_e1":[{"date": "2026-09-30T15:34:00", "dateLabel": "30. Sept. 2026, 15:34", "type": "strength", "sets": [{"kg": 80, "reps": 2, "rpe": 6}, {"kg": 80, "reps": 2, "rpe": 6}, {"kg": 80, "reps": 2, "rpe": 6}, {"kg": 80, "reps": 2, "rpe": 7}], "notes": "E2:30MOM\nDer 1. ist immer ok, der 2. recht schwer"}],
+  "w3-3_b4_e0":[{"date": "2026-09-30T15:58:00", "dateLabel": "30. Sept. 2026, 15:58", "type": "strength", "sets": [{"kg": 16, "reps": 8, "rpe": 4}, {"kg": 20, "reps": 8, "rpe": 4}, {"kg": 24, "reps": 8, "rpe": 5}], "notes": "Im Supersatz mit Handstand Hold"}],
+  "w3-3_b4_e1":[{"date": "2026-09-30T15:42:00", "dateLabel": "30. Sept. 2026, 15:42", "type": "strength", "sets": [{"kg": "", "reps": 12, "rpe": 4}, {"kg": "", "reps": 12, "rpe": 5}, {"kg": "", "reps": 12, "rpe": 5}], "notes": "Im Supersatz mit den Box HSPU"}],
+  "w3-3_b5_e0":[{"date": "2026-09-30T15:58:00", "dateLabel": "30. Sept. 2026, 15:58", "type": "text", "result": "4x30s", "notes": ""}],
+  "w3-3_b5_e1":[{"date": "2026-09-30T15:48:00", "dateLabel": "30. Sept. 2026, 15:48", "type": "strength", "sets": [{"kg": "", "reps": 5, "rpe": 4}, {"kg": "", "reps": 5, "rpe": 6}, {"kg": "", "reps": 5, "rpe": 5}, {"kg": "", "reps": 5, "rpe": 5}], "notes": ""}],
+  "wodmi_z4w3":[{"date": "2026-09-30T16:23:00", "dateLabel": "30. Sept. 2026, 16:23", "type": "text", "result": "7 Runden + 4 TTB", "notes": "Habe nach ca. 13:30 aufgehört\nHabe reguläre TTB gemacht, ging ok mit dem Rücken\n\nSplits:\nTTB 4-4\nRing Row 8\nPush Up 5-5"}]
 };
 var SEED_FEEDBACK={
+  "w3-3":{"emoji": 1, "stars": 3, "date": "2026-09-30T16:30:00", "notes": "Morgens Gym war ok. War wieder im selben wie letzten Mittwoch\n\nAbends in der Box einfach keine Power bei den Lifts gehabt. Fokus mehr auf Technik gelegt, was vermute ich Power gekostet hat.\n\nNormale TTB gingen heute"},
+  "w3-2":{"emoji": 2, "stars": 3, "date": "2026-09-29T06:45:00", "notes": ""},
+  "w3-1":{"emoji": 1, "stars": 4, "date": "2026-09-28T17:45:00", "notes": "Workout sollte eigentlich ein EMOM40 sein. Habe dann abgebrochen, da Volumen zu hoch für mich aktuell.\nTTB musste ich mit Straight Leg Raises skalieren wegen meinem Rücken"},
+  'w2-4':{emoji:2,stars:4,date:'2026-09-24T07:10:00',notes:'Besser als gedacht so früh morgens'},
+  'w2-3':{emoji:1,stars:4,date:'2026-09-23T20:20:00',
+    notes:'Müde nach dem Tag Dienstreise, aber gut, dass ich noch trainieren war\nMuss ein paar Übungen anpassen, da ich heute wieder in einem anderen Gym war, als ich sonst bin\nHollow Hold habe ich weggelassen, weil Hollow Rocks im Workout sonst schwieriger geworden wären, als eh schon waren'},
+  'w2-2':{emoji:4,stars:4,date:'2026-09-22T15:40:00',
+    notes:'Workout besser als gedacht, nach der Vorbelastung von heute Morgen.\nAuf dem Rower konnte ich nicht ganz so viel Power reinbringen wie sonst.'},
   'w2-1':{emoji:3,stars:4,date:'2026-09-21T17:05:00',
     notes:'An sich alles gut\nDenke die Vorbelastung von gestern war der Hauptgrund das ich heute schwächer war'},
   'w1-6':{emoji:4,stars:4,date:'2026-09-20T09:32:00',
@@ -509,6 +600,61 @@ ex('C1 · Hip Abduction','3×15','Hüftstabilität, Finisher-Paar mit C2','Super
 ex('C2 · Hollow Hold','3×40 s','Rumpfspannung in HSPU-Position, direkt im Anschluss an C1','Rippen unten, durch die Nase atmen')
 ],'gymmi_z4w'+w);}
 
+/* ===== Gym AM ab Woche 4 (neue Wochenstruktur: Di Beine + Zug, Mi Druck) ===== */
+function gymDi2(w){return B('Gym AM · Wellpass 60 min · Beine & Zug',[
+ex('Face Pull · Warm-up','2×15 @ leicht','Schulter aufwärmen, Außenrotatoren aktivieren','Kein Arbeitssatz, nur Vorbereitung'),
+ex('A1 · Beinpresse einbeinig','4×10 je Seite @ 56 kg','Beinvolumen vor dem Oly-Nachmittag, bewusst submaximal','Superset mit A2, kein Rest dazwischen – keine Muskelüberschneidung. Mit links beginnen, rechts nur auf dieselben Wiederholungen. Morgen kommt der schwere Squat, also Luft lassen'),
+ex('A2 · T-Bar Rudern brustgestützt','4×10 @ 37,5 kg','Rückenbreite und Zugkraft für Pull-Ups','Direkt nach A1, danach 90 s Pause. Aufrecht bleiben, zum Bauchnabel ziehen. Stand W3: 35 kg bei RPE 6–7'),
+ex('B1 · Lat Pulldown','4×12 @ 59 kg','Latvolumen für Pull-Ups','Superset mit B2, kein Rest dazwischen. Zug in den Lats spüren, nicht in der Schulter'),
+ex('B2 · Hip Abduction','3×15','Hüftstabilität, direkt im Anschluss an B1','90 s Pause danach. Oberkörper ruhig halten'),
+ex('Reverse Butterfly','3×15','Hintere Schulter – ersetzt den Face Pull als Arbeitsübung','Solo als Finisher. Gewicht antasten, im anderen Gym 45–52,5 kg')
+],'gymdi2_z4w'+w);}
+
+function gymMi2(w){return B('Gym AM · Wellpass 60 min · Druck',[
+ex('Face Pull · Warm-up','2×15 @ leicht','Schulter vor dem Drücken vorbereiten','Kein Arbeitssatz, nur Vorbereitung'),
+ex('A1 · Incline Press neutraler Griff','4×8 @ 70 kg','Schrägdruck, schulterfreundlich und nah an der HSPU-Linie','Superset mit A2, kein Rest dazwischen – Druck vs. Zug. Im anderen Gym neu antasten (dort 53–60 kg)'),
+ex('A2 · Reverse Butterfly','3×15','Hintere Schulter als Gegenspieler zum Drücken','Direkt nach A1, danach 90 s Pause'),
+ex('B1 · Chest Press','3×10 @ 57 kg','Horizontales Druckvolumen','Superset mit B2, kein Rest dazwischen. Schulterblätter fixiert'),
+ex('B2 · Hollow Hold','3×40 s','Rumpfspannung in HSPU-Position','Direkt nach B1, danach 90 s Pause. Rippen unten, durch die Nase atmen'),
+ex('C1 · Overhead-Trizepsdrücken','3×12','Langer Trizepskopf in gedehnter Position – arbeitet im HSPU-Lockout mit','Superset mit C2. Kabel mit Seil oder Kurzhantel, ersetzt den Pushdown. Moderat starten, nur im schmerzfreien Bereich'),
+ex('C2 · Seitheben','3×15 @ 6 kg','Seitliche Schulter','Sitzend mit Kurzhanteln, sauber führen')
+],'gymmi2_z4w'+w);}
+
+/* Neue Wochenstruktur ab Woche 4: Di Oly + HSPU-Position + Press-Pull-WOD, Mi Back Squat + Gymnastics-WOD.
+   Mo, Do, Fr, Sa, So wie bisher. Woche 1–3 bleiben unverändert, damit die Log-Historie passt. */
+function normalWeek2(w,c){
+  var d=normalWeek(w,c);
+  d[2]=day('Gym AM + Box PM · Oly-Technik & HSPU-Position','05:00–06:00 · 15:00–17:00','box',[
+    MORGEN,
+    gymDi2(w),
+    WU('Warm-Up Box 10 min: 300 m Row · Snatch-Komplex mit leerer Stange 2 Runden (3 Muskelreißen, 3 Überkopfkniebeugen, 3 Reißkniebeugen) · Handgelenke und Schultern'),
+    B('A · Oly-Technik',[
+      ex('Squat Snatch',''+c.sn,'Technik halten, nicht entwickeln – Thorax aufrecht, Stange hinter den Ohren','Kein Maxversuch. Wenn die Position bricht, Gewicht runter.'),
+      ex('Clean & Jerk',''+c.cj,'Überkopfvolumen ohne strikte Ermüdung','Jerk mit sauberem Split, Kopf durch')
+    ],'oly_z4w'+w),
+    B('B · HSPU-Position',[
+      ex('Wandzugewandter Handstand-Hold','4×30 s','Die eigentliche HSPU-Position, ermüdungsfrei geübt','Solo und zuerst. Nase zur Wand, Rippen zu'),
+      ex('B1 · Box HSPU','4×5','Volumen in der Inversion bei reduziertem Hebel','Superset mit B2. Hüfte über der Schulter, nicht zu flach werden'),
+      ex('B2 · Ring Row strict','3×12','Zug als Gegenspieler zur Box HSPU','Direkt nach B1. Körper bleibt eine Linie')
+    ],'hspupos_z4w'+w,'text'),
+    WOD('C · WOD',c.wodDiName,c.wodDiBody,c.wodDiNote,'woddi_z4w'+w),
+    coreBlock(w,c.core),
+    mobi()
+  ]);
+  d[3]=day('Gym AM + Box PM · Squat schwer','05:00–06:00 · 15:00–17:00','box',[
+    MORGEN,
+    gymMi2(w),
+    WU('Warm-Up Box 10 min: 5 min Rad · 10 Air Squats · 8 Cossack Squats · 10 Good Mornings leer · Squat-Aufwärmleiter 5×60 · 5×80 · 3× Arbeitslast minus 15 kg'),
+    B('A · Back Squat',[
+      ex('Back Squat',''+c.sq,'Beinmaximalkraft, Hauptreiz der Woche','Volle Tiefe, Knie folgen den Zehen, Spannung oben neu aufbauen'),
+      ex('Back Rack Lunge rückwärts','3×8 je Seite @ '+c.lunge,'Einbeinige Kraft und Stabilität','Rückwärts, kontrolliert absetzen. Mit links beginnen')
+    ],'squat_z4w'+w),
+    WOD('B · Gymnastics-WOD',c.wodMiName,c.wodMiBody,c.wodMiNote,'wodmi_z4w'+w),
+    mobi()
+  ]);
+  return d;
+}
+
 /* ===== Blöcke ===== */
 function hspuMo(w,dose,neg){return B('A · HSPU schwer – zuerst, solange du frisch bist',[
 ex('Strict HSPU','' + dose,'Maximalkraft in der Inversion','Hände 10–15 cm zur Wand, Tripod. Volle Pause zwischen den Versuchen, ca. 2 min.'),
@@ -539,8 +685,8 @@ function normalWeek(w,c){return{
   hspuMo(w,c.hspu,c.neg),
   kraftMo(w,c.sp,c.wpu),
   B('Accessory · Schulterhealth',[
-    ex('Cuban Rotation','3×12','Außenrotation, Gegenspieler zum vielen Drücken','Ellbogen 90°, langsam und kontrolliert'),
-    ex('Band Pull-Apart','3×20','Schulterblattstabilität für HSPU und Press','Schulterblätter aktiv zusammenziehen')
+    ex('A1 · Cuban Rotation','3×12','Außenrotation, Gegenspieler zum vielen Drücken','Superset mit A2, kein Rest dazwischen. Ellbogen 90°, langsam und kontrolliert'),
+    ex('A2 · Band Pull-Apart','3×20','Schulterblattstabilität für HSPU und Press','Direkt nach A1. Schulterblätter aktiv zusammenziehen')
   ],'accmo_z4w'+w),
   WOD('C · Endurance 45 min · solo',c.endName,c.endBody,c.endNote,'end_z4w'+w),
   mobi()
@@ -644,7 +790,7 @@ CFG[3]={hspu:'5×1 strikt, volle Pause · gleiche Abbruchregel',neg:'4×3 · 6 s
 sq:'5×4 @ 115 kg',lunge:'60 kg',dl:'4×4 @ 162 kg',rdl:'100 kg',sn:'4×2 @ 65 kg',cj:'4×2 @ 80 kg',
 hspuVol:'4×8 Banded',cgb:'4×6 @ 70 kg',dips:'8',core:2,
 endName:'Dein Workout',endBody:'Ab dieser Woche dein eigenes Endurance-Workout · 45 min',endNote:'Inhalt und Ergebnis hier eintragen, damit ich Di und Mi dagegen planen kann.',
-wodDiName:'Press-Pull Chipper II',wodDiBody:'For Time (18 min Cap): 40 Cal Row · 24 Push Press @ 47,5 kg · 24 Chest-to-Bar Pull-Ups · 40 Cal Row',wodDiNote:'Fokus: mehr Volumen als letzte Woche, Beine bleiben komplett raus nach dem Squat.',
+wodDiName:'Press-Pull Chipper II',wodDiBody:'3 Runden für Zeit (16 min Cap): 15 Cal Row · 12 Push Press @ 50 kg · 12 Chest-to-Bar Pull-Ups',wodDiNote:'Fokus: Runden statt Einmal-Durchlauf – W2 war mit 5:40 auf einen 16-min-Cap deutlich unterdimensioniert, das hier baut echte Ermüdung auf. Beine bleiben komplett raus nach dem Squat.',
 wodMiName:'Gymnastics Density I',wodMiBody:'AMRAP 14: 8 Toes-to-Bar · 8 Ring Rows strict · 10 Push-Ups',wodMiNote:'Fokus: Zug- und Druckausdauer unter Ermüdung – zahlt direkt auf Strict HSPU und Weighted Pull-Up ein. Baseline – wird in W13 identisch wiederholt.',
 wodFrName:'Engine Threshold I',wodFrBody:'4 Runden: 15 Cal Bike · 12 DB Snatch @ 22,5 kg alternierend · 200 m Farmer Carry @ 24 kg je Hand',wodFrNote:'Fokus: aerobe Kapazität und Griffkraft, keine weitere Hüftstreckung nach dem Deadlift. Baseline – wird in W14 identisch wiederholt.',
 runType:'Longrun',run:'65 min Zone 2 inkl. 4×3 min an der Schwelle',runFocus:'Aerobe Basis mit Tempoblock',runNote:'Schwellenblöcke nach 20 min einbauen, 2 min Trab dazwischen.',
@@ -654,7 +800,7 @@ CFG[4]={hspu:'4×1 strikt, volle Pause · 1.1-Cluster nur versuchen, wenn 3 saub
 sq:'4×4 @ 122 kg',lunge:'65 kg',dl:'4×3 @ 175 kg',rdl:'105 kg',sn:'4×2 @ 68 kg',cj:'4×2 @ 85 kg',
 hspuVol:'5×8 Banded',cgb:'4×6 @ 72,5 kg',dips:'8',core:2,
 endName:'Dein Workout',endBody:'Dein eigenes Endurance-Workout · 45 min',endNote:'Inhalt und Ergebnis eintragen.',
-wodDiName:'Press-Pull Chipper III',wodDiBody:'For Time (20 min Cap): 50 Cal Row · 30 Push Press @ 50 kg · 30 Chest-to-Bar Pull-Ups · 50 Cal Row',wodDiNote:'Volumenspitze der Woche. Kein Satz mehr als vorgesehen – hier ist dir das in Zyklus 3 entglitten.',
+wodDiName:'Press-Pull Chipper III',wodDiBody:'4 Runden für Zeit (18 min Cap): 15 Cal Row · 12 Push Press @ 52,5 kg · 12 Chest-to-Bar Pull-Ups',wodDiNote:'Volumenspitze der Woche – eine Runde mehr als letzte Woche. Kein Satz mehr als vorgesehen – hier ist dir das in Zyklus 3 entglitten.',
 wodMiName:'Gymnastics Density II',wodMiBody:'AMRAP 16: 10 Toes-to-Bar · 10 Ring Rows strict · 12 Push-Ups',wodMiNote:'Mehr Runden-Potential als letzte Woche bei gleicher Bewegungsauswahl.',
 wodFrName:'Engine Threshold II',wodFrBody:'5 Runden: 15 Cal Bike · 14 DB Snatch @ 22,5 kg alternierend · 200 m Farmer Carry @ 26 kg je Hand',wodFrNote:'Eine Runde mehr als letzte Woche, Griffkraft steigt mit.',
 runType:'Intervalle',run:'10×400 m @ 1:52–1:55 · 90 s Trabpause',runFocus:'Tempohärte bei hoher Wochenlast',runNote:'Wenn die letzten beiden Intervalle mehr als 3 s abfallen: abbrechen, Ziel erreicht.'};
@@ -669,7 +815,7 @@ wodFrName:'Engine Threshold Test',wodFrBody:'3 Runden für Zeit: 15 Cal Bike · 
 runType:'Longrun',run:'70 min Zone 2',runFocus:'Längster Lauf des Blocks',runNote:'Ab 75 min Flüssigkeit ab Minute 30. Heute knapp darunter, also Wasser danach.',
 sunday:'Tanita-Messung morgens nüchtern – Vergleich zu W1.'};
 
-CFG[12]={hspu:'6×1 strikt, volle Pause',neg:'4×3 · 5 s absenken',sp:'4×5 @ 50 kg',wpu:'4×5 @ +8 kg',
+CFG[12]={hspu:'4×1 strikt, volle Pause · Abbruch nach 2 Fehlversuchen in Folge, Rest in Handstand-Hold',neg:'4×3 · 5 s absenken',sp:'4×5 @ 50 kg',wpu:'4×5 @ +8 kg',
 sq:'4×5 @ 100 kg',lunge:'50 kg',dl:'4×5 @ 140 kg',rdl:'90 kg',sn:'5×2 @ 55 kg',cj:'4×2 @ 70 kg',
 hspuVol:'4×6 Banded',cgb:'3×8 @ 60 kg',dips:'6',core:1,
 endName:'Dein Workout',endBody:'Dein eigenes Endurance-Workout · 45 min · bewusst moderat',endNote:'Erste Woche zurück. Ergebnis eintragen.',
@@ -679,7 +825,7 @@ wodFrName:'Helen · 3 Runden für Zeit',wodFrBody:'400 m Lauf · 21 Kettlebell S
 runType:'Longrun',run:'45 min Zone 2',runFocus:'Wiedereinstieg in die Laufbelastung',runNote:'Kadenz 168–172, kein Tempo.',
 sunday:'Tanita-Messung – Bilanz des Urlaubsblocks.'};
 
-CFG[13]={hspu:'8×1 strikt, volle Pause',neg:'4×2 · 6 s absenken',sp:'5×4 @ 56 kg',wpu:'4×4 @ +14 kg',
+CFG[13]={hspu:'5×1 strikt, volle Pause · gleiche Abbruchregel',neg:'4×2 · 6 s absenken',sp:'5×4 @ 56 kg',wpu:'4×4 @ +10 kg',
 sq:'4×4 @ 112 kg',lunge:'58 kg',dl:'4×4 @ 160 kg',rdl:'98 kg',sn:'4×2 @ 62 kg',cj:'4×2 @ 78 kg',
 hspuVol:'4×8 Banded',cgb:'4×6 @ 68 kg',dips:'8',core:2,
 endName:'Dein Workout',endBody:'Dein eigenes Endurance-Workout · 45 min',endNote:'Ergebnis eintragen.',
@@ -688,7 +834,7 @@ wodMiName:'Gymnastics Density I',wodMiBody:'AMRAP 14: 8 Toes-to-Bar · 8 Ring Ro
 wodFrName:'Engine Threshold III',wodFrBody:'5 Runden: 18 Cal Bike · 14 DB Snatch @ 25 kg alternierend · 200 m Farmer Carry @ 26 kg je Hand',wodFrNote:'Aufbau nach dem Urlaub, Volumen und Last leicht über dem Ausgangswert von W3.',
 runType:'Intervalle',run:'8×400 m @ 1:55–1:58 · 90 s Trabpause',runFocus:'Tempo zurückholen',runNote:'Etwas langsamer als vor dem Urlaub ansetzen.'};
 
-CFG[14]={hspu:'5×2 strikt oder 1.1-Cluster',neg:'4×3 · 6 s absenken',sp:'5×3 @ 62 kg',wpu:'4×3 @ +20 kg',
+CFG[14]={hspu:'5×1 strikt, volle Pause · 1.1-Cluster nur, wenn 3 saubere Einzelreps stehen',neg:'4×3 · 6 s absenken',sp:'5×3 @ 62 kg',wpu:'4×3 @ +14 kg',
 sq:'4×3 @ 125 kg',lunge:'65 kg',dl:'3×3 @ 180 kg',rdl:'105 kg',sn:'4×2 @ 68 kg',cj:'4×2 @ 85 kg',
 hspuVol:'5×8 Banded',cgb:'4×6 @ 72,5 kg',dips:'9',core:2,
 endName:'Dein Workout',endBody:'Dein eigenes Endurance-Workout · 45 min',endNote:'Ergebnis eintragen.',
@@ -702,7 +848,7 @@ var WEEKS=[
 {n:1,s:'2026-09-14',e:'2026-09-20',ph:'Phase 1 · Reset',t:'Woche 1 · 14.–20. September',d:'Rebasing. Lasten bestätigen, RPE-Deckel 7, keine Maxversuche. HSPU-Ausgangswert testen.',v:['Volumen mittel','60–65 %','RPE max 7']},
 {n:2,s:'2026-09-21',e:'2026-09-27',ph:'Phase 1 · Reset',t:'Woche 2 · 21.–27. September',d:'Lasten plus 6–8 %. Strict-Volumen steigt, Beta-Alanin startet.',v:['Volumen mittel+','68–72 %','RPE max 8']},
 {n:3,s:'2026-09-28',e:'2026-10-04',ph:'Phase 2 · Build',t:'Woche 3 · 28. Sept – 4. Oktober',d:'Ab jetzt kommen deine eigenen Endurance-Workouts. Volumen hoch.',v:['Volumen hoch','72–76 %','Eigene Endurance']},
-{n:4,s:'2026-10-05',e:'2026-10-11',ph:'Phase 2 · Build',t:'Woche 4 · 5.–11. Oktober',d:'Volumenspitze. Hier läuft es sich schwer an – genau so ist es geplant.',v:['Volumen Peak','76–80 %','Kein Zusatzvolumen']},
+{n:4,s:'2026-10-05',e:'2026-10-11',ph:'Phase 2 · Build',t:'Woche 4 · 5.–11. Oktober',d:'Neue Wochenstruktur ab jetzt: Oly-Technik am Dienstag, Back Squat am Mittwoch. Volumenspitze – hier läuft es sich schwer an, genau so ist es geplant.',v:['Volumen Peak','76–80 %','Kein Zusatzvolumen']},
 {n:5,s:'2026-10-12',e:'2026-10-18',ph:'Phase 2 · Build',t:'Woche 5 · 12.–18. Oktober',d:'Intensitätsspitze und Zwischentests: HSPU Max Reps, 3RM Strict Press, 3RM Weighted Pull-Up.',v:['Volumen runter','82–88 %','3RM-Tests']},
 {n:6,s:'2026-10-19',e:'2026-10-25',ph:'Phase 3 · Deload',t:'Woche 6 · 19.–25. Oktober',d:'Mo bis Do entlastet, Freitag 23.10. Abreise. Ziel ist ein erholter Start in den Urlaub.',v:['Volumen −50 %','60 %','Fr Abreise']},
 {n:7,s:'2026-10-26',e:'2026-11-01',ph:'Phase 4 · Urlaub',t:'Woche 7 · 26. Okt – 1. November',d:'Bewusst reduziert. Zwei kurze Einheiten, sonst Erholung.',v:['2 Einheiten','Hotelgym','Erholung']},
@@ -719,7 +865,8 @@ var WEEKS=[
 
 /* ===== Plan ===== */
 var P={};
-[1,2,3,4,5,12,13,14].forEach(function(w){P[w]=normalWeek(w,CFG[w]);});
+[1,2,3].forEach(function(w){P[w]=normalWeek(w,CFG[w]);});
+[4,5,12,13,14].forEach(function(w){P[w]=normalWeek2(w,CFG[w]);});
 
 /* W1-Sonderfall: Geschäftsreise Di/Mi, nur Gym erreichbar. Di+Mi zu einem Gym-Block zusammengelegt (heute Abend oder morgen früh),
    Squat auf Do, Oly+Deadlift+HSPU-Volumen verdichtet auf Fr, HSPU-Position+Intervalle auf Sa. */
@@ -823,6 +970,40 @@ var P={};
   ]);
 })();
 
+/* W2-Ergänzung: Sonntag spontan Calisthenics-Park-Circuit, zusätzlich zum Ruhetag */
+P[2][0]=day('Ruhetag · spontan Calisthenics','','rest',[
+  REST('Ruhetag. Mobilität nach Bedarf, Spaziergang, Meal Prep für Mo bis Mi.'),
+  B('Calisthenics-Park · 3 Runden Circuit',[
+    ex('Pike Push-Ups','3×8','HSPU-Muster','Circuit-Format, spontan'),
+    ex('Chin-Up/Pull-Up','3×6','Zugvolumen',''),
+    ex('Push-Ups','3×10','Druckvolumen',''),
+    ex('Dips','3×6','Trizeps','')
+  ],'calisso_z4w2')
+]);
+
+/* W3-Sonderfall: Di nur Gym AM (Impfung nachmittags, Box PM entfällt). Squat+WOD auf Do verschoben,
+   aktive Erholung entfällt diese Woche einmalig – nach der Impfung ist Ruhe am Abend sinnvoller als Schwimmen/Rad. */
+(function(){
+  var c=CFG[3];
+  P[3][2]=day('Gym AM · nur Vormittag (Impfung nachmittags)','05:00–06:00','gym',[
+    MORGEN,
+    N('Impftermin heute Nachmittag – Box PM entfällt deshalb, Squat und WOD wandern auf Donnerstag. Nach der Impfung lieber Ruhe als Zusatzbelastung, Reaktionen zeigen sich oft erst 12–24 h später.','orange'),
+    gymDi(3)
+  ]);
+  P[3][4]=day('Box · Squat-Tag (verschoben von Di)','15:00–17:00','box',[
+    MORGEN,
+    N('Squat und WOD von Dienstag hierher verschoben. Die aktive Erholung (Schwimmen/Rad) entfällt diese Woche einmalig – eine ausgelassene Woche ist kein Problem.','orange'),
+    WU('Warm-Up Box 10 min: 5 min Rad · 10 Air Squats · 8 Cossack Squats · 10 Good Mornings leer · Squat-Aufwärmleiter 5×60 · 5×90 · 3× Arbeitslast minus 15 kg'),
+    B('A · Back Squat',[
+      ex('Back Squat','' + c.sq,'Beinmaximalkraft, Hauptreiz der Woche','Volle Tiefe, Knie folgen den Zehen, Spannung oben neu aufbauen'),
+      ex('Back Rack Lunge','3×8 je Seite @ '+c.lunge,'Einbeinige Kraft und Stabilität','Rückwärts, kontrolliert absetzen, Oberkörper aufrecht')
+    ],'squat_z4w3'),
+    WOD('B · WOD (verschoben von Di)',c.wodDiName,c.wodDiBody,c.wodDiNote,'woddi_z4w3'),
+    coreBlock(3,c.core),
+    mobi()
+  ]);
+})();
+
 /* W6 Deload */
 P[6]={
 1:day('Box · Deload','ca. 75 min','box',[MORGEN,
@@ -833,16 +1014,16 @@ P[6]={
     ex('Weighted Pull-Up','3×5 ohne Zusatzgewicht','Zugmuster halten','')
   ],'kraftmo_z4w6'),
   WOD('Endurance kurz','Zone-2-Rad','30 min locker, HF unter 140','Kein Intervall diese Woche.','end_z4w6')]),
-2:day('Gym AM + Box PM · locker','05:00–06:00 · 15:00–17:00','gym',[MORGEN,
-  gymDi(6),
-  B('Box locker',[ex('Back Squat','3×5 @ 90 kg','Bewegungsqualität','')],'squat_z4w6'),
-  WOD('WOD locker · EMOM 15','3er-Rotation','Min 1: 10 Cal Row · Min 2: 6 Pull-Ups · Min 3: 10 Sit-Ups','','woddi_z4w6')]),
-3:day('Gym AM + Box PM · Skill','05:00–06:00 · 15:00–17:00','gym',[MORGEN,
-  gymMi(6),
+2:day('Gym AM + Box PM · Skill locker','05:00–06:00 · 15:00–17:00','gym',[MORGEN,
+  gymDi2(6),
   B('Skill locker',[
     ex('Wandzugewandter Handstand-Hold','4×30 s','Position halten',''),
     ex('Ring Dips strict','3×5','Trizeps ohne Ermüdung','')
-  ],'hspupos_z4w6','text')]),
+  ],'hspupos_z4w6','text'),
+  WOD('WOD locker · EMOM 15','3er-Rotation','Min 1: 10 Cal Row · Min 2: 6 Pull-Ups · Min 3: 10 Sit-Ups','','woddi_z4w6')]),
+3:day('Gym AM + Box PM · Squat locker','05:00–06:00 · 15:00–17:00','gym',[MORGEN,
+  gymMi2(6),
+  B('Box locker',[ex('Back Squat','3×5 @ 90 kg','Bewegungsqualität','')],'squat_z4w6')]),
 4:day('Aktive Erholung','Mittag','engine',[
   B('Zone 2',[ex('Schwimmen','30 min locker','Erholung',''),ex('Rad','45 min Zone 2','Erholung','')],'z2_z4w6','text'),
   N('Danach packen. Springseil und ein Widerstandsband einpacken – damit läuft der ganze Urlaubsblock.','blue')]),
@@ -895,14 +1076,14 @@ P[15]={
   B('Kraft reduziert',[
     ex('Strict HSPU','4×2 strikt','Muster scharf halten','Volle Pause'),
     ex('Strict Press','3×3 @ 58 kg','Technik bei mittlerer Last',''),
-    ex('Weighted Pull-Up','3×3 @ +16 kg','Zugkraft halten','')
+    ex('Weighted Pull-Up','3×3 @ +12 kg','Zugkraft halten','')
   ],'kraftmo_z4w15'),
   WOD('Endurance','Dein Workout','45 min, bewusst moderat','Ergebnis eintragen.','end_z4w15')]),
-2:day('Gym AM + Box PM · locker','05:00–06:00 · 15:00–17:00','gym',[MORGEN,gymDi(15),
+2:day('Gym AM + Skill','05:00–06:00','gym',[MORGEN,gymDi2(15),
+  B('Skill',[ex('Wandzugewandter Handstand-Hold','4×30 s','Position','')],'hspupos_z4w15','text')]),
+3:day('Gym AM + Box PM · locker','05:00–06:00 · 15:00–17:00','gym',[MORGEN,gymMi2(15),
   B('Box locker',[ex('Back Squat','3×3 @ 110 kg','Bewegungsqualität','')],'squat_z4w15'),
   WOD('WOD moderat · AMRAP 12','Row / Pull-Ups / Push-Ups','12 Cal Row · 6 Pull-Ups · 8 Push-Ups','','woddi_z4w15')]),
-3:day('Gym AM + Skill','05:00–06:00','gym',[MORGEN,gymMi(15),
-  B('Skill',[ex('Wandzugewandter Handstand-Hold','4×30 s','Position','')],'hspupos_z4w15','text')]),
 4:day('Heiligabend · frei','','rest',[REST('Frei.')]),
 5:day('1. Weihnachtstag · frei','','rest',[REST('Frei.')]),
 6:day('2. Weihnachtstag · frei','','rest',[REST('Frei. Wenn Lust: Spaziergang.')]),
@@ -921,7 +1102,7 @@ P[16]={
   WU('Aufwärmleiter Press: 5×40 · 3×50 · 2×60 · 1×68 · 1×74 kg · zwischen den Versuchen mindestens 3 min Pause'),
   B('Tests',[
     ex('Strict Press 1RM','Ziel 82–85 kg','Vertikale Maximalkraft · PR April 80 kg',''),
-    ex('Weighted Pull-Up 1RM','Ziel +32 kg','Zugmaximalkraft · PR April +30 kg','')
+    ex('Weighted Pull-Up 1RM','Ziel +25–28 kg','Zugmaximalkraft · PR April +30 kg','')
   ],'test2_z4w16')]),
 3:day('Testtag 3 · Back Squat 3RM','15:00–17:00','test',[MORGEN,
   WU('Aufwärmleiter Squat: 5×60 · 5×90 · 3×110 · 2×125 kg'),
@@ -967,7 +1148,7 @@ function parseLoad(load){
 function renderRow(r,rowKey){
   var meta=parseLoad(r.l);
   var btn='<button class="log-btn" data-key="'+rowKey+'" onclick="openLog(\''+q(rowKey)+'\',\''+q(r.n)+'\',\''+meta.type+'\',\''+q(r.l||'')+'\')">LOG</button>';
-  return '<div class="ex-row"><div class="ex-top"><div class="ex-info"><div class="ex-name">'+esc(r.n)+'</div>'+
+  return '<div class="ex-row"><div class="ex-top"><div class="ex-info"><div class="ex-name">'+esc(r.n)+'<span class="ex-check">✓</span></div>'+
     (r.l?'<div class="ex-load">'+esc(r.l)+'</div>':'')+
     (r.f?'<div class="ex-focus">Fokus: '+esc(r.f)+'</div>':'')+
     (r.o?'<div class="ex-note">'+esc(r.o)+'</div>':'')+'</div>'+btn+'</div></div>';
@@ -977,14 +1158,14 @@ function renderBlock(bl,domId,blockIdx,logDayId){
     var bid=domId+'_blk'+blockIdx;
     var open=!!OPEN_BLOCKS[bid];
     var h='<div class="block'+(open?' open':'')+'" id="'+bid+'"><div class="block-header" onclick="toggleBlock(\''+bid+'\')">'+
-      '<div class="block-label">'+esc(bl.l)+'</div><span class="block-chevron">›</span></div><div class="block-content">';
+      '<div class="block-label">'+esc(bl.l)+'</div><span class="block-progress"></span><span class="block-chevron">›</span></div><div class="block-content">';
     for(var i=0;i<bl.r.length;i++)h+=renderRow(bl.r[i],logDayId+'_b'+blockIdx+'_e'+i);
     return h+'</div></div>';
   }
   if(bl.t==='w'){
     var note=bl.o?'<div class="ex-note" style="margin-top:7px">'+esc(bl.o)+'</div>':'';
     var btn=bl.k?'<button class="log-btn" style="margin-top:9px;width:100%;border-radius:10px;padding:9px" data-key="'+bl.k+'" onclick="openLog(\''+q(bl.k)+'\',\''+q(bl.nm)+'\',\'text\',\''+q(bl.b||'')+'\')">Ergebnis eintragen</button>':'';
-    return '<div class="wod-box"><div class="wod-label">'+esc(bl.l)+'</div><div class="wod-name">'+esc(bl.nm)+'</div><div class="wod-body">'+esc(bl.b)+'</div>'+note+btn+'</div>';
+    return '<div class="wod-box"><div class="wod-label">'+esc(bl.l)+'</div><div class="wod-name">'+esc(bl.nm)+'<span class="wod-check">✓</span></div><div class="wod-body">'+esc(bl.b)+'</div>'+note+btn+'</div>';
   }
   if(bl.t==='n')return '<div class="note-box '+(bl.c||'')+'">'+esc(bl.x)+'</div>';
   if(bl.t==='u')return '<div class="wu-box"><strong>Warm-Up</strong>'+esc(bl.x)+'</div>';
@@ -1156,8 +1337,21 @@ function refreshLogButtons(){
   var btns=document.querySelectorAll('.log-btn[data-key]');
   for(var i=0;i<btns.length;i++){
     var last=getLastLog(btns[i].getAttribute('data-key'));
-    if(last&&((last.sets&&last.sets.length)||last.result))btns[i].classList.add('logged');
-    else btns[i].classList.remove('logged');
+    var done=!!(last&&((last.sets&&last.sets.length)||last.result||last.notes));
+    btns[i].classList.toggle('logged',done);
+    var row=btns[i].closest?btns[i].closest('.ex-row'):null;
+    if(row)row.classList.toggle('done',done);
+    var wod=btns[i].closest?btns[i].closest('.wod-box'):null;
+    if(wod)wod.classList.toggle('done',done);
+  }
+  var blocks=document.querySelectorAll('.block');
+  for(var b=0;b<blocks.length;b++){
+    var total=blocks[b].querySelectorAll('.ex-row').length;
+    var cnt=blocks[b].querySelectorAll('.ex-row.done').length;
+    var pr=blocks[b].querySelector('.block-progress');
+    if(!pr)continue;
+    pr.textContent=cnt>0?(cnt+'/'+total+(cnt===total?' ✓':'')):'';
+    pr.classList.toggle('complete',total>0&&cnt===total);
   }
 }
 
